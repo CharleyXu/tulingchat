@@ -6,11 +6,11 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="itchat4j" />
+        <module name="springBootDemo" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="itchat4j" target="1.8" />
+      <module name="springBootDemo" target="1.8" />
     </bytecodeTargetLevel>
   </component>
 </project>

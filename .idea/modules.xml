@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/itchat4j.iml" filepath="$PROJECT_DIR$/.idea/itchat4j.iml" />
+      <module fileurl="file://$PROJECT_DIR$/springBootDemo.iml" filepath="$PROJECT_DIR$/springBootDemo.iml" />
     </modules>
   </component>
 </project>
