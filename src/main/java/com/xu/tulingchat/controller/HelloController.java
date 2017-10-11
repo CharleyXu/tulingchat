@@ -1,5 +1,10 @@
 package com.xu.tulingchat.controller;
 
+import com.google.common.base.Strings;
+
+import com.xu.tulingchat.util.TokenUtil;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -20,6 +25,19 @@ public class HelloController {
     @RequestMapping("/demo01")
     public String demo01(){
         return id+","+name;
+    }
+
+    @Autowired
+    TokenUtil tokenUtil ;
+    @RequestMapping("/demo02")
+    public String demo02(){
+        String token = tokenUtil.getToken();
+        System.out.println(token);
+        if(!Strings.isNullOrEmpty(token)){
+            return token;
+        }else{
+            return "123";
+        }
     }
 
 }

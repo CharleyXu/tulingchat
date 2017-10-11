@@ -23,7 +23,7 @@ public class TestController {
 
     @RequestMapping("/test01")
     //@RequestParam
-    public String test01(@RequestParam String id){
+    public String test01(@RequestParam(value = "",required = false) String id){
         if(Strings.isNullOrEmpty(id)){
             id="12345";
         }
