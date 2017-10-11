@@ -1,5 +1,6 @@
 package com.xu.tulingchat.controller;
 
+import com.alibaba.fastjson.JSON;
 import com.xu.tulingchat.util.MessageUtil;
 import com.xu.tulingchat.util.SignUtil;
 
@@ -34,8 +35,8 @@ public class VerifyController {
         System.out.println("这是 post 方法！");
         try{
             Map<String, String> map= MessageUtil.parseXml(request);
-            System.out.println("============================="+map.get("Content"));
-            return map.get("Content");
+            System.out.println("============================="+map.get("Content")+"\n"+ JSON.toJSONString(map));
+            return "";
         }catch(Exception e){
             e.printStackTrace();
         }
