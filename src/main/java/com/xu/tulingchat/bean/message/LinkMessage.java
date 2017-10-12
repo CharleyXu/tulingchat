@@ -1,7 +1,7 @@
 package com.xu.tulingchat.bean.message;
 
 /**
- * 连接消息
+ * 链接消息
  */
 public class LinkMessage extends BaseMessage {
     // 消息标题
