@@ -1,6 +1,8 @@
 package com.xu.tulingchat.controller;
 
 import com.alibaba.fastjson.JSON;
+import com.xu.tulingchat.service.EventDispatcher;
+import com.xu.tulingchat.service.MsgDispatcher;
 import com.xu.tulingchat.util.MessageUtil;
 import com.xu.tulingchat.util.SignUtil;
 
@@ -35,7 +37,13 @@ public class VerifyController {
         System.out.println("这是 post 方法！");
         try{
             Map<String, String> map= MessageUtil.parseXml(request);
-            System.out.println("============================="+map.get("Content")+"\n"+ JSON.toJSONString(map));
+            String msgtype=map.get("MsgType");
+            if(MessageUtil.REQ_MESSAGE_TYPE_EVENT.equals(msgtype)){
+                EventDispatcher.processEvent(map);
+            }else{
+                MsgDispatcher.progressMsg(map);
+            }
+            System.out.println("======\n"+JSON.toJSONString(map));
             return "";
         }catch(Exception e){
             e.printStackTrace();

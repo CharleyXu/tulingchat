@@ -63,11 +63,16 @@ public class MessageUtil {
     public static final String REQ_MESSAGE_TYPE_VOICE = "voice";
 
     /**
+     * 请求消息类型: 视频
+     */
+    public static final String REQ_MESSAGE_TYPE_VIDEO = "video";
+    /**
      * 请求消息类型：推送
      */
     public static final String REQ_MESSAGE_TYPE_EVENT = "event";
 
     /**
+     * 关注/取消关注事件
      * 事件类型：subscribe(订阅)
      */
     public static final String EVENT_TYPE_SUBSCRIBE = "subscribe";
@@ -77,6 +82,18 @@ public class MessageUtil {
      */
     public static final String EVENT_TYPE_UNSUBSCRIBE = "unsubscribe";
 
+    /**
+     * 扫描带参数二维码事件
+     * 用户未关注时，进行关注后的事件推送    subscribe
+     * 用户已关注时的事件推送  事件类型，SCAN
+     */
+    public static final String EVENT_TYPE_SCAN = "SCAN";
+
+    /**
+     *
+     * 事件类型：LOCATION(上报地理位置事件)
+     */
+    public static final String EVENT_TYPE_LOCATION = "LOCATION";
     /**
      * 事件类型：CLICK(自定义菜单点击事件)
      */
