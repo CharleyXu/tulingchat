@@ -1,7 +1,7 @@
-package com.xu.tulingchat.bean.message;
+package com.xu.tulingchat.bean.message.receive;
 
 /**
- * 微信请求消息基本类
+ * 接收消息基本类
  */
 public class BaseMessage {
 

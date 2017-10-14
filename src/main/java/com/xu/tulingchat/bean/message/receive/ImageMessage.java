@@ -1,4 +1,4 @@
-package com.xu.tulingchat.bean.message;
+package com.xu.tulingchat.bean.message.receive;
 
 /**
  * 图片消息
