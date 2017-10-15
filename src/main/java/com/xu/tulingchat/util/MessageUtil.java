@@ -103,8 +103,6 @@ public class MessageUtil {
    * @param @param request
    * @param @throws Exception
    * @Description: 解析微信发来的请求（XML）
-   * @author dapengniao
-   * @date 2016 年 3 月 7 日 上午 10:04:02
    */
   @SuppressWarnings("unchecked")
   public static Map<String, String> parseXml(HttpServletRequest request) throws Exception {
@@ -136,8 +134,6 @@ public class MessageUtil {
   /**
    * @param @param textMessage
    * @Description: 文本消息对象转换成 xml
-   * @author dapengniao
-   * @date 2016 年 3 月 8 日 下午 4:13:22
    */
   public static String textMessageToXml(TextMessage textMessage) {
     xstream.alias("xml", textMessage.getClass());
@@ -147,8 +143,6 @@ public class MessageUtil {
   /**
    * @param @param newsMessage
    * @Description: 图文消息对象转换成 xml
-   * @author dapengniao
-   * @date 2016 年 3 月 8 日 下午 4:14:09
    */
   public static String newsMessageToXml(NewsMessage newsMessage) {
     xstream.alias("xml", newsMessage.getClass());
@@ -159,8 +153,6 @@ public class MessageUtil {
   /**
    * @param @param imageMessage
    * @Description: 图片消息对象转换成 xml
-   * @author dapengniao
-   * @date 2016 年 3 月 9 日 上午 9:25:51
    */
   public static String imageMessageToXml(ImageMessage imageMessage) {
     xstream.alias("xml", imageMessage.getClass());
@@ -170,8 +162,6 @@ public class MessageUtil {
   /**
    * @param @param voiceMessage
    * @Description: 语音消息对象转换成 xml
-   * @author dapengniao
-   * @date 2016 年 3 月 9 日 上午 9:27:26
    */
   public static String voiceMessageToXml(VoiceMessage voiceMessage) {
     xstream.alias("xml", voiceMessage.getClass());
@@ -181,8 +171,6 @@ public class MessageUtil {
   /**
    * @param @param videoMessage
    * @Description: 视频消息对象转换成 xml
-   * @author dapengniao
-   * @date 2016 年 3 月 9 日 上午 9:31:09
    */
   public static String videoMessageToXml(VideoMessage videoMessage) {
     xstream.alias("xml", videoMessage.getClass());
@@ -192,8 +180,6 @@ public class MessageUtil {
   /**
    * @param @param musicMessage
    * @Description: 音乐消息对象转换成 xml
-   * @author dapengniao
-   * @date 2016 年 3 月 8 日 下午 4:13:36
    */
   public static String musicMessageToXml(MusicMessage musicMessage) {
     xstream.alias("xml", musicMessage.getClass());
