@@ -11,15 +11,18 @@ import com.xu.tulingchat.bean.message.send.NewsMessage;
 import com.xu.tulingchat.bean.message.send.TextMessage;
 import com.xu.tulingchat.bean.message.send.VideoMessage;
 import com.xu.tulingchat.bean.message.send.VoiceMessage;
+
+import org.dom4j.Document;
+import org.dom4j.Element;
+import org.dom4j.io.SAXReader;
+
 import java.io.InputStream;
 import java.io.Writer;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
 import javax.servlet.http.HttpServletRequest;
-import org.dom4j.Document;
-import org.dom4j.Element;
-import org.dom4j.io.SAXReader;
 
 /**
  * 消息工具类
@@ -189,6 +192,7 @@ public class MessageUtil {
 
   /**
    * 对象到 xml 的处理
+   * 扩展xstream，使其支持CDATA块
    */
   private static XStream xstream = new XStream(new XppDriver() {
     public HierarchicalStreamWriter createWriter(Writer out) {
