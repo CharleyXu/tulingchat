@@ -44,13 +44,14 @@ public class VerifyController {
 			System.out.println("--请求体--" + JSON.toJSONString(map));
 			String msgtype = map.get("MsgType");
 			if (MessageUtil.REQ_MESSAGE_TYPE_EVENT.equals(msgtype)) {
-				EventDispatcher.processEvent(map);
+				String result = EventDispatcher.processEvent(map);
+				System.out.println("--返回体--" + result);
+				return result;
 			} else {
 				String result = msgDispatcher.progressMsg(map);
 				System.out.println("--返回体--" + result);
 				return result;
 			}
-			return "";
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
