@@ -1,16 +1,39 @@
 package com.xu.tulingchat.service;
 
+import com.xu.tulingchat.bean.message.send.TextMessage;
 import com.xu.tulingchat.util.MessageUtil;
+import com.xu.tulingchat.util.TulingRobotUtil;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import java.util.Date;
 import java.util.Map;
 
 /**
- *消息业务处理分发器
+ * 消息业务处理分发器
  */
+@Service
 public class MsgDispatcher {
-	public static String progressMsg(Map<String, String> map){
+	@Autowired
+	TulingRobotUtil tulingRobotUtil;
+
+	public String progressMsg(Map<String, String> map) {
+		String toUserName = map.get("ToUserName");//开发者微信号 公众号
+		String fromUserName = map.get("FromUserName");//发送方帐号（一个 OpenID）粉丝号
 		if (map.get("MsgType").equals(MessageUtil.REQ_MESSAGE_TYPE_TEXT)) { // 文本消息
 			System.out.println("==============这是文本消息！");
+			String content = map.get("Content");
+			TextMessage textMessage = new TextMessage();
+			textMessage.setToUserName(fromUserName);// 粉丝号
+			textMessage.setFromUserName(toUserName);//公众号
+			textMessage.setCreateTime(new Date().getTime());
+			textMessage.setMsgType(MessageUtil.RESP_MESSAGE_TYPE_TEXT);
+			//向tuling接口发送请求
+			String request = tulingRobotUtil.sendRequest(content,fromUserName);
+			String result = tulingRobotUtil.processTypeResult(request);
+			textMessage.setContent(result);
+			return MessageUtil.textMessageToXml(textMessage);
 		}
 
 		if (map.get("MsgType").equals(MessageUtil.REQ_MESSAGE_TYPE_IMAGE)) { // 图片消息
