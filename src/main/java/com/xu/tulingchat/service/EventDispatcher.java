@@ -21,8 +21,8 @@ public class EventDispatcher {
 			textMessage.setCreateTime(new Date().getTime());
 			textMessage.setMsgType(MessageUtil.RESP_MESSAGE_TYPE_TEXT);
 			//向tuling接口发送请求
-			textMessage.setContent("欢迎关注tulingchat公众号");
-			return MessageUtil.textMessageToXml(textMessage);
+      textMessage.setContent("欢迎关注tulingchat公众号！");
+      return MessageUtil.textMessageToXml(textMessage);
 		}
 
 		if (map.get("Event").equals(MessageUtil.EVENT_TYPE_UNSUBSCRIBE)) { //取消关注事件
