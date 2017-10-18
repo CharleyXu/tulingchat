@@ -22,8 +22,14 @@ import java.util.Map;
  */
 public class HttpRequestUtils {
 	private final static String CONTENT_TYPE_TEXT_JSON = "text/json";
+	//快递接口：http://www.kuaidi100.com/query?type=快递公司代号&postid=快递单号
+	//:快递公司编码:申通=”shentong” EMS=”ems” 顺丰=”shunfeng”
+	// 圆通=”yuantong” 中通=”zhongtong” 韵达=”yunda” 天天=”tiantian”
+	//汇通=”huitongkuaidi” 全峰=”quanfengkuaidi” 德邦=”debangwuliu” 宅急送=”zhaijisong”
 
-	//一般用get
+	/**
+	 * get请求
+	 */
 	public static String getRequest(String url) {
 		//创建客户端
 		CloseableHttpClient closeableHttpClient = HttpClients.createDefault();
