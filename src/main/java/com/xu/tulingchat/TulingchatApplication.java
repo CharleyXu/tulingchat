@@ -2,6 +2,7 @@ package com.xu.tulingchat;
 
 import com.xu.tulingchat.listener.PropertiesListener;
 
+import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -10,6 +11,7 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 
 @EnableAutoConfiguration(exclude = {DataSourceAutoConfiguration.class})
 @SpringBootApplication
+@MapperScan("com.xu.dao")
 @EnableScheduling
 /**
  * 注册监听器(`Listeners`) + `PropertiesLoaderUtils`的方式

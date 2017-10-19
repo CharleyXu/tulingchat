@@ -4,30 +4,30 @@ package com.xu.tulingchat.bean;
  * springboot 仅测试
  */
 public class UserBean {
-    private String id;
-    private String name;
+	private String id;
+	private String name;
 
-    public void setName(String name) {
-        this.name = name;
-    }
+	public void setName(String name) {
+		this.name = name;
+	}
 
-    public void setId(String id) {
+	public void setId(String id) {
 
-        this.id = id;
-    }
+		this.id = id;
+	}
 
-    public String getName() {
+	public String getName() {
 
-        return name;
-    }
+		return name;
+	}
 
-    public String getId() {
+	public String getId() {
 
-        return id;
-    }
+		return id;
+	}
 
-    @Override
-    public String toString() {
-        return super.toString();
-    }
+	@Override
+	public String toString() {
+		return super.toString();
+	}
 }
