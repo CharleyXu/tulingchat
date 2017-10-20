@@ -1,4 +1,4 @@
-package com.xu.tulingchat;
+package com.xu.tulingchat.demo;
 
 import com.xu.tulingchat.controller.HelloController;
 

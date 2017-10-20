@@ -18,7 +18,7 @@ import java.util.Map;
 
 @RestController
 public class TestController {
-    static Map<Long, UserBean> users = Collections.synchronizedMap(new HashMap<Long, UserBean>());
+	static Map<Integer, UserBean> users = Collections.synchronizedMap(new HashMap<Integer, UserBean>());
 
 
     @RequestMapping("/test01")
@@ -32,8 +32,8 @@ public class TestController {
 
     @RequestMapping(value = "/test02",method = RequestMethod.GET)
     public String test02(@ModelAttribute UserBean user){
-        users.put(Long.parseLong(user.getId()),user);
-        JSONObject jsonObject = JSONObject.parseObject(JSON.toJSONString(users));
+		users.put(user.getId(), user);
+		JSONObject jsonObject = JSONObject.parseObject(JSON.toJSONString(users));
         return jsonObject.toString();
     }
 }
