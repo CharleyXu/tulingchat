@@ -2,7 +2,6 @@ package com.xu.tulingchat.service;
 
 import com.xu.tulingchat.bean.message.send.TextMessage;
 import com.xu.tulingchat.util.MessageUtil;
-
 import java.util.Date;
 import java.util.Map;
 
