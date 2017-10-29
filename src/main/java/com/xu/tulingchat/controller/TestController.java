@@ -4,7 +4,7 @@ import com.google.common.base.Strings;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
-import com.xu.tulingchat.bean.UserBean;
+import com.xu.tulingchat.entity.UserBean;
 
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;

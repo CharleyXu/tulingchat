@@ -1,4 +1,6 @@
-package com.xu.tulingchat.bean;
+package com.xu.tulingchat.entity;
+
+import com.alibaba.fastjson.JSON;
 
 /**
  * springboot 仅测试
@@ -33,9 +35,6 @@ public class UserBean {
 
 	@Override
 	public String toString() {
-		return "UserBean{" +
-				"id=" + id +
-				", name='" + name + '\'' +
-				'}';
-	}
+    return JSON.toJSONString(this);
+  }
 }

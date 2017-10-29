@@ -1,4 +1,4 @@
-package com.xu.tulingchat.bean;
+package com.xu.tulingchat.entity;
 
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
