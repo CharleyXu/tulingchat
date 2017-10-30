@@ -128,8 +128,14 @@
       <version>1.5.8.RELEASE</version>
     </dependency>
 
+		<!-- 定时任务  https://mvnrepository.com/artifact/org.quartz-scheduler/quartz -->
+		<dependency>
+			<groupId>org.quartz-scheduler</groupId>
+			<artifactId>quartz</artifactId>
+			<version>2.3.0</version>
+		</dependency>
 
-    <!-- 添加spring boot devtools 热部署-->
+		<!-- 添加spring boot devtools 热部署-->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-devtools</artifactId>
