@@ -4,11 +4,13 @@ import com.xu.tulingchat.bean.message.send.TextMessage;
 import com.xu.tulingchat.util.HttpRequestUtils;
 import com.xu.tulingchat.util.MessageUtil;
 import com.xu.tulingchat.util.TokenUtil;
-import java.util.Date;
-import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
+
+import java.util.Date;
+import java.util.Map;
 
 /**
  * 事件消息业务分发器
@@ -33,17 +35,20 @@ public class EventDispatcher {
     String access_token = null;
     if (map.get("Event").equals(MessageUtil.EVENT_TYPE_SUBSCRIBE)) { //关注事件
       System.out.println("==============这是关注事件！");
-      if (redisService.exists("access_token")) {
-        access_token = String.valueOf(redisService.get("access_token"));
-      } else {
-        access_token = tokenUtil.getToken();
-        redisService.set("access_token", access_token, 2 * 60 * 60L);
+      try {
+        if (redisService.exists("access_token")) {
+          access_token = String.valueOf(redisService.get("access_token"));
+        } else {
+          access_token = tokenUtil.getToken();
+          redisService.set("access_token", access_token, 2 * 60 * 60L);
+        }
+        String replaceUrl = userinfoUrl.replace("ACCESS_TOKEN", access_token)
+                .replace("OPENID", fromUserName);
+        String result = HttpRequestUtils.getRequest(replaceUrl);
+        System.out.println("UserInfo" + result);//用户信息
+      } catch (Exception e) {
+        e.printStackTrace();
       }
-      String replaceUrl = userinfoUrl.replace("ACCESS_TOKEN", access_token)
-          .replace("OPENID", fromUserName);
-      String result = HttpRequestUtils.getRequest(replaceUrl);
-      System.out.println("UserInfo" + result);//用户信息
-
       TextMessage textMessage = new TextMessage();
       textMessage.setToUserName(fromUserName);// 粉丝号
       textMessage.setFromUserName(toUserName);//公众号
