@@ -1,5 +1,7 @@
 package com.xu.tulingchat.util;
 
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.PropertySource;
@@ -34,11 +36,15 @@ public class TokenUtil {
     //正常情况  {"access_token":"ACCESS_TOKEN","expires_in":7200}
     //错误情况  {"errcode":40013,"errmsg":"invalid appid"}
     public String getToken(){
-        System.out.println(tokenUrl);
+//      System.out.println(tokenUrl);
         String replaceURL = null;
         replaceURL = tokenUrl.replace("APPID", appId).replace("APPSECRET", appSecret);
         String request = HttpRequestUtils.getRequest(replaceURL);
-        return request;
+        JSONObject object = JSON.parseObject(request);
+        if (object.containsKey("access_token")) {
+            return object.getString("access_token");
+        }
+        return null;
     }
 
 
