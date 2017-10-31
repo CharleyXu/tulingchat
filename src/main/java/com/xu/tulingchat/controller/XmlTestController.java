@@ -1,6 +1,6 @@
 package com.xu.tulingchat.controller;
 
-import com.xu.tulingchat.bean.XmlTestBean;
+import com.xu.tulingchat.entity.XmlTestBean;
 
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;

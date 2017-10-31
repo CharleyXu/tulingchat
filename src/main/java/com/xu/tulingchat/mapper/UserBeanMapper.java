@@ -1,7 +1,7 @@
 package com.xu.tulingchat.mapper;
 
-import com.xu.tulingchat.bean.UserBean;
-
+import com.xu.tulingchat.entity.UserBean;
+import java.util.List;
 import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Param;
@@ -9,12 +9,12 @@ import org.apache.ibatis.annotations.Result;
 import org.apache.ibatis.annotations.Results;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
-import org.springframework.stereotype.Repository;
+import org.springframework.stereotype.Component;
 
-import java.util.List;
-
-@Repository
+@Component
 public interface UserBeanMapper {
+
+  //@InsertProvider(type = UserMapperProvider.class, method = "insert")
 
 	@Select("select * from users")
 	@Results({@Result(property = "id", column = "userid"),
