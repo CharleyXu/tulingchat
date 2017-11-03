@@ -1,7 +1,7 @@
 package com.xu.tulingchat.task;
 
-import com.xu.tulingchat.service.RedisService;
 import com.xu.tulingchat.util.TokenUtil;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
@@ -14,8 +14,8 @@ public class ScheduleTask {
 
   @Autowired
   private TokenUtil tokenUtil;
-  @Autowired
-  private RedisService redisService;
+//  @Autowired
+//  private RedisUtil redisUtil;
 
 /*    @Scheduled(cron = "0 48 14 * * ?")
     public void task(){
@@ -25,10 +25,17 @@ public class ScheduleTask {
   // Two hours 获取1次token放入缓存
     @Scheduled(fixedRate = 1000*60*60*2)    //单位:ms
     public void taskjob(){
-      String access_token = tokenUtil.getToken();
-      System.out.println("--启动定时任务--,\n 当前的access_token是:" + access_token);
-      redisService.set("access_token", access_token, 2 * 60 * 60L);
-    }
+//      String access_token = tokenUtil.getToken();
+//      System.out.println("--启动定时任务--,\n 当前的access_token是:" + access_token);
+//        redisUtil.set("access_token", access_token, 2 * 60 * 60L);
+	}
+
+	//定义一个按一定频率执行的定时任务，每隔1分钟执行一次
+	@Scheduled(fixedRate = 1000 * 60 * 60 * 24)
+	public void job2() {
+		//执行代码
+		System.out.println("Scheduled  TASK START ! ! !");
+	}
 
     /**
      *

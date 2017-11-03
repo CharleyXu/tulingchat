@@ -21,7 +21,8 @@ public class MsgDispatcher {
 	public String progressMsg(Map<String, String> map) {
 		String toUserName = map.get("ToUserName");//开发者微信号 公众号
 		String fromUserName = map.get("FromUserName");//发送方帐号（一个 OpenID）粉丝号
-		if (map.get("MsgType").equals(MessageUtil.REQ_MESSAGE_TYPE_TEXT)) { // 文本消息
+		String msgType = map.get("MsgType");
+		if (MessageUtil.REQ_MESSAGE_TYPE_TEXT.equals(msgType)) { // 文本消息
 			System.out.println("==============这是文本消息！");
 			String content = map.get("Content");
 			TextMessage textMessage = new TextMessage();
@@ -29,30 +30,33 @@ public class MsgDispatcher {
 			textMessage.setFromUserName(toUserName);//公众号
 			textMessage.setCreateTime(new Date().getTime());
 			textMessage.setMsgType(MessageUtil.RESP_MESSAGE_TYPE_TEXT);
+
 			//向tuling接口发送请求
 			String request = tulingRobotUtil.sendRequest(content,fromUserName);
 			String result = tulingRobotUtil.processTypeResult(request);
 			textMessage.setContent(result);
+
 			return MessageUtil.textMessageToXml(textMessage);
 		}
 
-		if (map.get("MsgType").equals(MessageUtil.REQ_MESSAGE_TYPE_IMAGE)) { // 图片消息
+
+		if (msgType.equals(MessageUtil.REQ_MESSAGE_TYPE_IMAGE)) { // 图片消息
 			System.out.println("==============这是图片消息！");
 		}
 
-		if (map.get("MsgType").equals(MessageUtil.REQ_MESSAGE_TYPE_LINK)) { // 链接消息
+		if (msgType.equals(MessageUtil.REQ_MESSAGE_TYPE_LINK)) { // 链接消息
 			System.out.println("==============这是链接消息！");
 		}
 
-		if (map.get("MsgType").equals(MessageUtil.REQ_MESSAGE_TYPE_LOCATION)) { // 位置消息
+		if (msgType.equals(MessageUtil.REQ_MESSAGE_TYPE_LOCATION)) { // 位置消息
 			System.out.println("==============这是位置消息！");
 		}
 
-		if (map.get("MsgType").equals(MessageUtil.REQ_MESSAGE_TYPE_VIDEO)) { // 视频消息
+		if (msgType.equals(MessageUtil.REQ_MESSAGE_TYPE_VIDEO)) { // 视频消息
 			System.out.println("==============这是视频消息！");
 		}
 
-		if (map.get("MsgType").equals(MessageUtil.REQ_MESSAGE_TYPE_VOICE)) { // 语音消息
+		if (msgType.equals(MessageUtil.REQ_MESSAGE_TYPE_VOICE)) { // 语音消息
 			System.out.println("==============这是语音消息！");
 		}
 

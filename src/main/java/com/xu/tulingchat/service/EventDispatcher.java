@@ -1,7 +1,6 @@
 package com.xu.tulingchat.service;
 
 import com.xu.tulingchat.bean.message.send.TextMessage;
-import com.xu.tulingchat.util.HttpRequestUtils;
 import com.xu.tulingchat.util.MessageUtil;
 import com.xu.tulingchat.util.TokenUtil;
 
@@ -23,8 +22,8 @@ public class EventDispatcher {
   //https://api.weixin.qq.com/cgi-bin/user/info?access_token=ACCESS_TOKEN&openid=OPENID&lang=zh_CN
   @Autowired
   private TokenUtil tokenUtil;
-  @Autowired
-  private RedisService redisService;
+//  @Autowired
+//  private RedisUtil redisUtil;
 
   @Value("${wechat.userinfo.singleget}")
   private String userinfoUrl;//获取userinfo的url
@@ -36,16 +35,16 @@ public class EventDispatcher {
     if (map.get("Event").equals(MessageUtil.EVENT_TYPE_SUBSCRIBE)) { //关注事件
       System.out.println("==============这是关注事件！");
       try {
-        if (redisService.exists("access_token")) {
-          access_token = String.valueOf(redisService.get("access_token"));
-        } else {
-          access_token = tokenUtil.getToken();
-          redisService.set("access_token", access_token, 2 * 60 * 60L);
-        }
-        String replaceUrl = userinfoUrl.replace("ACCESS_TOKEN", access_token)
-                .replace("OPENID", fromUserName);
-        String result = HttpRequestUtils.getRequest(replaceUrl);
-        System.out.println("UserInfo" + result);//用户信息
+//        if (redisUtil.exists("access_token")) {
+//          access_token = String.valueOf(redisUtil.get("access_token"));
+//        } else {
+//          access_token = tokenUtil.getToken();
+//          redisUtil.set("access_token", access_token, 2 * 60 * 60L);
+//        }
+//        String replaceUrl = userinfoUrl.replace("ACCESS_TOKEN", access_token)
+//                .replace("OPENID", fromUserName);
+//        String result = HttpRequestUtils.getRequest(replaceUrl);
+//        System.out.println("UserInfo" + result);//用户信息
       } catch (Exception e) {
         e.printStackTrace();
       }

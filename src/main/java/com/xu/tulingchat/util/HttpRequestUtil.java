@@ -20,7 +20,7 @@ import java.util.Map;
 /**
  * HttpClient工具类
  */
-public class HttpRequestUtils {
+public class HttpRequestUtil {
 	private final static String CONTENT_TYPE_TEXT_JSON = "text/json";
 	//快递接口：http://www.kuaidi100.com/query?type=快递公司代号&postid=快递单号
 	//:快递公司编码:申通=”shentong” EMS=”ems” 顺丰=”shunfeng”
