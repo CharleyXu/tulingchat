@@ -8,7 +8,8 @@ import org.springframework.core.io.FileSystemResource;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
-import org.springframework.stereotype.Component;
+import org.springframework.scheduling.annotation.Async;
+import org.springframework.stereotype.Service;
 
 import java.io.File;
 
@@ -18,7 +19,7 @@ import javax.mail.internet.MimeMessage;
 /**
  * 发送邮件实现类
  */
-@Component
+@Service
 public class MailUtil {
 	private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
@@ -31,6 +32,7 @@ public class MailUtil {
 	/**
 	 * 发送文本邮件
 	 */
+	@Async("mailAsync")
 	public void sendSimpleMail(String to, String subject, String content) {
 		SimpleMailMessage message = new SimpleMailMessage();
 		message.setFrom(from);
@@ -50,6 +52,7 @@ public class MailUtil {
 	/**
 	 * 发送html邮件
 	 */
+	@Async("mailAsync")
 	public void sendHtmlMail(String to, String subject, String content) {
 		MimeMessage message = mailSender.createMimeMessage();
 		try {
@@ -71,9 +74,9 @@ public class MailUtil {
 	/**
 	 * 发送带附件的邮件
 	 */
+	@Async("mailAsync")
 	public void sendAttachmentsMail(String to, String subject, String content, String filePath) {
 		MimeMessage message = mailSender.createMimeMessage();
-
 		try {
 			MimeMessageHelper helper = new MimeMessageHelper(message, true);
 			helper.setFrom(from);
@@ -91,13 +94,12 @@ public class MailUtil {
 		}
 	}
 
-
 	/**
 	 * 发送正文中有静态资源（图片）的邮件
 	 */
+	@Async("mailAsync")
 	public void sendInlineResourceMail(String to, String subject, String content, String rscPath, String rscId) {
 		MimeMessage message = mailSender.createMimeMessage();
-
 		try {
 			MimeMessageHelper helper = new MimeMessageHelper(message, true);
 			helper.setFrom(from);

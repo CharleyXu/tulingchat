@@ -1,9 +1,12 @@
 package com.xu.tulingchat.service;
 
 import com.xu.tulingchat.bean.message.send.TextMessage;
+import com.xu.tulingchat.util.MailUtil;
 import com.xu.tulingchat.util.MessageUtil;
 import com.xu.tulingchat.util.TulingRobotUtil;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,8 +18,13 @@ import java.util.Map;
  */
 @Service
 public class MsgDispatcher {
+
+	private final Logger logger = LoggerFactory.getLogger(this.getClass());
+
 	@Autowired
 	TulingRobotUtil tulingRobotUtil;
+	@Autowired
+	MailUtil mailUtil;
 
 	public String progressMsg(Map<String, String> map) {
 		String toUserName = map.get("ToUserName");//开发者微信号 公众号
@@ -30,12 +38,15 @@ public class MsgDispatcher {
 			textMessage.setFromUserName(toUserName);//公众号
 			textMessage.setCreateTime(new Date().getTime());
 			textMessage.setMsgType(MessageUtil.RESP_MESSAGE_TYPE_TEXT);
-
-			//向tuling接口发送请求
-			String request = tulingRobotUtil.sendRequest(content,fromUserName);
-			String result = tulingRobotUtil.processTypeResult(request);
-			textMessage.setContent(result);
-
+			if (content.length() > 3 && content.substring(0, 3).startsWith("邮件")) {
+				System.out.println("准备发送邮件");
+				handleEmail(content, textMessage);
+			} else {
+				//向tuling接口发送请求   自动聊天
+				String request = tulingRobotUtil.sendRequest(content, fromUserName);
+				String result = tulingRobotUtil.processTypeResult(request);
+				textMessage.setContent(result);
+			}
 			return MessageUtil.textMessageToXml(textMessage);
 		}
 
@@ -61,5 +72,27 @@ public class MsgDispatcher {
 		}
 
 		return null;
+	}
+
+	/**
+	 * 处理邮件
+	 */
+	public void handleEmail(String content, TextMessage textMessage) {
+		String[] strings = content.split(" ");
+		if (strings.length < 3) {
+			textMessage.setContent("邮件发送格式错误");
+			return;
+		}
+		String receiver = strings[1];
+		// 验证邮箱的正则表达式
+		String pattern = "^([a-z0-9A-Z]+[-|\\.]?)+[a-z0-9A-Z]@([a-z0-9A-Z]+(-[a-z0-9A-Z]+)?\\.)+[a-zA-Z]{2,}$";
+		if (!receiver.matches(pattern)) {
+			textMessage.setContent("收件人邮箱格式错误");
+		} else {
+			String emailContent = strings[2];
+			String subject = "这是一封重要的邮件";
+			mailUtil.sendSimpleMail(receiver, subject, emailContent);
+			textMessage.setContent("邮件发送成功");
+		}
 	}
 }

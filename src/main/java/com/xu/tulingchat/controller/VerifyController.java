@@ -35,8 +35,8 @@ public class VerifyController {
 
 	@Autowired
 	MsgDispatcher msgDispatcher;
-  @Autowired
-  EventDispatcher eventDispatcher;
+	@Autowired
+	EventDispatcher eventDispatcher;
 
 	// post 方法用于接收微信服务端消息   {"application/xml;charset=utf-8"}
 	@RequestMapping(value = "/verify", method = RequestMethod.POST, produces = MediaType.APPLICATION_XML_VALUE)
@@ -46,9 +46,9 @@ public class VerifyController {
 			System.out.println("--请求体--" + JSON.toJSONString(map));
 			String msgtype = map.get("MsgType");
 			if (MessageUtil.REQ_MESSAGE_TYPE_EVENT.equals(msgtype)) {
-        String result = eventDispatcher.processEvent(map);
-        System.out.println("--返回体--" + result);
-        return result;
+				String result = eventDispatcher.processEvent(map);
+				System.out.println("--返回体--" + result);
+				return result;
 			} else {
 				String result = msgDispatcher.progressMsg(map);
 				System.out.println("--返回体--" + result);
