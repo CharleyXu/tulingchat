@@ -38,7 +38,7 @@ public class MailUtil {
 		SimpleMailMessage message = new SimpleMailMessage();
 		message.setFrom(from);
 		message.setTo(to);
-		message.setCc(from);
+		message.setBcc(from);
 		message.setSubject(subject);
 		message.setText(content);
 		message.setSentDate(new Date());
