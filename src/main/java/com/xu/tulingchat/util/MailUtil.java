@@ -31,7 +31,7 @@ public class MailUtil {
 	private String from;
 
 	/**
-	 * 发送文本邮件  setCc 抄送
+	 * 发送文本邮件  setCc 抄送 setBcc 密送
 	 */
 	@Async("mailAsync")
 	public void sendSimpleMail(String to, String subject, String content) {
