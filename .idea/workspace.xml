@@ -1,14 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="88208429-dab9-48e3-8cad-d85e55e5dd49" name="Default" comment="add Interceptor">
+    <list default="true" id="88208429-dab9-48e3-8cad-d85e55e5dd49" name="Default" comment="add wechat messager base class">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/encodings.xml" afterPath="$PROJECT_DIR$/.idea/encodings.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/Maven__junit_junit_4_12.xml" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__junit_junit_4_12.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_hamcrest_hamcrest_core_1_3.xml" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_hamcrest_hamcrest_core_1_3.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/xu/tulingchat/service/RedisService.java" afterPath="$PROJECT_DIR$/src/main/java/com/xu/tulingchat/service/RedisService.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/xu/tulingchat/task/ScheduleTask.java" afterPath="$PROJECT_DIR$/src/main/java/com/xu/tulingchat/task/ScheduleTask.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/xu/tulingchat/util/TokenUtil.java" afterPath="$PROJECT_DIR$/src/main/java/com/xu/tulingchat/util/TokenUtil.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/application.properties" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/xu/tulingchat/service/MsgDispatcher.java" afterPath="$PROJECT_DIR$/src/main/java/com/xu/tulingchat/service/MsgDispatcher.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/xu/tulingchat/util/MailUtil.java" afterPath="$PROJECT_DIR$/src/main/java/com/xu/tulingchat/util/MailUtil.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/application-dev.properties" afterPath="$PROJECT_DIR$/src/main/resources/application-dev.properties" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/application-prod.properties" afterPath="$PROJECT_DIR$/src/main/resources/application-prod.properties" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/application-test.properties" afterPath="$PROJECT_DIR$/src/main/resources/application-test.properties" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/test/java/com/xu/tulingchat/demo/SimpleTest.java" afterPath="$PROJECT_DIR$/src/test/java/com/xu/tulingchat/demo/SimpleTest.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -22,94 +25,63 @@
   <component name="CodeInsightWorkspaceSettings">
     <option name="optimizeImportsOnTheFly" value="true" />
   </component>
-  <component name="DatabaseView">
-    <option name="SHOW_INTERMEDIATE" value="true" />
-    <option name="GROUP_SCHEMA" value="true" />
-    <option name="GROUP_CONTENTS" value="false" />
-    <option name="SORT_POSITIONED" value="false" />
-    <option name="SHOW_TABLE_DETAILS" value="true" />
-    <option name="SHOW_EMPTY_GROUPS" value="false" />
-    <option name="AUTO_SCROLL_FROM_SOURCE" value="false" />
-    <expand />
-    <select />
-  </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="375">
-      <file leaf-file-name="pom.xml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/pom.xml">
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file leaf-file-name="application-prod.properties" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/resources/application-prod.properties">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="3266">
-              <caret line="142" column="25" lean-forward="false" selection-start-line="142" selection-start-column="25" selection-end-line="142" selection-end-column="25" />
+            <state relative-caret-position="407">
+              <caret line="68" column="1" lean-forward="false" selection-start-line="68" selection-start-column="1" selection-end-line="68" selection-end-column="1" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="TulingchatApplication.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/xu/tulingchat/TulingchatApplication.java">
+      <file leaf-file-name="application-test.properties" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/resources/application-test.properties">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="460">
-              <caret line="24" column="0" lean-forward="false" selection-start-line="24" selection-start-column="0" selection-end-line="24" selection-end-column="0" />
+            <state relative-caret-position="503">
+              <caret line="26" column="32" lean-forward="true" selection-start-line="26" selection-start-column="32" selection-end-line="26" selection-end-column="32" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ScheduleTask.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/xu/tulingchat/task/ScheduleTask.java">
+      <file leaf-file-name="MailUtil.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/xu/tulingchat/util/MailUtil.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="253">
-              <caret line="28" column="20" lean-forward="false" selection-start-line="28" selection-start-column="20" selection-end-line="28" selection-end-column="20" />
+            <state relative-caret-position="266">
+              <caret line="33" column="23" lean-forward="true" selection-start-line="33" selection-start-column="23" selection-end-line="33" selection-end-column="23" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="RedisService.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/xu/tulingchat/service/RedisService.java">
+      <file leaf-file-name="MsgDispatcher.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/xu/tulingchat/service/MsgDispatcher.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="293">
-              <caret line="46" column="26" lean-forward="true" selection-start-line="46" selection-start-column="26" selection-end-line="46" selection-end-column="26" />
+            <state relative-caret-position="206">
+              <caret line="26" column="8" lean-forward="true" selection-start-line="26" selection-start-column="8" selection-end-line="26" selection-end-column="8" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="TimeUnit.java" pinned="false" current-in-tab="false">
-        <entry file="jar://D:/Develop/Java/jdk1.8.0_77/src.zip!/java/util/concurrent/TimeUnit.java">
+      <file leaf-file-name="application-dev.properties" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/resources/application-dev.properties">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="180">
-              <caret line="119" column="4" lean-forward="false" selection-start-line="119" selection-start-column="4" selection-end-line="119" selection-end-column="4" />
+            <state relative-caret-position="448">
+              <caret line="64" column="1" lean-forward="false" selection-start-line="64" selection-start-column="1" selection-end-line="64" selection-end-column="1" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="EventDispatcher.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/xu/tulingchat/service/EventDispatcher.java">
+      <file leaf-file-name="SimpleTest.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/test/java/com/xu/tulingchat/demo/SimpleTest.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="667">
-              <caret line="39" column="22" lean-forward="false" selection-start-line="39" selection-start-column="10" selection-end-line="39" selection-end-column="22" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="TokenUtil.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/xu/tulingchat/util/TokenUtil.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="897">
-              <caret line="44" column="39" lean-forward="false" selection-start-line="44" selection-start-column="39" selection-end-line="44" selection-end-column="39" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="application.properties" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/resources/application.properties">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="805">
-              <caret line="35" column="15" lean-forward="false" selection-start-line="35" selection-start-column="15" selection-end-line="35" selection-end-column="15" />
+            <state relative-caret-position="395">
+              <caret line="28" column="28" lean-forward="false" selection-start-line="28" selection-start-column="28" selection-end-line="28" selection-end-column="28" />
               <folding />
             </state>
           </provider>
@@ -124,6 +96,11 @@
       </list>
     </option>
   </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>&lt;!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-data-mongodb --&gt;</find>
+    </findStrings>
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
@@ -135,57 +112,57 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/test/java/com/xu/tulingchat/tool/HttpClientUtil.java" />
-        <option value="$USER_HOME$/.m2/repository/org/apache/httpcomponents/httpclient/4.5.3/httpclient-4.5.3.jar!/org/apache/http/impl/client/HttpClients.class" />
-        <option value="$PROJECT_DIR$/src/test/java/com/xu/tulingchat/tool/SSLClient.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/xu/tulingchat/controller/TestController.java" />
-        <option value="$PROJECT_DIR$/src/test/java/com/xu/tulingchat/tool/HttpRequestUtils.java" />
-        <option value="$PROJECT_DIR$/src/main/resources/conf/default.properties" />
-        <option value="$USER_HOME$/.m2/repository/org/springframework/boot/spring-boot/1.5.7.RELEASE/spring-boot-1.5.7.RELEASE.jar!/org/springframework/boot/context/properties/ConfigurationProperties.class" />
-        <option value="$PROJECT_DIR$/src/main/resources/config/default.properties" />
-        <option value="$PROJECT_DIR$/src/main/java/com/xu/tulingchat/util/PropertiesLoaderUtil.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/xu/tulingchat/controller/ListenerController.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/xu/tulingchat/listener/PropertiesListener.java" />
-        <option value="$PROJECT_DIR$/src/test/java/com/xu/tulingchat/tool/TokenTest.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/xu/tulingchat/controller/HelloController.java" />
-        <option value="$USER_HOME$/.m2/repository/org/springframework/spring-context/4.3.11.RELEASE/spring-context-4.3.11.RELEASE.jar!/org/springframework/scheduling/annotation/Scheduled.class" />
-        <option value="$PROJECT_DIR$/src/main/java/com/xu/tulingchat/util/HttpRequestUtils.java" />
-        <option value="$USER_HOME$/.m2/repository/org/springframework/spring-web/4.3.11.RELEASE/spring-web-4.3.11.RELEASE.jar!/org/springframework/web/bind/annotation/RequestMapping.class" />
-        <option value="$PROJECT_DIR$/.idea/workspace.xml" />
-        <option value="$PROJECT_DIR$/src/main/java/com/xu/tulingchat/bean/MessageBean.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/xu/tulingchat/bean/message/VoiceMessage.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/xu/tulingchat/bean/message/LinkMessage.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/xu/tulingchat/bean/message/receive/BaseMessage.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/xu/tulingchat/bean/message/send/TextMessage.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/xu/tulingchat/bean/message/send/ImageMessage.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/xu/tulingchat/bean/message/send/BaseMessage.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/xu/tulingchat/bean/message/send/VoiceMessage.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/xu/tulingchat/bean/message/send/VideoMessage.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/xu/tulingchat/bean/message/send/MusicMessage.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/xu/tulingchat/bean/message/send/NewsMessage.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/xu/tulingchat/util/MessageUtil.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/xu/tulingchat/controller/controller/ListenerController.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/xu/tulingchat/controller/VerifyController.java" />
-        <option value="$MAVEN_REPOSITORY$/org/springframework/spring-core/4.3.11.RELEASE/spring-core-4.3.11.RELEASE.jar!/org/springframework/util/Assert.class" />
-        <option value="$PROJECT_DIR$/src/main/java/com/xu/tulingchat/service/UserService.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/xu/tulingchat/interceptor/MyWebAppConfigurer.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/xu/tulingchat/bean/UserBean.java" />
+        <option value="$MAVEN_REPOSITORY$/org/springframework/boot/spring-boot-autoconfigure/1.5.7.RELEASE/spring-boot-autoconfigure-1.5.7.RELEASE.jar!/org/springframework/boot/autoconfigure/data/redis/RedisProperties.class" />
+        <option value="$PROJECT_DIR$/src/main/java/com/xu/tulingchat/task/QuartzEventServiceImpl.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/xu/tulingchat/task/SpringJobFactory.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/xu/tulingchat/task/JobFactory.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/xu/tulingchat/task/JobDetailImpl.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/xu/tulingchat/interceptor/MyInterceptor.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/xu/tulingchat/bean/CommentBean.java" />
+        <option value="$PROJECT_DIR$/src/main/resources/application.yml" />
+        <option value="$PROJECT_DIR$/src/main/resources/quartz.properties" />
+        <option value="$PROJECT_DIR$/src/main/java/com/xu/tulingchat/task/QuartzTask.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/xu/tulingchat/task/ConfigRepository.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/xu/tulingchat/task/Config.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/xu/tulingchat/mapper/ConfigRepository.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/xu/tulingchat/entity/Config.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/xu/tulingchat/config/MybatisConfig.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/xu/tulingchat/mapper/AbstractDao.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/xu/tulingchat/service/UserBeanService.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/xu/tulingchat/mapper/MybatisConfig.java" />
+        <option value="$MAVEN_REPOSITORY$/org/springframework/spring-context/4.3.11.RELEASE/spring-context-4.3.11.RELEASE.jar!/org/springframework/stereotype/Service.class" />
+        <option value="$PROJECT_DIR$/src/main/java/com/xu/tulingchat/entity/ConfigBean.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/xu/tulingchat/service/ConfigRepository.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/xu/tulingchat/mapper/ConfigMapper.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/xu/tulingchat/task/ScheduleRefreshDatabase.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/xu/tulingchat/mapper/UserBeanMapper.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/xu/tulingchat/TulingchatApplication.java" />
-        <option value="$PROJECT_DIR$/src/test/java/com/xu/tulingchat/user/UserMapperTest.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/xu/tulingchat/entity/XmlTestBean.java" />
-        <option value="$PROJECT_DIR$/pom.xml" />
-        <option value="$PROJECT_DIR$/src/main/resources/application.properties" />
-        <option value="$PROJECT_DIR$/src/main/java/com/xu/tulingchat/util/TokenUtil.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/xu/tulingchat/task/BeanConfig.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/xu/tulingchat/task/QuartzConfig.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/xu/tulingchat/task/SchedledConfiguration.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/xu/tulingchat/task/ScheduledJob.java" />
+        <option value="$PROJECT_DIR$/src/main/resources/logback.xml" />
+        <option value="$PROJECT_DIR$/src/main/java/com/xu/tulingchat/service/RedisUtil.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/xu/tulingchat/util/RedisUtil.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/xu/tulingchat/service/EventDispatcher.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/xu/tulingchat/task/quartz/QuartzContextListener.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/xu/tulingchat/entity/JobEntity.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/xu/tulingchat/task/quartz/QuartzTask.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/xu/tulingchat/task/ScheduleTask.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/xu/tulingchat/service/RedisService.java" />
+        <option value="$PROJECT_DIR$/pom.xml" />
+        <option value="$PROJECT_DIR$/src/main/java/com/xu/tulingchat/service/MailService.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/xu/tulingchat/service/impl/MailServiceImpl.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/xu/tulingchat/util/MailServiceUtis.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/xu/tulingchat/util/MailServiceUtil.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/xu/tulingchat/util/HttpRequestUtils.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/xu/tulingchat/util/TokenUtil.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/xu/tulingchat/util/TulingRobotUtil.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/xu/tulingchat/task/quartz/QuartzConfig.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/xu/tulingchat/controller/VerifyController.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/xu/tulingchat/task/ExecutorConfig.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/xu/tulingchat/TulingchatApplication.java" />
+        <option value="$PROJECT_DIR$/src/main/resources/application.properties" />
+        <option value="$PROJECT_DIR$/src/test/java/com/xu/tulingchat/demo/SimpleTest.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/xu/tulingchat/service/MsgDispatcher.java" />
+        <option value="$PROJECT_DIR$/src/main/resources/application-dev.properties" />
+        <option value="$PROJECT_DIR$/src/main/resources/application-prod.properties" />
+        <option value="$PROJECT_DIR$/src/main/resources/application-test.properties" />
+        <option value="$PROJECT_DIR$/src/main/java/com/xu/tulingchat/util/MailUtil.java" />
       </list>
     </option>
   </component>
@@ -198,9 +175,9 @@
   <component name="MavenImportPreferences">
     <option name="generalSettings">
       <MavenGeneralSettings>
-        <option name="localRepository" value="D:\Develop\Maven\repository" />
-        <option name="mavenHome" value="D:/Develop/Maven/apache-maven-3.3.9" />
-        <option name="userSettingsFile" value="D:\Develop\Maven\apache-maven-3.3.9\conf\settings.xml" />
+        <option name="localRepository" value="D:\Develop\Repository" />
+        <option name="mavenHome" value="D:/Develop/Maven" />
+        <option name="userSettingsFile" value="D:\Develop\Maven\conf\settings.xml" />
       </MavenGeneralSettings>
     </option>
   </component>
@@ -211,25 +188,14 @@
           <item name="" type="16c1761:MavenProjectsStructure$RootNode" />
           <item name="tulingchat" type="9519ce18:MavenProjectsStructure$ProjectNode" />
         </path>
-        <path>
-          <item name="" type="16c1761:MavenProjectsStructure$RootNode" />
-          <item name="tulingchat" type="9519ce18:MavenProjectsStructure$ProjectNode" />
-          <item name="Dependencies" type="f4be9f2a:MavenProjectsStructure$DependenciesNode" />
-        </path>
-        <path>
-          <item name="" type="16c1761:MavenProjectsStructure$RootNode" />
-          <item name="tulingchat" type="9519ce18:MavenProjectsStructure$ProjectNode" />
-          <item name="Dependencies" type="f4be9f2a:MavenProjectsStructure$DependenciesNode" />
-          <item name="org.mybatis.spring.boot:mybatis-spring-boot-starter:1.3.1" type="c0821a7e:MavenProjectsStructure$DependencyNode" />
-        </path>
       </expand>
       <select />
     </treeState>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
-    <option name="y" value="23" />
-    <option name="width" value="1386" />
-    <option name="height" value="788" />
+  <component name="ProjectFrameBounds">
+    <option name="y" value="40" />
+    <option name="width" value="1881" />
+    <option name="height" value="1000" />
   </component>
   <component name="ProjectInspectionProfilesVisibleTreeState">
     <entry key="Project Default">
@@ -238,10 +204,16 @@
           <State>
             <id />
           </State>
+          <State>
+            <id>Java</id>
+          </State>
+          <State>
+            <id>Serialization issuesJava</id>
+          </State>
         </expanded-state>
         <selected-state>
           <State>
-            <id>Android</id>
+            <id>ExternalizableWithoutPublicNoArgConstructor</id>
           </State>
         </selected-state>
       </profile-state>
@@ -265,10 +237,9 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="AndroidView" />
-      <pane id="Scratches" />
-      <pane id="PackagesPane" />
       <pane id="Scope" />
+      <pane id="Scratches" />
+      <pane id="AndroidView" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -316,25 +287,47 @@
               <item name="tulingchat" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="tulingchat" type="462c0819:PsiDirectoryNode" />
-              <item name="task" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="tulingchat" type="b2602c69:ProjectViewProjectNode" />
               <item name="tulingchat" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="resources" type="462c0819:PsiDirectoryNode" />
+              <item name="test" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="tulingchat" type="b2602c69:ProjectViewProjectNode" />
+              <item name="tulingchat" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="test" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="tulingchat" type="b2602c69:ProjectViewProjectNode" />
+              <item name="tulingchat" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="test" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="tulingchat" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="tulingchat" type="b2602c69:ProjectViewProjectNode" />
+              <item name="tulingchat" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="test" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="tulingchat" type="462c0819:PsiDirectoryNode" />
+              <item name="demo" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
+      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="settings.editor.selected.configurable" value="project.propVCSSupport.ChangelistConflict" />
+    <property name="settings.editor.selected.configurable" value="MavenSettings" />
     <property name="settings.editor.splitter.proportion" value="0.2634672" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
@@ -347,7 +340,6 @@
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.0" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../springboot_Mysql_Mongo" />
   </component>
   <component name="RecentsManager">
     <key name="CopyClassDialog.RECENTS_KEY">
@@ -369,25 +361,81 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Spring Boot.TulingchatApplication">
-    <configuration name="HttpRequestUtils" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+  <component name="RunManager" selected="JUnit.SimpleTest.test">
+    <configuration name="RedisTest.redisTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
         <pattern>
-          <option name="PATTERN" value="com.xu.tulingchat.tool.*" />
+          <option name="PATTERN" value="com.xu.tulingchat.user.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="MAIN_CLASS_NAME" value="com.xu.tulingchat.tool.HttpRequestUtils" />
-      <option name="VM_PARAMETERS" />
-      <option name="PROGRAM_PARAMETERS" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <module name="tulingchat" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
       <option name="ALTERNATIVE_JRE_PATH" />
-      <option name="ENABLE_SWING_INSPECTOR" value="false" />
+      <option name="PACKAGE_NAME" value="com.xu.tulingchat.user" />
+      <option name="MAIN_CLASS_NAME" value="com.xu.tulingchat.user.RedisTest" />
+      <option name="METHOD_NAME" value="redisTest" />
+      <option name="TEST_OBJECT" value="method" />
+      <option name="VM_PARAMETERS" value="-ea" />
+      <option name="PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
       <option name="ENV_VARIABLES" />
       <option name="PASS_PARENT_ENVS" value="true" />
-      <module name="tulingchat" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="singleModule" />
+      </option>
       <envs />
+      <patterns />
+    </configuration>
+    <configuration name="RedisTest.test01" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
+        <pattern>
+          <option name="PATTERN" value="com.xu.tulingchat.user.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <module name="tulingchat" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="PACKAGE_NAME" value="com.xu.tulingchat.user" />
+      <option name="MAIN_CLASS_NAME" value="com.xu.tulingchat.user.RedisTest" />
+      <option name="METHOD_NAME" value="test01" />
+      <option name="TEST_OBJECT" value="method" />
+      <option name="VM_PARAMETERS" value="-ea" />
+      <option name="PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="singleModule" />
+      </option>
+      <envs />
+      <patterns />
+    </configuration>
+    <configuration name="SimpleTest.test" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
+        <pattern>
+          <option name="PATTERN" value="com.xu.tulingchat.demo.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <module name="tulingchat" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="PACKAGE_NAME" value="com.xu.tulingchat.demo" />
+      <option name="MAIN_CLASS_NAME" value="com.xu.tulingchat.demo.SimpleTest" />
+      <option name="METHOD_NAME" value="test" />
+      <option name="TEST_OBJECT" value="method" />
+      <option name="VM_PARAMETERS" value="-ea" />
+      <option name="PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="singleModule" />
+      </option>
+      <envs />
+      <patterns />
     </configuration>
     <configuration name="TokenTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
@@ -438,56 +486,6 @@
       <option name="SPRING_BOOT_MAIN_CLASS" value="com.xu.tulingchat.TulingchatApplication" />
       <module name="tulingchat" />
       <envs />
-    </configuration>
-    <configuration name="UserMapperTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
-        <pattern>
-          <option name="PATTERN" value="com.xu.tulingchat.user.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <module name="tulingchat" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
-      <option name="PACKAGE_NAME" value="com.xu.tulingchat.user" />
-      <option name="MAIN_CLASS_NAME" value="com.xu.tulingchat.user.UserMapperTest" />
-      <option name="METHOD_NAME" />
-      <option name="TEST_OBJECT" value="class" />
-      <option name="VM_PARAMETERS" value="-ea" />
-      <option name="PARAMETERS" />
-      <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
-      <option name="ENV_VARIABLES" />
-      <option name="PASS_PARENT_ENVS" value="true" />
-      <option name="TEST_SEARCH_SCOPE">
-        <value defaultName="singleModule" />
-      </option>
-      <envs />
-      <patterns />
-    </configuration>
-    <configuration name="UserMapperTest.testInsert" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
-        <pattern>
-          <option name="PATTERN" value="com.xu.tulingchat.user.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <module name="tulingchat" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
-      <option name="PACKAGE_NAME" value="com.xu.tulingchat.user" />
-      <option name="MAIN_CLASS_NAME" value="com.xu.tulingchat.user.UserMapperTest" />
-      <option name="METHOD_NAME" value="testInsert" />
-      <option name="TEST_OBJECT" value="method" />
-      <option name="VM_PARAMETERS" value="-ea" />
-      <option name="PARAMETERS" />
-      <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
-      <option name="ENV_VARIABLES" />
-      <option name="PASS_PARENT_ENVS" value="true" />
-      <option name="TEST_SEARCH_SCOPE">
-        <value defaultName="singleModule" />
-      </option>
-      <envs />
-      <patterns />
     </configuration>
     <configuration default="true" type="Applet" factoryName="Applet">
       <option name="HTML_USED" value="false" />
@@ -572,19 +570,19 @@
     </configuration>
     <list size="6">
       <item index="0" class="java.lang.String" itemvalue="Spring Boot.TulingchatApplication" />
-      <item index="1" class="java.lang.String" itemvalue="Application.HttpRequestUtils" />
-      <item index="2" class="java.lang.String" itemvalue="JUnit.TokenTest" />
-      <item index="3" class="java.lang.String" itemvalue="Application.TokenUtil" />
-      <item index="4" class="java.lang.String" itemvalue="JUnit.UserMapperTest.testInsert" />
-      <item index="5" class="java.lang.String" itemvalue="JUnit.UserMapperTest" />
+      <item index="1" class="java.lang.String" itemvalue="JUnit.TokenTest" />
+      <item index="2" class="java.lang.String" itemvalue="Application.TokenUtil" />
+      <item index="3" class="java.lang.String" itemvalue="JUnit.RedisTest.test01" />
+      <item index="4" class="java.lang.String" itemvalue="JUnit.RedisTest.redisTest" />
+      <item index="5" class="java.lang.String" itemvalue="JUnit.SimpleTest.test" />
     </list>
     <recent_temporary>
       <list size="5">
-        <item index="0" class="java.lang.String" itemvalue="JUnit.UserMapperTest.testInsert" />
-        <item index="1" class="java.lang.String" itemvalue="JUnit.UserMapperTest" />
-        <item index="2" class="java.lang.String" itemvalue="Application.TokenUtil" />
-        <item index="3" class="java.lang.String" itemvalue="JUnit.TokenTest" />
-        <item index="4" class="java.lang.String" itemvalue="Application.HttpRequestUtils" />
+        <item index="0" class="java.lang.String" itemvalue="JUnit.SimpleTest.test" />
+        <item index="1" class="java.lang.String" itemvalue="JUnit.RedisTest.redisTest" />
+        <item index="2" class="java.lang.String" itemvalue="JUnit.RedisTest.test01" />
+        <item index="3" class="java.lang.String" itemvalue="Application.TokenUtil" />
+        <item index="4" class="java.lang.String" itemvalue="JUnit.TokenTest" />
       </list>
     </recent_temporary>
   </component>
@@ -615,19 +613,26 @@
       <workItem from="1508072204000" duration="1762000" />
       <workItem from="1508159660144" duration="1883000" />
       <workItem from="1508246384686" duration="1783000" />
-      <workItem from="1508672579963" duration="2262000" />
-      <workItem from="1508773105785" duration="2502000" />
-      <workItem from="1508854999853" duration="9299000" />
-      <workItem from="1508941795206" duration="1259000" />
-      <workItem from="1509026043188" duration="3642000" />
-      <workItem from="1509111969747" duration="269000" />
-      <workItem from="1509114289677" duration="594000" />
-      <workItem from="1509166697635" duration="627000" />
-      <workItem from="1509203684335" duration="1925000" />
-      <workItem from="1509283120772" duration="4619000" />
-      <workItem from="1509378215820" duration="707000" />
-      <workItem from="1509460985908" duration="2843000" />
-      <workItem from="1509468900841" duration="277000" />
+      <workItem from="1508672579963" duration="1065000" />
+      <workItem from="1508825476798" duration="1009000" />
+      <workItem from="1508986240589" duration="1390000" />
+      <workItem from="1509419841243" duration="2602000" />
+      <workItem from="1509430315405" duration="710000" />
+      <workItem from="1509432418850" duration="1262000" />
+      <workItem from="1509442978448" duration="7127000" />
+      <workItem from="1509502107059" duration="2795000" />
+      <workItem from="1509520551233" duration="1082000" />
+      <workItem from="1509521935057" duration="2553000" />
+      <workItem from="1509588665359" duration="4542000" />
+      <workItem from="1509594685957" duration="2968000" />
+      <workItem from="1509600570908" duration="6752000" />
+      <workItem from="1509674894828" duration="5859000" />
+      <workItem from="1509695721860" duration="215000" />
+      <workItem from="1509703488428" duration="2990000" />
+      <workItem from="1509933983896" duration="3722000" />
+      <workItem from="1509944905782" duration="14345000" />
+      <workItem from="1510020677260" duration="5401000" />
+      <workItem from="1510037264383" duration="2201000" />
     </task>
     <task id="LOCAL-00001" summary="add springboot scheduled task and listener">
       <created>1507707080109</created>
@@ -699,99 +704,71 @@
       <option name="project" value="LOCAL" />
       <updated>1508255979942</updated>
     </task>
-    <task id="LOCAL-00011" summary="add wechat messager base class">
-      <created>1508687973108</created>
+    <task id="LOCAL-00011" summary="update redis cache">
+      <created>1509451921579</created>
       <option name="number" value="00011" />
       <option name="presentableId" value="LOCAL-00011" />
       <option name="project" value="LOCAL" />
-      <updated>1508687973108</updated>
+      <updated>1509451921579</updated>
     </task>
-    <task id="LOCAL-00012" summary="add mongodb">
-      <created>1508774367080</created>
+    <task id="LOCAL-00012" summary="Update Quartz using and Add MailUtil and Multi-environment configuration">
+      <created>1509706626243</created>
       <option name="number" value="00012" />
       <option name="presentableId" value="LOCAL-00012" />
       <option name="project" value="LOCAL" />
-      <updated>1508774367080</updated>
+      <updated>1509706626243</updated>
     </task>
-    <task id="LOCAL-00013" summary="add redis cache and mongodb">
-      <created>1508860665902</created>
+    <task id="LOCAL-00013" summary="update email model ：1. 使用SMTP 25端口 和 SMTPS协议 465端口，2.使用异步线程发送">
+      <created>1509958103939</created>
       <option name="number" value="00013" />
       <option name="presentableId" value="LOCAL-00013" />
       <option name="project" value="LOCAL" />
-      <updated>1508860665902</updated>
+      <updated>1509958103939</updated>
     </task>
-    <task id="LOCAL-00014" summary="add Interceptor">
-      <created>1509204309431</created>
+    <task id="LOCAL-00014" summary="Fix mail sending function and switch to use 163 mailbox">
+      <created>1510032747578</created>
       <option name="number" value="00014" />
       <option name="presentableId" value="LOCAL-00014" />
       <option name="project" value="LOCAL" />
-      <updated>1509204309431</updated>
+      <updated>1510032747578</updated>
     </task>
-    <task id="LOCAL-00015" summary="add Interceptor">
-      <created>1509204734505</created>
-      <option name="number" value="00015" />
-      <option name="presentableId" value="LOCAL-00015" />
-      <option name="project" value="LOCAL" />
-      <updated>1509204734505</updated>
-    </task>
-    <task id="LOCAL-00016" summary="add druid">
-      <created>1509291285198</created>
-      <option name="number" value="00016" />
-      <option name="presentableId" value="LOCAL-00016" />
-      <option name="project" value="LOCAL" />
-      <updated>1509291285198</updated>
-    </task>
-    <task id="LOCAL-00017" summary="update database connection">
-      <created>1509292396799</created>
-      <option name="number" value="00017" />
-      <option name="presentableId" value="LOCAL-00017" />
-      <option name="project" value="LOCAL" />
-      <updated>1509292396799</updated>
-    </task>
-    <task id="LOCAL-00018" summary="add quartz">
-      <created>1509378546176</created>
-      <option name="number" value="00018" />
-      <option name="presentableId" value="LOCAL-00018" />
-      <option name="project" value="LOCAL" />
-      <updated>1509378546176</updated>
-    </task>
-    <option name="localTasksCounter" value="19" />
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="UserMapperTest - 2017.10.29 at 23h 45m 29s.xml">
-      <configuration name="UserMapperTest" configurationId="JUnit" />
+    <history-entry file="SimpleTest_test - 2017.11.07 at 10h 44m 41s.xml">
+      <configuration name="SimpleTest.test" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="UserMapperTest_testInsert - 2017.10.24 at 23h 56m 01s.xml">
-      <configuration name="UserMapperTest.testInsert" configurationId="JUnit" />
+    <history-entry file="SimpleTest_test - 2017.11.07 at 10h 45m 02s.xml">
+      <configuration name="SimpleTest.test" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="UserMapperTest_testInsert - 2017.10.24 at 23h 59m 25s.xml">
-      <configuration name="UserMapperTest.testInsert" configurationId="JUnit" />
+    <history-entry file="SimpleTest_test - 2017.11.07 at 10h 54m 33s.xml">
+      <configuration name="SimpleTest.test" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="UserMapperTest_testInsert - 2017.10.25 at 00h 08m 04s.xml">
-      <configuration name="UserMapperTest.testInsert" configurationId="JUnit" />
+    <history-entry file="SimpleTest_test - 2017.11.07 at 11h 04m 20s.xml">
+      <configuration name="SimpleTest.test" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="UserMapperTest_testInsert - 2017.10.29 at 23h 39m 06s.xml">
-      <configuration name="UserMapperTest.testInsert" configurationId="JUnit" />
+    <history-entry file="SimpleTest_test - 2017.11.07 at 11h 08m 22s.xml">
+      <configuration name="SimpleTest.test" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="UserMapperTest_testInsert - 2017.10.29 at 23h 40m 14s.xml">
-      <configuration name="UserMapperTest.testInsert" configurationId="JUnit" />
+    <history-entry file="SimpleTest_test - 2017.11.07 at 13h 14m 11s.xml">
+      <configuration name="SimpleTest.test" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="UserMapperTest_testInsert - 2017.10.29 at 23h 43m 29s.xml">
-      <configuration name="UserMapperTest.testInsert" configurationId="JUnit" />
+    <history-entry file="SimpleTest_test - 2017.11.07 at 13h 16m 41s.xml">
+      <configuration name="SimpleTest.test" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="UserMapperTest_testInsert - 2017.10.29 at 23h 47m 58s.xml">
-      <configuration name="UserMapperTest.testInsert" configurationId="JUnit" />
+    <history-entry file="SimpleTest_test - 2017.11.07 at 13h 19m 07s.xml">
+      <configuration name="SimpleTest.test" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="UserMapperTest_testInsert - 2017.10.29 at 23h 48m 59s.xml">
-      <configuration name="UserMapperTest.testInsert" configurationId="JUnit" />
+    <history-entry file="SimpleTest_test - 2017.11.07 at 13h 23m 01s.xml">
+      <configuration name="SimpleTest.test" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="UserMapperTest_testInsert - 2017.10.29 at 23h 51m 05s.xml">
-      <configuration name="UserMapperTest.testInsert" configurationId="JUnit" />
+    <history-entry file="SimpleTest_test - 2017.11.07 at 14h 54m 14s.xml">
+      <configuration name="SimpleTest.test" configurationId="JUnit" />
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="86981000" />
+    <option name="totallyTimeSpent" value="126746000" />
   </component>
   <component name="TodoView" selected-index="1">
     <todo-panel id="selected-file">
@@ -803,78 +780,43 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
+    <frame x="0" y="40" width="1881" height="1000" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32998884" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
-      <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.28856623" sideWeight="0.5083969" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.5870229" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32469776" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.28151986" sideWeight="0.49160305" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Spring" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32897863" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.010362694" sideWeight="0.5" order="13" side_tool="false" content_ui="tabs" />
-      <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2351145" sideWeight="0.49425286" order="6" side_tool="false" content_ui="combo" />
-      <window_info id="Bean Validation" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Tail" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="14" side_tool="false" content_ui="tabs" />
-      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32977098" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24961832" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="true" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.50949913" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="JRebel Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="true" content_ui="tabs" />
-      <window_info id="JRebel Executor" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32962137" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="9" side_tool="false" content_ui="combo" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.38860103" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="JRebel" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.18976545" sideWeight="0.50574714" order="4" side_tool="true" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-    </layout>
-    <layout-to-restore>
-      <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3402418" sideWeight="0.5053435" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="JRebel Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="true" content_ui="tabs" />
-      <window_info id="Maven Projects" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25419846" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39239" sideWeight="0.5074627" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="JRebel Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.21627648" sideWeight="0.5" order="8" side_tool="true" content_ui="tabs" />
+      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2575508" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="JRebel Executor" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32962137" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="8" side_tool="false" content_ui="combo" />
-      <window_info id="Tail" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="14" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24961832" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39910814" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32998884" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.27201784" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.27110583" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.53195167" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.55267704" sideWeight="0.4946565" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Spring" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32897863" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.119170986" sideWeight="0.5" order="13" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.12290076" sideWeight="0.49425286" order="6" side_tool="false" content_ui="combo" />
-      <window_info id="Bean Validation" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="JRebel" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.18976545" sideWeight="0.50574714" order="4" side_tool="true" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2235434" sideWeight="0.49253732" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Spring" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32887402" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.20570749" sideWeight="0.5" order="13" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.18121912" sideWeight="0.48900387" order="6" side_tool="false" content_ui="combo" />
+      <window_info id="Bean Validation" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32995737" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="JRebel" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.13539445" sideWeight="0.5109961" order="4" side_tool="true" content_ui="tabs" />
+      <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="true" content_ui="tabs" />
-    </layout-to-restore>
+      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="8" side_tool="false" content_ui="combo" />
+      <window_info id="Tail" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="14" side_tool="false" content_ui="tabs" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+    </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
@@ -908,328 +850,438 @@
     <MESSAGE value="对象到 xml 的处理" />
     <MESSAGE value="add func 对象到 xml 的处理" />
     <MESSAGE value="add mybatis pom" />
-    <MESSAGE value="add mongodb" />
     <MESSAGE value="add wechat messager base class" />
-    <MESSAGE value="add redis cache and mongodb" />
-    <MESSAGE value="add Interceptor" />
-    <MESSAGE value="add druid" />
-    <MESSAGE value="update database connection" />
-    <MESSAGE value="add quartz" />
-    <option name="LAST_COMMIT_MESSAGE" value="add quartz" />
+    <MESSAGE value="update redis cache" />
+    <MESSAGE value="Update Quartz using and Add MailUtil and Multi-environment configuration" />
+    <MESSAGE value="update email model ：1. 使用SMTP 25端口 和 SMTPS协议 465端口，2.使用异步线程发送" />
+    <MESSAGE value="Fix mail sending function and switch to use 163 mailbox" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fix mail sending function and switch to use 163 mailbox" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
   <component name="XDebuggerManager">
-    <breakpoint-manager />
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/xu/tulingchat/TulingchatApplication.java</url>
+          <line>17</line>
+          <properties />
+        </line-breakpoint>
+      </breakpoints>
+      <option name="time" value="1" />
+    </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/xu/tulingchat/bean/message/receive/VideoMessage.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/xu/tulingchat/mapper/ConfigMapper.java" />
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/xu/tulingchat/entity/ConfigBean.java" />
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/xu/tulingchat/entity/UserBean.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="25">
-          <caret line="5" column="13" lean-forward="false" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/xu/tulingchat/bean/message/receive/BaseMessage.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="69">
-          <caret line="3" column="3" lean-forward="true" selection-start-line="3" selection-start-column="3" selection-end-line="3" selection-end-column="3" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/xu/tulingchat/bean/message/send/BaseMessage.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-368">
-          <caret line="4" column="3" lean-forward="true" selection-start-line="4" selection-start-column="3" selection-end-line="4" selection-end-column="3" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/xu/tulingchat/bean/message/receive/VoiceMessage.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="23">
-          <caret line="5" column="13" lean-forward="false" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/xu/tulingchat/bean/message/send/ImageMessage.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="115">
-          <caret line="5" column="25" lean-forward="true" selection-start-line="5" selection-start-column="25" selection-end-line="5" selection-end-column="25" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/xu/tulingchat/bean/message/send/VoiceMessage.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="48">
-          <caret line="4" column="8" lean-forward="false" selection-start-line="4" selection-start-column="8" selection-end-line="4" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/xu/tulingchat/bean/message/send/TextMessage.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="207">
-          <caret line="9" column="3" lean-forward="false" selection-start-line="9" selection-start-column="3" selection-end-line="9" selection-end-column="3" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/xu/tulingchat/bean/message/send/VideoMessage.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="253">
-          <caret line="11" column="30" lean-forward="false" selection-start-line="11" selection-start-column="30" selection-end-line="11" selection-end-column="30" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/xu/tulingchat/bean/message/send/MusicMessage.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="345">
-          <caret line="15" column="28" lean-forward="false" selection-start-line="15" selection-start-column="28" selection-end-line="15" selection-end-column="28" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/xu/tulingchat/bean/message/receive/ImageMessage.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="207">
-          <caret line="9" column="14" lean-forward="false" selection-start-line="9" selection-start-column="14" selection-end-line="9" selection-end-column="14" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/.idea/workspace.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-989">
-          <caret line="42" column="11" lean-forward="false" selection-start-line="42" selection-start-column="11" selection-end-line="42" selection-end-column="11" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/xu/tulingchat/bean/message/send/NewsMessage.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="437">
-          <caret line="22" column="4" lean-forward="false" selection-start-line="22" selection-start-column="4" selection-end-line="22" selection-end-column="4" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/xu/tulingchat/controller/controller/XmlTestController.java" />
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/xu/tulingchat/controller/controller/Test2Controller.java" />
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/xu/tulingchat/controller/controller/HelloController.java" />
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/xu/tulingchat/controller/controller/TestController.java" />
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/xu/tulingchat/controller/controller/VerifyController.java" />
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/xu/tulingchat/controller/controller/ListenerController.java" />
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/xu/tulingchat/controller/Test2Controller.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="46">
-          <caret line="2" column="28" lean-forward="false" selection-start-line="2" selection-start-column="28" selection-end-line="2" selection-end-column="28" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/data/spring-data-redis/1.8.7.RELEASE/spring-data-redis-1.8.7.RELEASE.jar!/org/springframework/data/redis/core/ValueOperations.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="161">
-          <caret line="13" column="7" lean-forward="false" selection-start-line="13" selection-start-column="7" selection-end-line="13" selection-end-column="7" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/data/spring-data-redis/1.8.7.RELEASE/spring-data-redis-1.8.7.RELEASE.jar!/org/springframework/data/redis/core/RedisTemplate.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="182">
-          <caret line="476" column="17" lean-forward="false" selection-start-line="476" selection-start-column="17" selection-end-line="476" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-core/4.3.11.RELEASE/spring-core-4.3.11.RELEASE.jar!/org/springframework/util/Assert.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="470">
-          <caret line="52" column="0" lean-forward="false" selection-start-line="52" selection-start-column="0" selection-end-line="52" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/xu/tulingchat/util/MessageUtil.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1730">
-          <caret line="110" column="36" lean-forward="false" selection-start-line="110" selection-start-column="36" selection-end-line="110" selection-end-column="36" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/xu/tulingchat/controller/XmlTestController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="115">
-          <caret line="9" column="13" lean-forward="false" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/xu/tulingchat/controller/VerifyController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-33">
-          <caret line="44" column="48" lean-forward="false" selection-start-line="44" selection-start-column="48" selection-end-line="44" selection-end-column="48" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/xu/tulingchat/service/MsgDispatcher.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-608">
-          <caret line="18" column="33" lean-forward="false" selection-start-line="18" selection-start-column="18" selection-end-line="18" selection-end-column="33" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/java/com/xu/tulingchat/tool/HttpClientUtil.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-759">
-          <caret line="48" column="15" lean-forward="false" selection-start-line="48" selection-start-column="15" selection-end-line="48" selection-end-column="15" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/java/com/xu/tulingchat/TulingchatApplicationTests.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="138">
-          <caret line="10" column="13" lean-forward="false" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/java/com/xu/tulingchat/demo/HelloTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="138">
-          <caret line="21" column="13" lean-forward="false" selection-start-line="21" selection-start-column="13" selection-end-line="21" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/xu/tulingchat/listener/PropertiesListener.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="161">
-          <caret line="10" column="13" lean-forward="false" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/xu/tulingchat/controller/TestController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="23">
-          <caret line="23" column="28" lean-forward="false" selection-start-line="23" selection-start-column="22" selection-end-line="23" selection-end-column="28" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/xu/tulingchat/controller/HelloController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="23">
-          <caret line="24" column="28" lean-forward="false" selection-start-line="24" selection-start-column="22" selection-end-line="24" selection-end-column="28" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/xu/tulingchat/interceptor/MyWebAppConfigurer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="259">
-          <caret line="20" column="1" lean-forward="true" selection-start-line="20" selection-start-column="1" selection-end-line="20" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/xu/tulingchat/interceptor/MyInterceptor.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="23">
-          <caret line="15" column="10" lean-forward="false" selection-start-line="15" selection-start-column="10" selection-end-line="15" selection-end-column="10" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/xu/tulingchat/config/MybatisConfig.java" />
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/xu/tulingchat/mapper/AbstractDao.java" />
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/xu/tulingchat/mapper/MybatisConfig.java" />
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/xu/tulingchat/service/UserBeanService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="3" column="8" lean-forward="false" selection-start-line="3" selection-start-column="8" selection-end-line="3" selection-end-column="8" />
+        <state relative-caret-position="330">
+          <caret line="15" column="21" lean-forward="true" selection-start-line="15" selection-start-column="21" selection-end-line="15" selection-end-column="21" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/xu/tulingchat/mapper/UserBeanMapper.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="151">
-          <caret line="18" column="17" lean-forward="true" selection-start-line="18" selection-start-column="17" selection-end-line="18" selection-end-column="17" />
+        <state relative-caret-position="374">
+          <caret line="28" column="40" lean-forward="false" selection-start-line="28" selection-start-column="40" selection-end-line="28" selection-end-column="40" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/xu/tulingchat/entity/UserBean.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/xu/tulingchat/task/JobFactory.java" />
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/xu/tulingchat/task/BeanConfig.java" />
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/xu/tulingchat/task/QuartzConfig.java" />
+    <entry file="file://$PROJECT_DIR$/tulingchat.iml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="7" column="13" lean-forward="false" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
+        <state relative-caret-position="475">
+          <caret line="25" column="49" lean-forward="false" selection-start-line="25" selection-start-column="49" selection-end-line="25" selection-end-column="49" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/xu/tulingchat/entity/XmlTestBean.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/xu/tulingchat/task/ScheduledJob.java" />
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/xu/tulingchat/task/QuartzTask.java" />
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/xu/tulingchat/task/SchedledConfiguration.java" />
+    <entry file="file://$PROJECT_DIR$/src/test/java/com/xu/tulingchat/tool/HttpClientUtil.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="275">
-          <caret line="17" column="3" lean-forward="true" selection-start-line="17" selection-start-column="3" selection-end-line="17" selection-end-column="3" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/xu/tulingchat/entity/CommentBean.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="115">
-          <caret line="5" column="13" lean-forward="false" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
+        <state relative-caret-position="-2948">
+          <caret line="43" column="13" lean-forward="false" selection-start-line="43" selection-start-column="13" selection-end-line="43" selection-end-column="13" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/test/java/com/xu/tulingchat/user/UserMapperTest.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="253">
-          <caret line="19" column="7" lean-forward="true" selection-start-line="19" selection-start-column="7" selection-end-line="19" selection-end-column="7" />
+        <state relative-caret-position="484">
+          <caret line="22" column="18" lean-forward="false" selection-start-line="22" selection-start-column="12" selection-end-line="22" selection-end-column="18" />
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/com/xu/tulingchat/user/RedisTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="132">
+          <caret line="6" column="25" lean-forward="false" selection-start-line="6" selection-start-column="25" selection-end-line="6" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/xu/tulingchat/service/RedisUtil.java" />
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/xu/tulingchat/util/RedisUtil.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/logback.xml" />
+    <entry file="file://$PROJECT_DIR$/README.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor relative-caret-position="88">
+            <caret line="4" column="0" lean-forward="true" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
+          </first_editor>
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/quartz-scheduler/quartz/2.3.0/quartz-2.3.0.jar!/org/quartz/Scheduler.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="154">
+          <caret line="16" column="35" lean-forward="false" selection-start-line="16" selection-start-column="28" selection-end-line="16" selection-end-column="35" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/xu/tulingchat/service/MailService.java" />
     <entry file="file://$PROJECT_DIR$/pom.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3266">
-          <caret line="142" column="25" lean-forward="false" selection-start-line="142" selection-start-column="25" selection-end-line="142" selection-end-column="25" />
+        <state relative-caret-position="593">
+          <caret line="143" column="0" lean-forward="false" selection-start-line="143" selection-start-column="0" selection-end-line="143" selection-end-column="0" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/xu/tulingchat/util/PropertiesLoaderUtil.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-45">
+          <caret line="15" column="13" lean-forward="false" selection-start-line="15" selection-start-column="13" selection-end-line="15" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/xu/tulingchat/entity/JobEntity.java" />
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/xu/tulingchat/util/HttpRequestUtil.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1430">
+          <caret line="80" column="64" lean-forward="false" selection-start-line="80" selection-start-column="64" selection-end-line="80" selection-end-column="64" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/xu/tulingchat/service/UserBeanService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="110">
+          <caret line="8" column="13" lean-forward="false" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/xu/tulingchat/task/quartz/QuartzTask.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="154">
+          <caret line="11" column="13" lean-forward="false" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/xu/tulingchat/task/quartz/QuartzConfig.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="18">
+          <caret line="25" column="13" lean-forward="true" selection-start-line="25" selection-start-column="13" selection-end-line="25" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/xu/tulingchat/service/EventDispatcher.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-422">
+          <caret line="23" column="15" lean-forward="false" selection-start-line="23" selection-start-column="15" selection-end-line="23" selection-end-column="15" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/xu/tulingchat/task/ScheduleTask.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="462">
+          <caret line="25" column="40" lean-forward="false" selection-start-line="25" selection-start-column="40" selection-end-line="25" selection-end-column="40" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/xu/tulingchat/controller/HelloController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="264">
+          <caret line="21" column="24" lean-forward="false" selection-start-line="21" selection-start-column="24" selection-end-line="21" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/xu/tulingchat/util/TokenUtil.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-120">
+          <caret line="20" column="7" lean-forward="true" selection-start-line="20" selection-start-column="7" selection-end-line="20" selection-end-column="7" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/xu/tulingchat/util/SignUtil.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-176">
+          <caret line="11" column="37" lean-forward="false" selection-start-line="11" selection-start-column="32" selection-end-line="11" selection-end-column="37" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/xu/tulingchat/util/MessageUtil.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="446">
+          <caret line="78" column="29" lean-forward="false" selection-start-line="78" selection-start-column="29" selection-end-line="78" selection-end-column="29" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/xu/tulingchat/task/ExecutorConfig.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-69">
+          <caret line="17" column="12" lean-forward="true" selection-start-line="17" selection-start-column="12" selection-end-line="17" selection-end-column="12" />
+          <folding>
+            <element signature="imports" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/xu/tulingchat/controller/VerifyController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="396">
+          <caret line="52" column="50" lean-forward="false" selection-start-line="52" selection-start-column="50" selection-end-line="52" selection-end-column="50" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/com/xu/tulingchat/demo/HelloTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="132">
+          <caret line="21" column="13" lean-forward="false" selection-start-line="21" selection-start-column="13" selection-end-line="21" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/com/xu/tulingchat/TulingchatApplicationTests.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="88">
+          <caret line="8" column="0" lean-forward="false" selection-start-line="8" selection-start-column="0" selection-end-line="9" selection-end-column="15" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/xu/tulingchat/util/TulingRobotUtil.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="265">
+          <caret line="44" column="7" lean-forward="true" selection-start-line="44" selection-start-column="7" selection-end-line="44" selection-end-column="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-context-support/4.3.11.RELEASE/spring-context-support-4.3.11.RELEASE.jar!/org/springframework/mail/javamail/JavaMailSenderImpl.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1427">
+          <caret line="145" column="0" lean-forward="false" selection-start-line="145" selection-start-column="0" selection-end-line="145" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/xu/tulingchat/listener/PropertiesListener.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="198">
+          <caret line="12" column="11" lean-forward="false" selection-start-line="12" selection-start-column="11" selection-end-line="12" selection-end-column="11" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$MAVEN_REPOSITORY$/org/mybatis/spring/boot/mybatis-spring-boot-starter/1.3.1/mybatis-spring-boot-starter-1.3.1.pom">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="317">
+          <caret line="34" column="39" lean-forward="false" selection-start-line="34" selection-start-column="39" selection-end-line="34" selection-end-column="39" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="uml://MAVEN/com.xu:tulingchat:0.0.1-SNAPSHOT">
+      <provider selected="true" editor-type-id="UmlEditorProvider">
+        <state>
+          <ID>MAVEN</ID>
+          <OriginalElement>com.xu:tulingchat:0.0.1-SNAPSHOT</OriginalElement>
+          <nodes>
+            <node x="" y="">com.xu:tulingchat:0.0.1-SNAPSHOT</node>
+            <node x="" y="">org.mybatis.spring.boot:mybatis-spring-boot-starter:jar:1.3.1</node>
+            <node x="" y="">org.mybatis.spring.boot:mybatis-spring-boot-starter:jar:1.3.1/org.springframework.boot:spring-boot-starter:jar:1.5.7.RELEASE</node>
+            <node x="" y="">org.mybatis.spring.boot:mybatis-spring-boot-starter:jar:1.3.1/org.springframework.boot:spring-boot-starter:jar:1.5.7.RELEASE/org.springframework.boot:spring-boot-starter-logging:jar:1.5.7.RELEASE</node>
+            <node x="" y="">org.mybatis.spring.boot:mybatis-spring-boot-starter:jar:1.3.1/org.springframework.boot:spring-boot-starter:jar:1.5.7.RELEASE/org.springframework.boot:spring-boot-starter-logging:jar:1.5.7.RELEASE/ch.qos.logback:logback-classic:jar:1.1.11</node>
+            <node x="" y="">org.mybatis.spring.boot:mybatis-spring-boot-starter:jar:1.3.1/org.springframework.boot:spring-boot-starter:jar:1.5.7.RELEASE/org.springframework.boot:spring-boot-starter-logging:jar:1.5.7.RELEASE/ch.qos.logback:logback-classic:jar:1.1.11/ch.qos.logback:logback-core:jar:1.1.11</node>
+            <node x="" y="">org.mybatis.spring.boot:mybatis-spring-boot-starter:jar:1.3.1/org.springframework.boot:spring-boot-starter:jar:1.5.7.RELEASE/org.springframework.boot:spring-boot-starter-logging:jar:1.5.7.RELEASE/org.slf4j:jul-to-slf4j:jar:1.7.25</node>
+            <node x="" y="">org.mybatis.spring.boot:mybatis-spring-boot-starter:jar:1.3.1/org.springframework.boot:spring-boot-starter:jar:1.5.7.RELEASE/org.springframework.boot:spring-boot-starter-logging:jar:1.5.7.RELEASE/org.slf4j:log4j-over-slf4j:jar:1.7.25</node>
+            <node x="" y="">org.mybatis.spring.boot:mybatis-spring-boot-starter:jar:1.3.1/org.springframework.boot:spring-boot-starter:jar:1.5.7.RELEASE/org.yaml:snakeyaml:jar:1.17</node>
+            <node x="" y="">org.mybatis.spring.boot:mybatis-spring-boot-starter:jar:1.3.1/org.springframework.boot:spring-boot-starter-jdbc:jar:1.5.7.RELEASE</node>
+            <node x="" y="">org.mybatis.spring.boot:mybatis-spring-boot-starter:jar:1.3.1/org.springframework.boot:spring-boot-starter-jdbc:jar:1.5.7.RELEASE/org.apache.tomcat:tomcat-jdbc:jar:8.5.20</node>
+            <node x="" y="">org.mybatis.spring.boot:mybatis-spring-boot-starter:jar:1.3.1/org.springframework.boot:spring-boot-starter-jdbc:jar:1.5.7.RELEASE/org.apache.tomcat:tomcat-jdbc:jar:8.5.20/org.apache.tomcat:tomcat-juli:jar:8.5.20</node>
+            <node x="" y="">org.mybatis.spring.boot:mybatis-spring-boot-starter:jar:1.3.1/org.springframework.boot:spring-boot-starter-jdbc:jar:1.5.7.RELEASE/org.springframework:spring-jdbc:jar:4.3.11.RELEASE</node>
+            <node x="" y="">org.mybatis.spring.boot:mybatis-spring-boot-starter:jar:1.3.1/org.mybatis.spring.boot:mybatis-spring-boot-autoconfigure:jar:1.3.1</node>
+            <node x="" y="">org.mybatis.spring.boot:mybatis-spring-boot-starter:jar:1.3.1/org.mybatis:mybatis:jar:3.4.5</node>
+            <node x="" y="">org.mybatis.spring.boot:mybatis-spring-boot-starter:jar:1.3.1/org.mybatis:mybatis-spring:jar:1.3.1</node>
+            <node x="" y="">org.springframework.boot:spring-boot-starter-web:jar:1.5.7.RELEASE</node>
+            <node x="" y="">org.springframework.boot:spring-boot-starter-web:jar:1.5.7.RELEASE/org.springframework.boot:spring-boot-starter-tomcat:jar:1.5.7.RELEASE</node>
+            <node x="" y="">org.springframework.boot:spring-boot-starter-web:jar:1.5.7.RELEASE/org.springframework.boot:spring-boot-starter-tomcat:jar:1.5.7.RELEASE/org.apache.tomcat.embed:tomcat-embed-core:jar:8.5.20</node>
+            <node x="" y="">org.springframework.boot:spring-boot-starter-web:jar:1.5.7.RELEASE/org.springframework.boot:spring-boot-starter-tomcat:jar:1.5.7.RELEASE/org.apache.tomcat.embed:tomcat-embed-el:jar:8.5.20</node>
+            <node x="" y="">org.springframework.boot:spring-boot-starter-web:jar:1.5.7.RELEASE/org.springframework.boot:spring-boot-starter-tomcat:jar:1.5.7.RELEASE/org.apache.tomcat.embed:tomcat-embed-websocket:jar:8.5.20</node>
+            <node x="" y="">org.springframework.boot:spring-boot-starter-web:jar:1.5.7.RELEASE/org.hibernate:hibernate-validator:jar:5.3.5.Final</node>
+            <node x="" y="">org.springframework.boot:spring-boot-starter-web:jar:1.5.7.RELEASE/org.hibernate:hibernate-validator:jar:5.3.5.Final/javax.validation:validation-api:jar:1.1.0.Final</node>
+            <node x="" y="">org.springframework.boot:spring-boot-starter-web:jar:1.5.7.RELEASE/org.hibernate:hibernate-validator:jar:5.3.5.Final/org.jboss.logging:jboss-logging:jar:3.3.1.Final</node>
+            <node x="" y="">org.springframework.boot:spring-boot-starter-web:jar:1.5.7.RELEASE/org.hibernate:hibernate-validator:jar:5.3.5.Final/com.fasterxml:classmate:jar:1.3.4</node>
+            <node x="" y="">org.springframework.boot:spring-boot-starter-web:jar:1.5.7.RELEASE/com.fasterxml.jackson.core:jackson-databind:jar:2.8.10</node>
+            <node x="" y="">org.springframework.boot:spring-boot-starter-web:jar:1.5.7.RELEASE/org.springframework:spring-web:jar:4.3.11.RELEASE</node>
+            <node x="" y="">org.springframework.boot:spring-boot-starter-web:jar:1.5.7.RELEASE/org.springframework:spring-web:jar:4.3.11.RELEASE/org.springframework:spring-aop:jar:4.3.11.RELEASE</node>
+            <node x="" y="">org.springframework.boot:spring-boot-starter-web:jar:1.5.7.RELEASE/org.springframework:spring-web:jar:4.3.11.RELEASE/org.springframework:spring-beans:jar:4.3.11.RELEASE</node>
+            <node x="" y="">org.springframework.boot:spring-boot-starter-web:jar:1.5.7.RELEASE/org.springframework:spring-webmvc:jar:4.3.11.RELEASE</node>
+            <node x="" y="">org.springframework.boot:spring-boot-starter-web:jar:1.5.7.RELEASE/org.springframework:spring-webmvc:jar:4.3.11.RELEASE/org.springframework:spring-expression:jar:4.3.11.RELEASE</node>
+            <node x="" y="">org.springframework.boot:spring-boot-starter-test:jar:1.5.7.RELEASE</node>
+            <node x="" y="">org.springframework.boot:spring-boot-starter-test:jar:1.5.7.RELEASE/org.springframework.boot:spring-boot-test:jar:1.5.7.RELEASE</node>
+            <node x="" y="">org.springframework.boot:spring-boot-starter-test:jar:1.5.7.RELEASE/org.springframework.boot:spring-boot-test-autoconfigure:jar:1.5.7.RELEASE</node>
+            <node x="" y="">org.springframework.boot:spring-boot-starter-test:jar:1.5.7.RELEASE/com.jayway.jsonpath:json-path:jar:2.2.0</node>
+            <node x="" y="">org.springframework.boot:spring-boot-starter-test:jar:1.5.7.RELEASE/com.jayway.jsonpath:json-path:jar:2.2.0/net.minidev:json-smart:jar:2.2.1</node>
+            <node x="" y="">org.springframework.boot:spring-boot-starter-test:jar:1.5.7.RELEASE/com.jayway.jsonpath:json-path:jar:2.2.0/net.minidev:json-smart:jar:2.2.1/net.minidev:accessors-smart:jar:1.1</node>
+            <node x="" y="">org.springframework.boot:spring-boot-starter-test:jar:1.5.7.RELEASE/com.jayway.jsonpath:json-path:jar:2.2.0/net.minidev:json-smart:jar:2.2.1/net.minidev:accessors-smart:jar:1.1/org.ow2.asm:asm:jar:5.0.3</node>
+            <node x="" y="">org.springframework.boot:spring-boot-starter-test:jar:1.5.7.RELEASE/junit:junit:jar:4.12</node>
+            <node x="" y="">org.springframework.boot:spring-boot-starter-test:jar:1.5.7.RELEASE/org.assertj:assertj-core:jar:2.6.0</node>
+            <node x="" y="">org.springframework.boot:spring-boot-starter-test:jar:1.5.7.RELEASE/org.mockito:mockito-core:jar:1.10.19</node>
+            <node x="" y="">org.springframework.boot:spring-boot-starter-test:jar:1.5.7.RELEASE/org.mockito:mockito-core:jar:1.10.19/org.objenesis:objenesis:jar:2.1</node>
+            <node x="" y="">org.springframework.boot:spring-boot-starter-test:jar:1.5.7.RELEASE/org.hamcrest:hamcrest-core:jar:1.3</node>
+            <node x="" y="">org.springframework.boot:spring-boot-starter-test:jar:1.5.7.RELEASE/org.hamcrest:hamcrest-library:jar:1.3</node>
+            <node x="" y="">org.springframework.boot:spring-boot-starter-test:jar:1.5.7.RELEASE/org.skyscreamer:jsonassert:jar:1.4.0</node>
+            <node x="" y="">org.springframework.boot:spring-boot-starter-test:jar:1.5.7.RELEASE/org.skyscreamer:jsonassert:jar:1.4.0/com.vaadin.external.google:android-json:jar:0.0.20131108.vaadin1</node>
+            <node x="" y="">org.springframework.boot:spring-boot-starter-test:jar:1.5.7.RELEASE/org.springframework:spring-core:jar:4.3.11.RELEASE</node>
+            <node x="" y="">org.springframework.boot:spring-boot-starter-test:jar:1.5.7.RELEASE/org.springframework:spring-test:jar:4.3.11.RELEASE</node>
+            <node x="" y="">com.google.guava:guava:jar:23.0</node>
+            <node x="" y="">com.google.guava:guava:jar:23.0/com.google.code.findbugs:jsr305:jar:1.3.9</node>
+            <node x="" y="">com.google.guava:guava:jar:23.0/com.google.errorprone:error_prone_annotations:jar:2.0.18</node>
+            <node x="" y="">com.google.guava:guava:jar:23.0/com.google.j2objc:j2objc-annotations:jar:1.1</node>
+            <node x="" y="">com.google.guava:guava:jar:23.0/org.codehaus.mojo:animal-sniffer-annotations:jar:1.14</node>
+            <node x="" y="">com.alibaba:fastjson:jar:1.2.38</node>
+            <node x="" y="">org.apache.httpcomponents:httpclient:jar:4.5.3</node>
+            <node x="" y="">org.apache.httpcomponents:httpclient:jar:4.5.3/org.apache.httpcomponents:httpcore:jar:4.4.6</node>
+            <node x="" y="">org.apache.httpcomponents:httpclient:jar:4.5.3/commons-codec:commons-codec:jar:1.10</node>
+            <node x="" y="">org.apache.httpcomponents:httpclient-cache:jar:4.5.3</node>
+            <node x="" y="">org.apache.httpcomponents:httpclient-cache:jar:4.5.3/commons-logging:commons-logging:jar:1.2</node>
+            <node x="" y="">org.apache.httpcomponents:httpmime:jar:4.5.3</node>
+            <node x="" y="">dom4j:dom4j:jar:1.6.1</node>
+            <node x="" y="">dom4j:dom4j:jar:1.6.1/xml-apis:xml-apis:jar:1.4.01</node>
+            <node x="" y="">com.thoughtworks.xstream:xstream:jar:1.4.10</node>
+            <node x="" y="">com.thoughtworks.xstream:xstream:jar:1.4.10/xmlpull:xmlpull:jar:1.1.3.1</node>
+            <node x="" y="">com.thoughtworks.xstream:xstream:jar:1.4.10/xpp3:xpp3_min:jar:1.1.4c</node>
+            <node x="" y="">com.fasterxml.jackson.dataformat:jackson-dataformat-xml:jar:2.9.1</node>
+            <node x="" y="">com.fasterxml.jackson.dataformat:jackson-dataformat-xml:jar:2.9.1/com.fasterxml.jackson.core:jackson-core:jar:2.8.10</node>
+            <node x="" y="">com.fasterxml.jackson.dataformat:jackson-dataformat-xml:jar:2.9.1/com.fasterxml.jackson.core:jackson-annotations:jar:2.8.0</node>
+            <node x="" y="">com.fasterxml.jackson.dataformat:jackson-dataformat-xml:jar:2.9.1/com.fasterxml.jackson.module:jackson-module-jaxb-annotations:jar:2.8.10</node>
+            <node x="" y="">com.fasterxml.jackson.dataformat:jackson-dataformat-xml:jar:2.9.1/org.codehaus.woodstox:stax2-api:jar:3.1.4</node>
+            <node x="" y="">com.fasterxml.jackson.dataformat:jackson-dataformat-xml:jar:2.9.1/com.fasterxml.woodstox:woodstox-core:jar:5.0.3</node>
+            <node x="" y="">mysql:mysql-connector-java:jar:6.0.6</node>
+            <node x="" y="">com.alibaba:druid:jar:1.1.5</node>
+            <node x="" y="">org.springframework.boot:spring-boot-starter-data-mongodb:jar:1.5.8.RELEASE</node>
+            <node x="" y="">org.springframework.boot:spring-boot-starter-data-mongodb:jar:1.5.8.RELEASE/org.mongodb:mongodb-driver:jar:3.4.3</node>
+            <node x="" y="">org.springframework.boot:spring-boot-starter-data-mongodb:jar:1.5.8.RELEASE/org.mongodb:mongodb-driver:jar:3.4.3/org.mongodb:mongodb-driver-core:jar:3.4.3</node>
+            <node x="" y="">org.springframework.boot:spring-boot-starter-data-mongodb:jar:1.5.8.RELEASE/org.mongodb:mongodb-driver:jar:3.4.3/org.mongodb:bson:jar:3.4.3</node>
+            <node x="" y="">org.springframework.boot:spring-boot-starter-data-mongodb:jar:1.5.8.RELEASE/org.springframework.data:spring-data-mongodb:jar:1.10.7.RELEASE</node>
+            <node x="" y="">org.springframework.boot:spring-boot-starter-data-mongodb:jar:1.5.8.RELEASE/org.springframework.data:spring-data-mongodb:jar:1.10.7.RELEASE/org.springframework:spring-tx:jar:4.3.11.RELEASE</node>
+            <node x="" y="">org.springframework.boot:spring-boot-starter-data-mongodb:jar:1.5.8.RELEASE/org.springframework.data:spring-data-mongodb:jar:1.10.7.RELEASE/org.springframework.data:spring-data-commons:jar:1.13.7.RELEASE</node>
+            <node x="" y="">org.springframework.boot:spring-boot-starter-data-mongodb:jar:1.5.8.RELEASE/org.springframework.data:spring-data-mongodb:jar:1.10.7.RELEASE/org.slf4j:jcl-over-slf4j:jar:1.7.25</node>
+            <node x="" y="">org.springframework.boot:spring-boot-starter-data-redis:jar:1.5.8.RELEASE</node>
+            <node x="" y="">org.springframework.boot:spring-boot-starter-data-redis:jar:1.5.8.RELEASE/org.springframework.data:spring-data-redis:jar:1.8.7.RELEASE</node>
+            <node x="" y="">org.springframework.boot:spring-boot-starter-data-redis:jar:1.5.8.RELEASE/org.springframework.data:spring-data-redis:jar:1.8.7.RELEASE/org.springframework.data:spring-data-keyvalue:jar:1.2.7.RELEASE</node>
+            <node x="" y="">org.springframework.boot:spring-boot-starter-data-redis:jar:1.5.8.RELEASE/org.springframework.data:spring-data-redis:jar:1.8.7.RELEASE/org.springframework:spring-oxm:jar:4.3.11.RELEASE</node>
+            <node x="" y="">org.springframework.boot:spring-boot-starter-data-redis:jar:1.5.8.RELEASE/redis.clients:jedis:jar:2.9.0</node>
+            <node x="" y="">org.springframework.boot:spring-boot-starter-data-redis:jar:1.5.8.RELEASE/redis.clients:jedis:jar:2.9.0/org.apache.commons:commons-pool2:jar:2.4.2</node>
+            <node x="" y="">org.quartz-scheduler:quartz:jar:2.3.0</node>
+            <node x="" y="">org.quartz-scheduler:quartz:jar:2.3.0/com.mchange:c3p0:jar:0.9.5.2</node>
+            <node x="" y="">org.quartz-scheduler:quartz:jar:2.3.0/com.mchange:mchange-commons-java:jar:0.2.11</node>
+            <node x="" y="">org.quartz-scheduler:quartz:jar:2.3.0/com.zaxxer:HikariCP-java6:jar:2.3.13</node>
+            <node x="" y="">org.quartz-scheduler:quartz:jar:2.3.0/org.slf4j:slf4j-api:jar:1.7.25</node>
+            <node x="" y="">org.springframework.boot:spring-boot-starter-mail:jar:1.5.7.RELEASE</node>
+            <node x="" y="">org.springframework.boot:spring-boot-starter-mail:jar:1.5.7.RELEASE/org.springframework:spring-context:jar:4.3.11.RELEASE</node>
+            <node x="" y="">org.springframework.boot:spring-boot-starter-mail:jar:1.5.7.RELEASE/org.springframework:spring-context-support:jar:4.3.11.RELEASE</node>
+            <node x="" y="">org.springframework.boot:spring-boot-starter-mail:jar:1.5.7.RELEASE/com.sun.mail:javax.mail:jar:1.5.6</node>
+            <node x="" y="">org.springframework.boot:spring-boot-starter-mail:jar:1.5.7.RELEASE/com.sun.mail:javax.mail:jar:1.5.6/javax.activation:activation:jar:1.1</node>
+            <node x="" y="">org.springframework.boot:spring-boot-devtools:jar:1.5.7.RELEASE</node>
+            <node x="" y="">org.springframework.boot:spring-boot-devtools:jar:1.5.7.RELEASE/org.springframework.boot:spring-boot:jar:1.5.7.RELEASE</node>
+            <node x="" y="">org.springframework.boot:spring-boot-devtools:jar:1.5.7.RELEASE/org.springframework.boot:spring-boot-autoconfigure:jar:1.5.7.RELEASE</node>
+          </nodes>
+          <notes />
+          <edges />
+          <settings layout="Hierarchic Group" zoom="0.28213390619405654" x="1168.0" y="1287.0" />
+          <SelectedNodes />
+          <Categories />
+          <SCOPE>All</SCOPE>
+          <VISIBILITY>All</VISIBILITY>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-context-support/4.3.11.RELEASE/spring-context-support-4.3.11.RELEASE.jar!/org/springframework/mail/javamail/JavaMailSender.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="132">
+          <caret line="12" column="17" lean-forward="false" selection-start-line="12" selection-start-column="17" selection-end-line="12" selection-end-column="17" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/application.properties">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="805">
-          <caret line="35" column="15" lean-forward="false" selection-start-line="35" selection-start-column="15" selection-end-line="35" selection-end-column="15" />
+        <state relative-caret-position="176">
+          <caret line="8" column="0" lean-forward="false" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/xu/tulingchat/TulingchatApplication.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="460">
-          <caret line="24" column="0" lean-forward="false" selection-start-line="24" selection-start-column="0" selection-end-line="24" selection-end-column="0" />
+        <state relative-caret-position="242">
+          <caret line="17" column="13" lean-forward="false" selection-start-line="17" selection-start-column="13" selection-end-line="17" selection-end-column="13" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/xu/tulingchat/util/TokenUtil.java">
+    <entry file="file://$PROJECT_DIR$/src/test/java/com/xu/tulingchat/demo/SimpleTest.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="897">
-          <caret line="44" column="39" lean-forward="false" selection-start-line="44" selection-start-column="39" selection-end-line="44" selection-end-column="39" />
+        <state relative-caret-position="395">
+          <caret line="28" column="28" lean-forward="false" selection-start-line="28" selection-start-column="28" selection-end-line="28" selection-end-column="28" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/xu/tulingchat/service/EventDispatcher.java">
+    <entry file="file://$PROJECT_DIR$/src/main/resources/application-dev.properties">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="667">
-          <caret line="39" column="22" lean-forward="false" selection-start-line="39" selection-start-column="10" selection-end-line="39" selection-end-column="22" />
+        <state relative-caret-position="448">
+          <caret line="64" column="1" lean-forward="false" selection-start-line="64" selection-start-column="1" selection-end-line="64" selection-end-column="1" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/xu/tulingchat/task/ScheduleTask.java">
+    <entry file="file://$PROJECT_DIR$/src/main/resources/application-prod.properties">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="253">
-          <caret line="28" column="20" lean-forward="false" selection-start-line="28" selection-start-column="20" selection-end-line="28" selection-end-column="20" />
+        <state relative-caret-position="407">
+          <caret line="68" column="1" lean-forward="false" selection-start-line="68" selection-start-column="1" selection-end-line="68" selection-end-column="1" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="jar://D:/Develop/Java/jdk1.8.0_77/src.zip!/java/util/concurrent/TimeUnit.java">
+    <entry file="file://$PROJECT_DIR$/src/main/resources/application-test.properties">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="119" column="4" lean-forward="false" selection-start-line="119" selection-start-column="4" selection-end-line="119" selection-end-column="4" />
+        <state relative-caret-position="503">
+          <caret line="26" column="32" lean-forward="true" selection-start-line="26" selection-start-column="32" selection-end-line="26" selection-end-column="32" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/xu/tulingchat/service/RedisService.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/xu/tulingchat/service/MsgDispatcher.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="293">
-          <caret line="46" column="26" lean-forward="true" selection-start-line="46" selection-start-column="26" selection-end-line="46" selection-end-column="26" />
+        <state relative-caret-position="206">
+          <caret line="26" column="8" lean-forward="true" selection-start-line="26" selection-start-column="8" selection-end-line="26" selection-end-column="8" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/xu/tulingchat/util/MailUtil.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="266">
+          <caret line="33" column="23" lean-forward="true" selection-start-line="33" selection-start-column="23" selection-end-line="33" selection-end-column="23" />
           <folding />
         </state>
       </provider>

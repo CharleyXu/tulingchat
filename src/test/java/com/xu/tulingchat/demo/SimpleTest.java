@@ -26,8 +26,8 @@ public class SimpleTest {
 		SimpleMailMessage message = new SimpleMailMessage();
 		message.setFrom(from);
 		message.setTo("770287339@qq.com");
-		message.setSubject("要事。。。。测试3");
-		message.setText("这是一封重要的邮件");
+		message.setSubject("有要事，请求回复");
+		message.setText("很重要的邮件");
 
 		try {
 			mailSender.send(message);

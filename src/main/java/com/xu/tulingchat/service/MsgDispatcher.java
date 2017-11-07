@@ -39,7 +39,6 @@ public class MsgDispatcher {
 			textMessage.setCreateTime(new Date().getTime());
 			textMessage.setMsgType(MessageUtil.RESP_MESSAGE_TYPE_TEXT);
 			if (content.length() > 3 && content.substring(0, 3).startsWith("邮件")) {
-				System.out.println("准备发送邮件");
 				handleEmail(content, textMessage);
 			} else {
 				//向tuling接口发送请求   自动聊天
@@ -80,7 +79,7 @@ public class MsgDispatcher {
 	public void handleEmail(String content, TextMessage textMessage) {
 		String[] strings = content.split(" ");
 		if (strings.length < 3) {
-			textMessage.setContent("邮件发送格式错误");
+			textMessage.setContent("发送邮件格式错误");
 			return;
 		}
 		String receiver = strings[1];
@@ -90,7 +89,7 @@ public class MsgDispatcher {
 			textMessage.setContent("收件人邮箱格式错误");
 		} else {
 			String emailContent = strings[2];
-			String subject = "这是一封重要的邮件";
+			String subject = "你好，这是一封重要的邮件";
 			mailUtil.sendSimpleMail(receiver, subject, emailContent);
 			textMessage.setContent("邮件发送成功");
 		}

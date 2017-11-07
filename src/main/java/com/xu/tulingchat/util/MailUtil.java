@@ -12,6 +12,7 @@ import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 
 import java.io.File;
+import java.util.Date;
 
 import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;
@@ -30,16 +31,17 @@ public class MailUtil {
 	private String from;
 
 	/**
-	 * 发送文本邮件
+	 * 发送文本邮件  setCc 抄送
 	 */
 	@Async("mailAsync")
 	public void sendSimpleMail(String to, String subject, String content) {
 		SimpleMailMessage message = new SimpleMailMessage();
 		message.setFrom(from);
 		message.setTo(to);
+		message.setCc(from);
 		message.setSubject(subject);
 		message.setText(content);
-
+		message.setSentDate(new Date());
 		try {
 			mailSender.send(message);
 			logger.info("简单邮件已经发送。");
@@ -62,7 +64,7 @@ public class MailUtil {
 			helper.setTo(to);
 			helper.setSubject(subject);
 			helper.setText(content, true);
-
+			helper.setSentDate(new Date());
 			mailSender.send(message);
 			logger.info("html邮件发送成功");
 		} catch (MessagingException e) {
@@ -83,7 +85,7 @@ public class MailUtil {
 			helper.setTo(to);
 			helper.setSubject(subject);
 			helper.setText(content, true);
-
+			helper.setSentDate(new Date());
 			FileSystemResource file = new FileSystemResource(new File(filePath));
 			String fileName = filePath.substring(filePath.lastIndexOf(File.separator));
 			helper.addAttachment(fileName, file);
@@ -106,7 +108,7 @@ public class MailUtil {
 			helper.setTo(to);
 			helper.setSubject(subject);
 			helper.setText(content, true);
-
+			helper.setSentDate(new Date());
 			FileSystemResource res = new FileSystemResource(new File(rscPath));
 			helper.addInline(rscId, res);
 
