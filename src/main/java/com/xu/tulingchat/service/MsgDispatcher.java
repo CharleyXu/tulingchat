@@ -1,6 +1,9 @@
 package com.xu.tulingchat.service;
 
+import com.xu.tulingchat.bean.message.send.Article;
+import com.xu.tulingchat.bean.message.send.NewsMessage;
 import com.xu.tulingchat.bean.message.send.TextMessage;
+import com.xu.tulingchat.util.DailyZhihuUtil;
 import com.xu.tulingchat.util.MailUtil;
 import com.xu.tulingchat.util.MessageUtil;
 import com.xu.tulingchat.util.TulingRobotUtil;
@@ -11,6 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -25,6 +29,8 @@ public class MsgDispatcher {
 	TulingRobotUtil tulingRobotUtil;
 	@Autowired
 	MailUtil mailUtil;
+	@Autowired
+	DailyZhihuUtil dailyZhihuUtil;
 
 	public String progressMsg(Map<String, String> map) {
 		String toUserName = map.get("ToUserName");//开发者微信号 公众号
@@ -33,11 +39,25 @@ public class MsgDispatcher {
 		if (MessageUtil.REQ_MESSAGE_TYPE_TEXT.equals(msgType)) { // 文本消息
 			System.out.println("==============这是文本消息！");
 			String content = map.get("Content");
+
+			if (content.startsWith("知乎日报")) {
+				NewsMessage newsMessage = new NewsMessage();
+				List<Article> articles = dailyZhihuUtil.sendRequest(null);
+				newsMessage.setToUserName(fromUserName);// 粉丝号
+				newsMessage.setFromUserName(toUserName);//公众号
+				newsMessage.setCreateTime(new Date().getTime());
+				newsMessage.setMsgType(MessageUtil.RESP_MESSAGE_TYPE_NEWS);
+				newsMessage.setArticleCount(articles.size());
+				newsMessage.setArticles(articles);
+				return MessageUtil.newsMessageToXml(newsMessage);
+			}
+
 			TextMessage textMessage = new TextMessage();
 			textMessage.setToUserName(fromUserName);// 粉丝号
 			textMessage.setFromUserName(toUserName);//公众号
 			textMessage.setCreateTime(new Date().getTime());
 			textMessage.setMsgType(MessageUtil.RESP_MESSAGE_TYPE_TEXT);
+
 			if (content.length() > 3 && content.substring(0, 3).startsWith("邮件")) {
 				handleEmail(content, textMessage);
 			} else {

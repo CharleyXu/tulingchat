@@ -42,9 +42,7 @@ public class HttpRequestUtil {
 			if (closeableHttpResponse.getStatusLine().getStatusCode() == 200) {
 				//得到响应实体
 				HttpEntity entity = closeableHttpResponse.getEntity();
-				String s = EntityUtils.toString(entity, "utf-8");
-				System.out.println("--get request success--\n" + s);
-				return s;
+				return EntityUtils.toString(entity, "utf-8");
 			}
 		} catch (IOException e) {
 			e.printStackTrace();

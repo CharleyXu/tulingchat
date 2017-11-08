@@ -5,6 +5,7 @@ import com.thoughtworks.xstream.core.util.QuickWriter;
 import com.thoughtworks.xstream.io.HierarchicalStreamWriter;
 import com.thoughtworks.xstream.io.xml.PrettyPrintWriter;
 import com.thoughtworks.xstream.io.xml.XppDriver;
+import com.xu.tulingchat.bean.message.send.Article;
 import com.xu.tulingchat.bean.message.send.ImageMessage;
 import com.xu.tulingchat.bean.message.send.MusicMessage;
 import com.xu.tulingchat.bean.message.send.NewsMessage;
@@ -149,8 +150,8 @@ public class MessageUtil {
    */
   public static String newsMessageToXml(NewsMessage newsMessage) {
     xstream.alias("xml", newsMessage.getClass());
-    xstream.alias("item", new NewsMessage().getClass());
-    return xstream.toXML(newsMessage);
+	  xstream.alias("item", new Article().getClass());
+	  return xstream.toXML(newsMessage);
   }
 
   /**
