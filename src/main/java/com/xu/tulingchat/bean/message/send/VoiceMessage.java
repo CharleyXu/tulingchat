@@ -1,15 +1,17 @@
 package com.xu.tulingchat.bean.message.send;
 
+/**
+ * 语音消息
+ */
 public class VoiceMessage extends BaseMessage {
 
-  //语音消息 通过素材管理中的接口上传多媒体文件，得到的id。
-  private String MediaId;
+  private Voice Voice;
 
-  public String getMediaId() {
-    return MediaId;
+  public Voice getVoice() {
+    return Voice;
   }
 
-  public void setMediaId(String mediaId) {
-    MediaId = mediaId;
+  public void setVoice(Voice voice) {
+    this.Voice = voice;
   }
 }

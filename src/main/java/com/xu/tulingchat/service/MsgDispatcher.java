@@ -1,6 +1,7 @@
 package com.xu.tulingchat.service;
 
 import com.xu.tulingchat.bean.message.send.Article;
+import com.xu.tulingchat.bean.message.send.Music;
 import com.xu.tulingchat.bean.message.send.MusicMessage;
 import com.xu.tulingchat.bean.message.send.NewsMessage;
 import com.xu.tulingchat.bean.message.send.TextMessage;
@@ -67,9 +68,11 @@ public class MsgDispatcher {
 				if (songs != null) {
 					String songName = songs[0];
 					String songUrl = songs[1];
-					musicMessage.setTitle(songName);
-					musicMessage.setDescription(artist);
-					musicMessage.setMusicURL(songUrl);
+					Music music = new Music();
+					music.setTitle(songName);
+					music.setDescription(artist);
+					music.setMusicURL("http://music.163.com" + songUrl);
+					musicMessage.setMusic(music);
 				}
 				return MessageUtil.musicMessageToXml(musicMessage);
 			}
