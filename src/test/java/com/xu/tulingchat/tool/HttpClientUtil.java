@@ -3,6 +3,7 @@ package com.xu.tulingchat.tool;
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpStatus;
 import org.apache.http.NameValuePair;
+import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.config.RequestConfig;
 import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.CloseableHttpResponse;
@@ -21,9 +22,12 @@ import org.apache.http.impl.conn.PoolingHttpClientConnectionManager;
 import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.ssl.SSLContextBuilder;
 import org.apache.http.util.EntityUtils;
+import org.apache.tomcat.util.http.fileupload.IOUtils;
 
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.nio.charset.Charset;
 import java.security.GeneralSecurityException;
 import java.security.cert.CertificateException;
@@ -302,5 +306,77 @@ public class HttpClientUtil {
         }
         return null;
     }
+
+	public static void main(String[] args) {
+		String url = "http://p1.music.126.net/cUTk0ewrQtYGP2YpPZoUng==/3265549553028224.jpg?param=130y130";
+		String path = "D:/test.jpg";
+		try {
+			int i = doDownload(url, path);
+			System.out.println("code:" + i);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+
+	/**
+	 * 通过httpClient get 下载文件
+	 *
+	 * @param url      网络文件全路径
+	 * @param savePath 保存文件全路径
+	 * @return 状态码 200表示成功
+	 */
+	public static int doDownload(String url, String savePath) throws ClientProtocolException, IOException {
+		// 创建默认的HttpClient实例.
+		CloseableHttpClient httpClient = HttpClients.createDefault();
+		HttpGet get = new HttpGet(url);
+		CloseableHttpResponse response = httpClient.execute(get);
+		HttpEntity entity = response.getEntity();
+		if (entity != null) {
+			InputStream in = entity.getContent();
+			FileOutputStream out = new FileOutputStream(savePath);
+			IOUtils.copy(in, out);
+			EntityUtils.consume(entity);
+			response.close();
+		}
+		int code = response.getStatusLine().getStatusCode();
+		httpClient.close();
+		return code;
+	}
+
+	/**
+	 * 通过HttpClint post 上传文件
+	 *
+	 * @param url        上传请求地址
+	 * @param fileBody   文件类型input Map
+	 * @param stringBody 普通类型input Map
+	 * @return 状态码 200表示成功
+	 */
+	public static int doUpload(String url, Map<String, String> fileBody, Map<String, String> stringBody) throws ClientProtocolException, IOException {
+		// 创建默认的HttpClient实例.
+		CloseableHttpClient httpClient = HttpClients.createDefault();
+		HttpPost post = new HttpPost(url);
+		MultipartEntityBuilder builder = MultipartEntityBuilder.create();
+		if (fileBody != null) {
+			Iterator<String> fileIter = fileBody.keySet().iterator();
+			while (fileIter.hasNext()) {
+				String key = (String) fileIter.next();
+				String value = fileBody.get(key);
+				builder.addPart(key, new FileBody(new File(value)));
+			}
+		}
+		if (stringBody != null) {
+			Iterator<String> stringIter = stringBody.keySet().iterator();
+			while (stringIter.hasNext()) {
+				String key = (String) stringIter.next();
+				String value = stringBody.get(key);
+				builder.addPart(key, new StringBody(value, ContentType.TEXT_PLAIN));
+			}
+		}
+		post.setEntity(builder.build());
+		CloseableHttpResponse response = httpClient.execute(post);
+		int code = response.getStatusLine().getStatusCode();
+		httpClient.close();
+		return code;
+	}
 
 }

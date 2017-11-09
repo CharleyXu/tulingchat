@@ -1,12 +1,5 @@
 package com.xu.tulingchat.util;
 
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
-import java.net.URL;
-import java.net.URLConnection;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -15,6 +8,14 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
+
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.net.URL;
+import java.net.URLConnection;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
@@ -38,23 +39,30 @@ public class MusicUtilTest {
   //     阿杜--> /artist?id=1876
   @Test
   public void getAllSongs() throws IOException {
-    Jsoup.connect("http://music.163.com/artist?id=1876")
-        .header("Referer", "http://music.163.com/")
-        .header("Host", "music.163.com").get().select("ul[class=f-hide] a")
-        .stream().map(w -> w.text() + "-->" + w.attr("href"))
-        .forEach(System.out::println);
+//    Jsoup.connect("http://music.163.com/artist?id=1876")
+//        .header("Referer", "http://music.163.com/")
+//        .header("Host", "music.163.com").get().select("ul[class=f-hide] a")
+//        .stream().map(w -> w.text() + "-->" + w.attr("href"))
+//        .forEach(System.out::println);
+    Elements elements = Jsoup.connect("http://music.163.com/artist?id=1876")
+            .header("Referer", "http://music.163.com/")
+            .header("Host", "music.163.com").get().select("ul[class=f-hide] a");
+    Element first = elements.first();
+    String text = first.text();
+    String href = first.attr("href");
+    System.out.println(text + "---" + href);
   }
 
   /**
    * getAllPictures 提取图片
    */
   public static void main(String[] args) throws Exception {
-    Elements select = Jsoup.connect("http://music.163.com/song?id=26145721")
+    Elements select = Jsoup.connect("http://music.163.com/song?id=418603077")
         .header("Referer", "http://music.163.com/")
         .header("Host", "music.163.com").get().select("img[src]");
     System.out.println(select.size());
     Element first = select.first();
-    String attr = first.attr("abs:data-src");
+    String attr = first.attr("abs:src");
     System.out.println("first:" + attr);
     // 连接url
     URL url;
@@ -64,7 +72,7 @@ public class MusicUtilTest {
     InputStream is = uri.getInputStream();
     // 写入数据流
     OutputStream os = new FileOutputStream(new File(
-        "F:/", "test.jpg"));
+            "D:/", "test.jpg"));
 
     byte[] buf = new byte[3072];
     int i = 0;

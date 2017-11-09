@@ -1,11 +1,13 @@
 package com.xu.tulingchat.service;
 
 import com.xu.tulingchat.bean.message.send.Article;
+import com.xu.tulingchat.bean.message.send.MusicMessage;
 import com.xu.tulingchat.bean.message.send.NewsMessage;
 import com.xu.tulingchat.bean.message.send.TextMessage;
 import com.xu.tulingchat.util.DailyZhihuUtil;
 import com.xu.tulingchat.util.MailUtil;
 import com.xu.tulingchat.util.MessageUtil;
+import com.xu.tulingchat.util.MusicUtil;
 import com.xu.tulingchat.util.TulingRobotUtil;
 
 import org.slf4j.Logger;
@@ -26,11 +28,13 @@ public class MsgDispatcher {
 	private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
 	@Autowired
-	TulingRobotUtil tulingRobotUtil;
+	private TulingRobotUtil tulingRobotUtil;
 	@Autowired
-	MailUtil mailUtil;
+	private MailUtil mailUtil;
 	@Autowired
-	DailyZhihuUtil dailyZhihuUtil;
+	private DailyZhihuUtil dailyZhihuUtil;
+	@Autowired
+	private MusicUtil musicUtil;
 
 	public String progressMsg(Map<String, String> map) {
 		String toUserName = map.get("ToUserName");//开发者微信号 公众号
@@ -40,7 +44,7 @@ public class MsgDispatcher {
 			System.out.println("==============这是文本消息！");
 			String content = map.get("Content");
 
-			if (content.startsWith("知乎日报")) {
+			if ("知乎日报".equals(content) || "新闻".equals(content)) {
 				NewsMessage newsMessage = new NewsMessage();
 				List<Article> articles = dailyZhihuUtil.sendRequest(null);
 				newsMessage.setToUserName(fromUserName);// 粉丝号
@@ -50,6 +54,24 @@ public class MsgDispatcher {
 				newsMessage.setArticleCount(articles.size());
 				newsMessage.setArticles(articles);
 				return MessageUtil.newsMessageToXml(newsMessage);
+			}
+
+			if ("音乐".equals(content)) {
+				MusicMessage musicMessage = new MusicMessage();
+				musicMessage.setToUserName(fromUserName);// 粉丝号
+				musicMessage.setFromUserName(toUserName);//公众号
+				musicMessage.setCreateTime(new Date().getTime());
+				musicMessage.setMsgType(MessageUtil.RESP_MESSAGE_TYPE_MUSIC);
+				String artist = "周杰伦";
+				String[] songs = musicUtil.getSongs(artist);
+				if (songs != null) {
+					String songName = songs[0];
+					String songUrl = songs[1];
+					musicMessage.setTitle(songName);
+					musicMessage.setDescription(artist);
+					musicMessage.setMusicURL(songUrl);
+				}
+				return MessageUtil.musicMessageToXml(musicMessage);
 			}
 
 			TextMessage textMessage = new TextMessage();
