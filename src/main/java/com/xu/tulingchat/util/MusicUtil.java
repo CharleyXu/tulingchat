@@ -1,6 +1,7 @@
 package com.xu.tulingchat.util;
 
 import com.alibaba.fastjson.JSONObject;
+import com.xu.tulingchat.mapper.ArtistMapper;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -32,28 +33,39 @@ public class MusicUtil {
 	private final Logger logger = LoggerFactory.getLogger(this.getClass());
 	public static final String[] ARTISTS = new String[]{"1001", "1002", "1003", "2001", "2002", "2003", "6001", "6002", "6003", "7001", "7002", "7003", "4001", "4002", "4003"};
 	public static List<Integer> InitialsList = new ArrayList<>();
-
 	@Autowired
 	private TokenUtil tokenUtil;
 	@Value("${wechat.material.temporary}")
+	@Autowired
+	private ArtistMapper artistMapper;
 	private String temporaryUrl;
+	@Value("${netease.cloud.music.song}")
+	private String songUrl;
+	@Value("${netease.cloud.music}")
+	private String netease;
 
-
-	public String[] getSongs(String artist) {
-		Elements elements = null;
+	/**
+	 * 获取歌名+Url
+	 *
+	 * @param artistName 歌手名称
+	 */
+	public String[] getSongs(String artistName) {
 		String[] retArray = new String[2];
+		Elements elements = null;
 		try {
-			elements = Jsoup.connect("http://music.163.com/artist?id=1876")
+			String urlId = artistMapper.findone(artistName);
+			elements = Jsoup.connect(netease + urlId)
 					.header("Referer", "http://music.163.com/")
 					.header("Host", "music.163.com").get().select("ul[class=f-hide] a");
 			Element first = elements.first();
 			String text = first.text();
 			String href = first.attr("href");
 			retArray[0] = text;
-			retArray[1] = href;
+			retArray[1] = songUrl.replace("SONG_ID", href.substring(href.lastIndexOf('=') + 1));
+			logger.info("歌名+歌曲Url获取成功");
 			return retArray;
 		} catch (IOException e) {
-			e.printStackTrace();
+			logger.error("歌名+歌曲Url获取错误",e);
 		}
 		return null;
 

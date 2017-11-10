@@ -7,7 +7,6 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import java.io.File;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
@@ -32,9 +31,11 @@ public class TokenUtilTest {
 //        redisUtil.set("access_token", access_token, 2 * 60 * 60L);
 	@Test
 	public void test() {
-		String access_token = tokenUtil.getToken();
+		String access_token = null;
+		access_token = "Xk4tXBsHqNLDsWSPgLqbv6bVS61l3IAkdQxpPl3g9mL8Q39V_07uXisPgn4zvZLNBkDnnOlvjRqoS31rFMIpD9H42iljjd071IyI4PB_bDAP3JnoIiZC7kXEFw8ZP9IjGSTdAFAVHI";
+		//access_token = tokenUtil.getToken();
 		System.out.println("--当前的access_token是:" + access_token);
-		String replaceUrl = temporaryUrl.replace("ACCESS_TOKEN", access_token).replace("TYPE", "thumb");
+		String replaceUrl = permanentUrl.replace("ACCESS_TOKEN", access_token).replace("TYPE", "thumb");
 		try {
 			Map<String, String> fileBody = new HashMap<>();
 			fileBody.put("media", "D:/temp.jpg");
@@ -48,6 +49,10 @@ public class TokenUtilTest {
 		}
 	}
 
+	public static void main(String[] args) {
+
+	}
+
 	@Test
 	public void getMaterials() {
 		String access_token = tokenUtil.getToken();
@@ -56,8 +61,4 @@ public class TokenUtilTest {
 		HttpRequestUtil.postRequest(replace, null);
 	}
 
-	public static void main(String[] args) {
-		File file = new File("D:/temp.jpg");
-		System.out.println(file.exists());
-	}
 }

@@ -156,7 +156,6 @@ public class HttpRequestUtil {
 				+ getBoundaryStr("7da2e536604c8"));
 		post.addHeader("User-Agent",
 				"Mozilla/4.0 (compatible; MSIE 8.0; Windows NT 6.0) ");
-
 		post.setEntity(entity);
 		CloseableHttpResponse response = httpClient.execute(post);
 //		int code = response.getStatusLine().getStatusCode();

@@ -14,7 +14,6 @@ import com.xu.tulingchat.util.TulingRobotUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import java.util.Arrays;
@@ -38,8 +37,6 @@ public class MsgDispatcher {
 	private DailyZhihuUtil dailyZhihuUtil;
 	@Autowired
 	private MusicUtil musicUtil;
-	@Value("${netease.cloud.music.base}")
-	private String NeteaseUrl;
 
 	public String progressMsg(Map<String, String> map) {
 		String toUserName = map.get("ToUserName");//开发者微信号 公众号
@@ -61,33 +58,32 @@ public class MsgDispatcher {
 				return MessageUtil.newsMessageToXml(newsMessage);
 			}
 
-			if ("音乐".equals(content)) {
-				MusicMessage musicMessage = new MusicMessage();
-				musicMessage.setToUserName(fromUserName);// 粉丝号
-				musicMessage.setFromUserName(toUserName);//公众号
-				musicMessage.setCreateTime(new Date().getTime());
-				musicMessage.setMsgType(MessageUtil.RESP_MESSAGE_TYPE_MUSIC);
+			if (content.startsWith("音乐") && content.indexOf(" ") == 2) {
 				String artist = "周杰伦";
-//				String mediaId = musicUtil.uploadThumb();//thumbMediaId
-
-				String thumbMediaId = "WHCiZd854wV-4k2KmjZbyINGDsvhLsoOa_GM-UOrrOXwwYC4WI_fk_sSK-eIIdfd";
-
+				artist = content.substring(content.lastIndexOf(' ') + 1);
+				String thumbMediaId = musicUtil.uploadThumb();//thumbMediaId
 				String[] songs = musicUtil.getSongs(artist);
-				System.out.println("mediaId:" + thumbMediaId + "\n songs:" + Arrays.toString(songs));
+//				String thumbMediaId = "WHCiZd854wV-4k2KmjZbyINGDsvhLsoOa_GM-UOrrOXwwYC4WI_fk_sSK-eIIdfd";
+				System.out.println("thumbMediaId:" + thumbMediaId + "\n songs:" + Arrays.toString(songs));
 				Music music = new Music();
 				if (thumbMediaId != null && songs != null) {
 					String songName = songs[0];
 					String songUrl = songs[1];
 					music.setTitle(songName);
 					music.setDescription(artist);
+					music.setMusicUrl(songUrl);
+					music.setHQMusicUrl(songUrl);
 					music.setThumbMediaId(thumbMediaId);
-					String outchainUrl = "http://www.music.163.com/outchain/player?type=2&id=31134194";
 					//	https://music.163.com/song?id=5250116
 					//	http://music.163.com/#/song?id=5250116
 //					music.setMusicURL(NeteaseUrl+"/#"+songUrl);
-					music.setMusicUrl(outchainUrl);
 //					music.setHQMusicUrl(NeteaseUrl+songUrl);
 				}
+				MusicMessage musicMessage = new MusicMessage();
+				musicMessage.setToUserName(fromUserName);// 粉丝号
+				musicMessage.setFromUserName(toUserName);//公众号
+				musicMessage.setCreateTime(new Date().getTime());
+				musicMessage.setMsgType(MessageUtil.RESP_MESSAGE_TYPE_MUSIC);
 				musicMessage.setMusic(music);
 				return MessageUtil.musicMessageToXml(musicMessage);
 			}
