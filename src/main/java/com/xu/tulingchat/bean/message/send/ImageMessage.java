@@ -1,15 +1,16 @@
 package com.xu.tulingchat.bean.message.send;
 
+/**
+ * 图片消息
+ */
 public class ImageMessage extends BaseMessage {
+	private Image Image;
 
-  //图片消息 通过素材管理中的接口上传多媒体文件，得到的id。
-  private String MediaId;
+	public Image getImage() {
+		return Image;
+	}
 
-  public String getMediaId() {
-    return MediaId;
-  }
-
-  public void setMediaId(String mediaId) {
-    MediaId = mediaId;
-  }
+	public void setImage(Image image) {
+		this.Image = image;
+	}
 }

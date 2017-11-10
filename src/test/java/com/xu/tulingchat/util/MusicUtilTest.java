@@ -72,7 +72,7 @@ public class MusicUtilTest {
     InputStream is = uri.getInputStream();
     // 写入数据流
     OutputStream os = new FileOutputStream(new File(
-            "D:/", "test.jpg"));
+			"D:/", "temp.jpg"));
 
     byte[] buf = new byte[3072];
     int i = 0;

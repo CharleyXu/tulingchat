@@ -1,16 +1,24 @@
 package com.xu.tulingchat.util;
 
 import org.apache.http.HttpEntity;
+import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
+import org.apache.http.entity.ContentType;
+import org.apache.http.entity.mime.HttpMultipartMode;
+import org.apache.http.entity.mime.MultipartEntityBuilder;
+import org.apache.http.entity.mime.content.FileBody;
+import org.apache.http.entity.mime.content.StringBody;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
 import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.util.EntityUtils;
 
+import java.io.File;
 import java.io.IOException;
+import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -101,6 +109,66 @@ public class HttpRequestUtil {
 			}
 		}
 		return null;
+	}
+
+
+	/**
+	 * 通过HttpClient post 上传文件
+	 *
+	 * @param url        上传请求地址
+	 * @param fileBody   文件类型 builder.addBinaryBody
+	 * @param stringBody 普通类型 builder.addTextBody
+	 * @return 状态码 200表示成功
+	 */
+	public static String doUpload(String url, Map<String, String> fileBody, Map<String, String> stringBody) throws ClientProtocolException, IOException {
+		// 创建默认的HttpClient实例.
+		CloseableHttpClient httpClient = HttpClients.createDefault();
+		// 获得utf-8编码的mbuilder
+		MultipartEntityBuilder builder = MultipartEntityBuilder.create();
+		builder.setBoundary(getBoundaryStr("7da2e536604c8")).setCharset(Charset.forName("utf-8")).setMode(HttpMultipartMode.BROWSER_COMPATIBLE);
+
+		if (fileBody != null) {
+			Iterator<Map.Entry<String, String>> iterator = fileBody.entrySet().iterator();
+			while (iterator.hasNext()) {
+				Map.Entry<String, String> fileEntry = iterator.next();
+				String param = fileEntry.getKey();
+				String value = fileEntry.getValue();
+				builder.addPart(param, new FileBody(new File(value)));
+			}
+		}
+		if (stringBody != null) {
+			Iterator<Map.Entry<String, String>> iterator = stringBody.entrySet().iterator();
+			while (iterator.hasNext()) {
+				Map.Entry<String, String> stringEntry = iterator.next();
+				String param = stringEntry.getKey();
+				String value = stringEntry.getValue();
+				builder.addPart(param, new StringBody(value, ContentType.TEXT_PLAIN));
+			}
+		}
+		// 创建我们的http多媒体对象
+		HttpEntity entity = builder.build();
+		// post请求体
+		HttpPost post = new HttpPost(url);
+
+		post.addHeader("Connection", "keep-alive");
+		post.addHeader("Accept", "*/*");
+		post.addHeader("Content-Type", "multipart/form-data;boundary="
+				+ getBoundaryStr("7da2e536604c8"));
+		post.addHeader("User-Agent",
+				"Mozilla/4.0 (compatible; MSIE 8.0; Windows NT 6.0) ");
+
+		post.setEntity(entity);
+		CloseableHttpResponse response = httpClient.execute(post);
+//		int code = response.getStatusLine().getStatusCode();
+//		System.out.println("code："+code);
+		//将响应实体转为字符串
+		String s = EntityUtils.toString(response.getEntity(), "utf-8");
+		httpClient.close();
+		return s;
+	}
+
+	private static String getBoundaryStr(String str) {
+		return "------------" + str;
 	}
 
 	public static void main(String[] args) {

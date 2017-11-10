@@ -1,6 +1,7 @@
 package com.xu.tulingchat.service;
 
 import com.xu.tulingchat.bean.message.send.Article;
+import com.xu.tulingchat.bean.message.send.Music;
 import com.xu.tulingchat.bean.message.send.MusicMessage;
 import com.xu.tulingchat.bean.message.send.NewsMessage;
 import com.xu.tulingchat.bean.message.send.TextMessage;
@@ -13,8 +14,10 @@ import com.xu.tulingchat.util.TulingRobotUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
+import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
@@ -35,6 +38,8 @@ public class MsgDispatcher {
 	private DailyZhihuUtil dailyZhihuUtil;
 	@Autowired
 	private MusicUtil musicUtil;
+	@Value("${netease.cloud.music.base}")
+	private String NeteaseUrl;
 
 	public String progressMsg(Map<String, String> map) {
 		String toUserName = map.get("ToUserName");//开发者微信号 公众号
@@ -63,14 +68,27 @@ public class MsgDispatcher {
 				musicMessage.setCreateTime(new Date().getTime());
 				musicMessage.setMsgType(MessageUtil.RESP_MESSAGE_TYPE_MUSIC);
 				String artist = "周杰伦";
+//				String mediaId = musicUtil.uploadThumb();//thumbMediaId
+
+				String thumbMediaId = "WHCiZd854wV-4k2KmjZbyINGDsvhLsoOa_GM-UOrrOXwwYC4WI_fk_sSK-eIIdfd";
+
 				String[] songs = musicUtil.getSongs(artist);
-				if (songs != null) {
+				System.out.println("mediaId:" + thumbMediaId + "\n songs:" + Arrays.toString(songs));
+				Music music = new Music();
+				if (thumbMediaId != null && songs != null) {
 					String songName = songs[0];
 					String songUrl = songs[1];
-					musicMessage.setTitle(songName);
-					musicMessage.setDescription(artist);
-					musicMessage.setMusicURL(songUrl);
+					music.setTitle(songName);
+					music.setDescription(artist);
+					music.setThumbMediaId(thumbMediaId);
+					String outchainUrl = "http://www.music.163.com/outchain/player?type=2&id=31134194";
+					//	https://music.163.com/song?id=5250116
+					//	http://music.163.com/#/song?id=5250116
+//					music.setMusicURL(NeteaseUrl+"/#"+songUrl);
+					music.setMusicUrl(outchainUrl);
+//					music.setHQMusicUrl(NeteaseUrl+songUrl);
 				}
+				musicMessage.setMusic(music);
 				return MessageUtil.musicMessageToXml(musicMessage);
 			}
 
