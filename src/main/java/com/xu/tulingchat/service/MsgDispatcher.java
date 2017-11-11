@@ -16,6 +16,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
@@ -57,23 +58,33 @@ public class MsgDispatcher {
 				return MessageUtil.newsMessageToXml(newsMessage);
 			}
 
-			if ("音乐".equals(content)) {
+			if (content.startsWith("音乐") && content.indexOf(" ") == 2) {
+				String artist = "周杰伦";
+				artist = content.substring(content.lastIndexOf(' ') + 1);
+				String thumbMediaId = musicUtil.uploadThumb();//thumbMediaId
+				String[] songs = musicUtil.getSongs(artist);
+//				String thumbMediaId = "WHCiZd854wV-4k2KmjZbyINGDsvhLsoOa_GM-UOrrOXwwYC4WI_fk_sSK-eIIdfd";
+				System.out.println("thumbMediaId:" + thumbMediaId + "\n songs:" + Arrays.toString(songs));
+				Music music = new Music();
+				if (thumbMediaId != null && songs != null) {
+					String songName = songs[0];
+					String songUrl = songs[1];
+					music.setTitle(songName);
+					music.setDescription(artist);
+					music.setMusicUrl(songUrl);
+					music.setHQMusicUrl(songUrl);
+					music.setThumbMediaId(thumbMediaId);
+					//	https://music.163.com/song?id=5250116
+					//	http://music.163.com/#/song?id=5250116
+//					music.setMusicURL(NeteaseUrl+"/#"+songUrl);
+//					music.setHQMusicUrl(NeteaseUrl+songUrl);
+				}
 				MusicMessage musicMessage = new MusicMessage();
 				musicMessage.setToUserName(fromUserName);// 粉丝号
 				musicMessage.setFromUserName(toUserName);//公众号
 				musicMessage.setCreateTime(new Date().getTime());
 				musicMessage.setMsgType(MessageUtil.RESP_MESSAGE_TYPE_MUSIC);
-				String artist = "周杰伦";
-				String[] songs = musicUtil.getSongs(artist);
-				if (songs != null) {
-					String songName = songs[0];
-					String songUrl = songs[1];
-					Music music = new Music();
-					music.setTitle(songName);
-					music.setDescription(artist);
-					music.setMusicURL("http://music.163.com" + songUrl);
-					musicMessage.setMusic(music);
-				}
+				musicMessage.setMusic(music);
 				return MessageUtil.musicMessageToXml(musicMessage);
 			}
 

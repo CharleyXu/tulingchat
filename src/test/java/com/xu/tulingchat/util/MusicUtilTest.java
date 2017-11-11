@@ -36,30 +36,14 @@ public class MusicUtilTest {
         .forEach(System.out::println);
   }
 
-  //     阿杜--> /artist?id=1876
-  @Test
-  public void getAllSongs() throws IOException {
-//    Jsoup.connect("http://music.163.com/artist?id=1876")
-//        .header("Referer", "http://music.163.com/")
-//        .header("Host", "music.163.com").get().select("ul[class=f-hide] a")
-//        .stream().map(w -> w.text() + "-->" + w.attr("href"))
-//        .forEach(System.out::println);
-    Elements elements = Jsoup.connect("http://music.163.com/artist?id=1876")
-            .header("Referer", "http://music.163.com/")
-            .header("Host", "music.163.com").get().select("ul[class=f-hide] a");
-    Element first = elements.first();
-    String text = first.text();
-    String href = first.attr("href");
-    System.out.println(text + "---" + href);
-  }
-
   /**
-   * getAllPictures 提取图片
+   * 下载
+   * @throws IOException
    */
-  public static void main(String[] args) throws Exception {
+  public void download() throws IOException {
     Elements select = Jsoup.connect("http://music.163.com/song?id=418603077")
-        .header("Referer", "http://music.163.com/")
-        .header("Host", "music.163.com").get().select("img[src]");
+            .header("Referer", "http://music.163.com/")
+            .header("Host", "music.163.com").get().select("img[src]");
     System.out.println(select.size());
     Element first = select.first();
     String attr = first.attr("abs:src");
@@ -72,7 +56,7 @@ public class MusicUtilTest {
     InputStream is = uri.getInputStream();
     // 写入数据流
     OutputStream os = new FileOutputStream(new File(
-            "D:/", "test.jpg"));
+            "D:/", "temp.jpg"));
 
     byte[] buf = new byte[3072];
     int i = 0;
@@ -80,12 +64,19 @@ public class MusicUtilTest {
       os.write(i);
     }
     os.close();
-//    for (Element element :
-//        select) {
-//      String src=element.attr("abs:src");//获取src的绝对路径
-//      System.out.println(src);
-//    }
-//		System.out.println(select1.html());
+  }
+
+  /**
+   * getAllPictures 提取图片
+   */
+  public static void main(String[] args) throws Exception {
+    Elements elements = Jsoup.connect("http://music.163.com/artist?id=1876")
+            .header("Referer", "http://music.163.com/")
+            .header("Host", "music.163.com").get().select("ul[class=f-hide] a");
+    Element first = elements.first();
+    String text = first.text();
+    String href = first.attr("href");
+    System.out.println(text + "---" + href.substring(href.lastIndexOf('=') + 1));
 
   }
 }

@@ -4,14 +4,13 @@ package com.xu.tulingchat.bean.message.send;
  * 语音消息
  */
 public class VoiceMessage extends BaseMessage {
+	private Voice Voice;
 
-  private Voice Voice;
+	public Voice getVoice() {
+		return Voice;
+	}
 
-  public Voice getVoice() {
-    return Voice;
-  }
-
-  public void setVoice(Voice voice) {
-    this.Voice = voice;
-  }
+	public void setVoice(Voice voice) {
+		this.Voice = voice;
+	}
 }

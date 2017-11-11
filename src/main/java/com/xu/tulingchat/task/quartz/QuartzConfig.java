@@ -1,7 +1,5 @@
 package com.xu.tulingchat.task.quartz;
 
-import com.xu.tulingchat.util.MusicUtil;
-
 import org.quartz.JobBuilder;
 import org.quartz.JobDetail;
 import org.quartz.Scheduler;
@@ -27,11 +25,6 @@ public class QuartzConfig implements CommandLineRunner {
 
 	@Override
 	public void run(String... strings) throws Exception {
-		//初始化MusicUtil的InitialsList
-		for (int i = 65; i <= 90; i++) {
-			MusicUtil.InitialsList.add(i);
-		}
-		System.out.println("InitialsList:" + MusicUtil.InitialsList);
 		try {
 			/*
 			 * 在 Quartz 中， scheduler 由 SchedulerFactory创建：DirectSchedulerFactory 或者
