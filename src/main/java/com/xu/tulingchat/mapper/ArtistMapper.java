@@ -15,8 +15,9 @@ import java.util.List;
 
 @Component
 public interface ArtistMapper {
-	@Select("select * from artists")
-	@Results({@Result(property = "name", column = "name"),
+
+  @Select("select name,url from artists")
+  @Results({@Result(property = "name", column = "name"),
 			@Result(property = "url", column = "url")})
 	List<Artist> findAll();
 

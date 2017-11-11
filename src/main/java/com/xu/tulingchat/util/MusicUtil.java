@@ -35,9 +35,9 @@ public class MusicUtil {
 	public static List<Integer> InitialsList = new ArrayList<>();
 	@Autowired
 	private TokenUtil tokenUtil;
-	@Value("${wechat.material.temporary}")
 	@Autowired
 	private ArtistMapper artistMapper;
+	@Value("${wechat.material.temporary}")
 	private String temporaryUrl;
 	@Value("${netease.cloud.music.song}")
 	private String songUrl;
@@ -53,7 +53,8 @@ public class MusicUtil {
 		String[] retArray = new String[2];
 		Elements elements = null;
 		try {
-			String urlId = artistMapper.findone(artistName);
+//			String urlId = artistMapper.findone(artistName);
+			String urlId = "/artist?id=2116";
 			elements = Jsoup.connect(netease + urlId)
 					.header("Referer", "http://music.163.com/")
 					.header("Host", "music.163.com").get().select("ul[class=f-hide] a");
