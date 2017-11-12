@@ -20,15 +20,13 @@ import org.springframework.stereotype.Component;
  */
 @Component
 public class ScheduleTask {
-
-  @Autowired
-  private TokenUtil tokenUtil;
-
   @Value("${netease.cloud.music}")
   private String neteaseMusic;
   @Value("${netease.cloud.music.artist.cat}")
   private String neteaseArtistCatUrl;
   //歌手列表  https://music.163.com/#/discover/artist/cat?id=1001&initial=65
+  @Autowired
+  private TokenUtil tokenUtil;
   @Autowired
   private RedisUtil redisUtil;
 
@@ -37,12 +35,12 @@ public class ScheduleTask {
         System.out.println("开启定时任务："+ new Date());
     }*/
 
-  // Two hours 获取1次token放入缓存
-  @Scheduled(fixedRate = 1000 * 60 * 60 * 2)    //单位:ms
-  public void taskjob() {
-//      String access_token = tokenUtil.getToken();
-//      System.out.println("--启动定时任务--,\n 当前的access_token是:" + access_token);
-//        redisUtil.set("access_token", access_token, 2 * 60 * 60L);
+  // 大概两小时 获取1次token放入缓存
+  @Scheduled(fixedRate = 1000 * 60 * 59 * 2)    //单位:ms
+  public void tokenJob() {
+    String access_token = tokenUtil.getToken();
+    System.out.println("--启动定时任务--,\n 当前的access_token是:" + access_token);
+    redisUtil.set("access_token", access_token, 2 * 60 * 60L);
   }
 
   //定义一个按一定频率执行的定时任务，每隔1天执行一次
@@ -59,7 +57,6 @@ public class ScheduleTask {
 //  @Scheduled(fixedRate = 1000 * 60 * 60 * 24 * 2)
   @Scheduled(cron = "0 00 00 1 * ?")
   public void crawlerArtist() {
-    System.out.println("------------1w243r-----------------");
     //初始化MusicUtil的InitialsList
     for (int i = 65; i <= 90; i++) {
       MusicUtil.InitialsList.add(i);

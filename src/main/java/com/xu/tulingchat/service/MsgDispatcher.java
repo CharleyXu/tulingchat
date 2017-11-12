@@ -62,6 +62,9 @@ public class MsgDispatcher {
 				artist = content.substring(content.indexOf(" ") + 1);
 				System.out.println("content:" + content + "artist：" + artist);
 				String[] songs = musicUtil.getSongs(artist);
+				if (songs == null) {
+					return "";
+				}
 				String songId = songs[1];
 				String thumbMediaId = musicUtil.uploadThumb(songId);//thumbMediaId
 //			String thumbMediaId = "WHCiZd854wV-4k2KmjZbyINGDsvhLsoOa_GM-UOrrOXwwYC4WI_fk_sSK-eIIdfd";
@@ -74,12 +77,8 @@ public class MsgDispatcher {
 					music.setTitle(songName);
 					music.setDescription(artist);
 					music.setMusicUrl(songUrl);
-//				music.setHQMusicUrl(songUrl);
+					music.setHQMusicUrl(songUrl);
 					music.setThumbMediaId(thumbMediaId);
-					//	https://music.163.com/song?id=5250116
-					//	http://music.163.com/#/song?id=5250116
-//					music.setMusicURL(NeteaseUrl+"/#"+songUrl);
-//					music.setHQMusicUrl(NeteaseUrl+songUrl);
 				}
 				MusicMessage musicMessage = new MusicMessage();
 				musicMessage.setToUserName(fromUserName);// 粉丝号

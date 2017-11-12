@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Random;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -54,9 +55,12 @@ public class MusicUtil {
 					.header("Host", "music.163.com")
 					.get().select("ul[class=f-hide] a");
 			//
-			Element first = elements.first();
-			String text = first.text();
-			String href = first.attr("href");
+			int size = elements.size();
+			Random random = new Random();
+			Element element = elements.get(random.nextInt(size));
+//			Element first = elements.first();
+			String text = element.text();
+			String href = element.attr("href");
 			retArray[0] = text;
 			retArray[1] = songUrl.replace("SONG_ID", href.substring(href.lastIndexOf('=') + 1));
 			logger.info("歌名+歌曲Url获取成功");
@@ -78,7 +82,10 @@ public class MusicUtil {
 	public String uploadThumb(String songId) {
 		System.out.println("-----songId：" + songId);
 		downLoadPict(songId);
-		String access_token = tokenUtil.getToken();
+		String access_token = redisUtil.get("access_token");
+		if (access_token == null) {
+			access_token = tokenUtil.getToken();
+		}
 		System.out.println("--当前的access_token是:" + access_token);
 		String replaceUrl = temporaryUrl.replace("ACCESS_TOKEN", access_token).replace("TYPE", "thumb");
 		try {
