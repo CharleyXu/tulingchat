@@ -10,25 +10,24 @@ import com.xu.tulingchat.util.MailUtil;
 import com.xu.tulingchat.util.MessageUtil;
 import com.xu.tulingchat.util.MusicUtil;
 import com.xu.tulingchat.util.TulingRobotUtil;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
 import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Service;
 
 /**
  * 消息业务处理分发器
  */
 @Service
 public class MsgDispatcher {
-
 	private final Logger logger = LoggerFactory.getLogger(this.getClass());
-
+	@Value("${netease.cloud.music.song}")
+	private String song;
 	@Autowired
 	private TulingRobotUtil tulingRobotUtil;
 	@Autowired
@@ -61,14 +60,15 @@ public class MsgDispatcher {
 			if (content.startsWith("音乐") && content.indexOf(" ") == 2) {
 				String artist = "周杰伦";
 				artist = content.substring(content.lastIndexOf(' ') + 1);
-				String thumbMediaId = musicUtil.uploadThumb();//thumbMediaId
 				String[] songs = musicUtil.getSongs(artist);
-//				String thumbMediaId = "WHCiZd854wV-4k2KmjZbyINGDsvhLsoOa_GM-UOrrOXwwYC4WI_fk_sSK-eIIdfd";
+				String songId = songs[1];
+				String thumbMediaId = musicUtil.uploadThumb(songId);//thumbMediaId
+//			String thumbMediaId = "WHCiZd854wV-4k2KmjZbyINGDsvhLsoOa_GM-UOrrOXwwYC4WI_fk_sSK-eIIdfd";
 				System.out.println("thumbMediaId:" + thumbMediaId + "\n songs:" + Arrays.toString(songs));
 				Music music = new Music();
 				if (thumbMediaId != null && songs != null) {
 					String songName = songs[0];
-					String songUrl = songs[1];
+					String songUrl = song.replace("SONG_ID", songs[1]);
 					music.setTitle(songName);
 					music.setDescription(artist);
 					music.setMusicUrl(songUrl);

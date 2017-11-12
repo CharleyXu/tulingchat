@@ -1,12 +1,11 @@
 package com.xu.tulingchat.interceptor;
 
 import com.xu.tulingchat.util.IPAddressUtil;
-
-import org.springframework.web.servlet.HandlerInterceptor;
-import org.springframework.web.servlet.ModelAndView;
-
+import java.util.Date;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import org.springframework.web.servlet.HandlerInterceptor;
+import org.springframework.web.servlet.ModelAndView;
 
 /**
  * 自定义拦截器，可以实现IP黑名单等
@@ -26,7 +25,9 @@ public class MyInterceptor implements HandlerInterceptor {
 						 HttpServletResponse httpServletResponse, Object o, ModelAndView modelAndView)
 		  throws Exception {
 	  // 请求处理之后进行调用，但是在视图被渲染之前（Controller方法调用之后）
-	  System.out.println("ClientIpAddress:" + IPAddressUtil.getClientIpAddress(httpServletRequest));
+    System.out.println(
+        "ClientIpAddress:" + IPAddressUtil.getClientIpAddress(httpServletRequest) + "-当前时间-"
+            + new Date());
   }
 
   @Override

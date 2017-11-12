@@ -1,5 +1,15 @@
 package com.xu.tulingchat.util;
 
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.nio.charset.Charset;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
 import org.apache.http.HttpEntity;
 import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.entity.UrlEncodedFormEntity;
@@ -15,15 +25,7 @@ import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
 import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.util.EntityUtils;
-
-import java.io.File;
-import java.io.IOException;
-import java.nio.charset.Charset;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Map;
+import org.apache.tomcat.util.http.fileupload.IOUtils;
 
 /**
  * HttpClient工具类
@@ -168,6 +170,32 @@ public class HttpRequestUtil {
 
 	private static String getBoundaryStr(String str) {
 		return "------------" + str;
+	}
+
+	/**
+	 * 通过httpClient get 下载文件
+	 *
+	 * @param url 网络文件全路径
+	 * @param savePath 保存文件全路径
+	 * @return 状态码 200表示成功
+	 */
+	public static int doDownload(String url, String savePath)
+			throws ClientProtocolException, IOException {
+		// 创建默认的HttpClient实例.
+		CloseableHttpClient httpClient = HttpClients.createDefault();
+		HttpGet get = new HttpGet(url);
+		CloseableHttpResponse response = httpClient.execute(get);
+		HttpEntity entity = response.getEntity();
+		if (entity != null) {
+			InputStream in = entity.getContent();
+			FileOutputStream out = new FileOutputStream(savePath);
+			IOUtils.copy(in, out);
+			EntityUtils.consume(entity);
+			response.close();
+		}
+		int code = response.getStatusLine().getStatusCode();
+		httpClient.close();
+		return code;
 	}
 
 	public static void main(String[] args) {

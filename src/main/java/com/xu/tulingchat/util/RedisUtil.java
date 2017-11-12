@@ -1,33 +1,25 @@
 package com.xu.tulingchat.util;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.redis.core.HashOperations;
-import org.springframework.data.redis.core.ListOperations;
-import org.springframework.data.redis.core.RedisTemplate;
-import org.springframework.data.redis.core.SetOperations;
-import org.springframework.data.redis.core.ValueOperations;
-import org.springframework.data.redis.core.ZSetOperations;
-import org.springframework.stereotype.Service;
-
-import java.io.Serializable;
 import java.util.List;
 import java.util.Set;
 import java.util.concurrent.TimeUnit;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.redis.core.HashOperations;
+import org.springframework.data.redis.core.ListOperations;
+import org.springframework.data.redis.core.StringRedisTemplate;
+import org.springframework.stereotype.Component;
 
-@Service
+@Component
 public class RedisUtil {
-
   @Autowired
-  private RedisTemplate redisTemplate;
-
+  private StringRedisTemplate stringRedisTemplate;
   /**
    * 写入缓存
    */
-  public boolean set(final String key, Object value) {
+  public boolean set(final String key, String value) {
     boolean result = false;
     try {
-      ValueOperations<Serializable, Object> operations = redisTemplate.opsForValue();
-      operations.set(key, value);
+      stringRedisTemplate.opsForValue().set(key, value);
       result = true;
     } catch (Exception e) {
       e.printStackTrace();
@@ -38,11 +30,10 @@ public class RedisUtil {
   /**
    * 写入缓存设置时效时间
    */
-  public boolean set(final String key, Object value, Long expireTime) {
+  public boolean set(final String key, String value, Long expireTime) {
     boolean result = false;
     try {
-      ValueOperations<Serializable, Object> operations = redisTemplate.opsForValue();
-      redisTemplate.opsForValue().set(key, value, expireTime, TimeUnit.SECONDS);
+      stringRedisTemplate.opsForValue().set(key, value, expireTime, TimeUnit.SECONDS);
       result = true;
     } catch (Exception e) {
       e.printStackTrace();
@@ -63,9 +54,9 @@ public class RedisUtil {
    * 批量删除key
    */
   public void removePattern(final String pattern) {
-    Set<Serializable> keys = redisTemplate.keys(pattern);
+    Set<String> keys = stringRedisTemplate.keys(pattern);
     if (keys.size() > 0) {
-      redisTemplate.delete(keys);
+      stringRedisTemplate.delete(keys);
     }
   }
 
@@ -74,7 +65,7 @@ public class RedisUtil {
    */
   public void remove(final String key) {
     if (exists(key)) {
-      redisTemplate.delete(key);
+      stringRedisTemplate.delete(key);
     }
   }
 
@@ -82,24 +73,21 @@ public class RedisUtil {
    * 判断缓存中是否有对应的value
    */
   public boolean exists(final String key) {
-    return redisTemplate.hasKey(key);
+    return stringRedisTemplate.hasKey(key);
   }
 
   /**
    * 读取缓存
    */
-  public Object get(final String key) {
-    Object result = null;
-    ValueOperations<Serializable, Object> operations = redisTemplate.opsForValue();
-    result = operations.get(key);
-    return result;
+  public String get(final String key) {
+    return stringRedisTemplate.opsForValue().get(key);
   }
 
   /**
    * 哈希 添加
    */
   public void hmSet(String key, Object hashKey, Object value) {
-    HashOperations<String, Object, Object> hash = redisTemplate.opsForHash();
+    HashOperations<String, Object, Object> hash = stringRedisTemplate.opsForHash();
     hash.put(key, hashKey, value);
   }
 
@@ -107,55 +95,51 @@ public class RedisUtil {
    * 哈希获取数据
    */
   public Object hmGet(String key, Object hashKey) {
-    HashOperations<String, Object, Object> hash = redisTemplate.opsForHash();
+    HashOperations<String, Object, Object> hash = stringRedisTemplate.opsForHash();
     return hash.get(key, hashKey);
   }
 
   /**
    * 列表添加
    */
-  public void lPush(String k, Object v) {
-    ListOperations<String, Object> list = redisTemplate.opsForList();
+  public void lPush(String k, String v) {
+    ListOperations<String, String> list = stringRedisTemplate.opsForList();
     list.rightPush(k, v);
   }
 
   /**
    * 列表获取
    */
-  public List<Object> lRange(String k, long l, long l1) {
-    ListOperations<String, Object> list = redisTemplate.opsForList();
+  public List<String> lRange(String k, long l, long l1) {
+    ListOperations<String, String> list = stringRedisTemplate.opsForList();
     return list.range(k, l, l1);
   }
 
   /**
    * 集合添加
    */
-  public void add(String key, Object value) {
-    SetOperations<String, Object> set = redisTemplate.opsForSet();
-    set.add(key, value);
+  public void add(String key, String value) {
+    stringRedisTemplate.opsForSet().add(key, value);
   }
 
   /**
    * 集合获取
    */
-  public Set<Object> setMembers(String key) {
-    SetOperations<String, Object> set = redisTemplate.opsForSet();
-    return set.members(key);
+  public Set<String> setMembers(String key) {
+    return stringRedisTemplate.opsForSet().members(key);
   }
 
   /**
    * 有序集合添加
    */
-  public void zAdd(String key, Object value, double scoure) {
-    ZSetOperations<String, Object> zset = redisTemplate.opsForZSet();
-    zset.add(key, value, scoure);
+  public void zAdd(String key, String value, double scoure) {
+    stringRedisTemplate.opsForZSet().add(key, value, scoure);
   }
 
   /**
    * 有序集合获取
    */
-  public Set<Object> rangeByScore(String key, double scoure, double scoure1) {
-    ZSetOperations<String, Object> zset = redisTemplate.opsForZSet();
-    return zset.rangeByScore(key, scoure, scoure1);
+  public Set<String> rangeByScore(String key, double scoure, double scoure1) {
+    return stringRedisTemplate.opsForZSet().rangeByScore(key, scoure, scoure1);
   }
 }

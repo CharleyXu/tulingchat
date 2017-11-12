@@ -1,5 +1,6 @@
 package com.xu.tulingchat.task;
 
+import com.xu.tulingchat.util.Md5Util;
 import com.xu.tulingchat.util.MusicUtil;
 import com.xu.tulingchat.util.RedisUtil;
 import com.xu.tulingchat.util.TokenUtil;
@@ -85,15 +86,18 @@ public class ScheduleTask {
           Iterator<Element> iterator = elements.iterator();
           while (iterator.hasNext()) {
             Element element = iterator.next();
-            String text = element.text();
-            String href = element.attr("href");
-//						System.out.println(text + "---" + href);
-            boolean set = redisUtil.set(text, href, 60 * 60 * 24 * 2L);
-            System.out.printf("%s -- %s -- %b -- %n", text, href, set);
+            String text = element.text();//歌手名称
+            String href = element.attr("href");//歌手Url
+//					System.out.println(text + "---" + href);
+            String encrypt = Md5Util.encrypt(text);
+            boolean set = redisUtil.set(encrypt, href, 60 * 60 * 24 * 2L);
+            System.out.printf("%s -- %s -- %b -- %n", encrypt, href, set);
           }
         }
       }
     } catch (IOException e) {
+      e.printStackTrace();
+    } catch (Exception e) {
       e.printStackTrace();
     }
   }

@@ -1,8 +1,11 @@
 package com.xu.tulingchat.util;
 
 import com.alibaba.fastjson.JSONObject;
-import com.xu.tulingchat.mapper.ArtistMapper;
-
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -13,18 +16,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
-import java.net.URL;
-import java.net.URLConnection;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
 /**
  * Netease Cloud Music  工具类
  */
@@ -33,17 +24,16 @@ public class MusicUtil {
 	private final Logger logger = LoggerFactory.getLogger(this.getClass());
 	public static final String[] ARTISTS = new String[]{"1001", "1002", "1003", "2001", "2002", "2003", "6001", "6002", "6003", "7001", "7002", "7003", "4001", "4002", "4003"};
 	public static List<Integer> InitialsList = new ArrayList<>();
-	@Autowired
-	private TokenUtil tokenUtil;
-	@Autowired
-	private ArtistMapper artistMapper;
 	@Value("${wechat.material.temporary}")
 	private String temporaryUrl;
 	@Value("${netease.cloud.music.song}")
 	private String songUrl;
 	@Value("${netease.cloud.music}")
 	private String netease;
-
+	@Autowired
+	private TokenUtil tokenUtil;
+	@Autowired
+	private RedisUtil redisUtil;
 	/**
 	 * 获取歌名+Url
 	 *
@@ -53,8 +43,9 @@ public class MusicUtil {
 		String[] retArray = new String[2];
 		Elements elements = null;
 		try {
-//			String urlId = artistMapper.findone(artistName);
-			String urlId = "/artist?id=2116";
+			String urlId = "/artist?id=6452";
+			urlId = redisUtil.get(Md5Util.encrypt(artistName));
+
 			elements = Jsoup.connect(netease + urlId)
 					.header("Referer", "http://music.163.com/")
 					.header("Host", "music.163.com").get().select("ul[class=f-hide] a");
@@ -67,6 +58,8 @@ public class MusicUtil {
 			return retArray;
 		} catch (IOException e) {
 			logger.error("歌名+歌曲Url获取错误",e);
+		} catch (Exception e) {
+			logger.error("歌名+歌曲Url获取错误", e);
 		}
 		return null;
 
@@ -77,13 +70,8 @@ public class MusicUtil {
 	 *
 	 * @return media_id
 	 */
-	public String uploadThumb() {
-		try {
-			downLoadPict();
-			logger.info("下载图片成功");
-		} catch (IOException e) {
-			logger.error("下载图片失败", e);
-		}
+	public String uploadThumb(String songId) {
+		downLoadPict(songId);
 		String access_token = tokenUtil.getToken();
 		System.out.println("--当前的access_token是:" + access_token);
 		String replaceUrl = temporaryUrl.replace("ACCESS_TOKEN", access_token).replace("TYPE", "thumb");
@@ -106,30 +94,37 @@ public class MusicUtil {
 	/**
 	 * 下载图片到临时路径
 	 */
-	public void downLoadPict() throws IOException {
-		Elements select = Jsoup.connect("http://music.163.com/song?id=418603077")
-				.header("Referer", "http://music.163.com/")
-				.header("Host", "music.163.com").get().select("img[src]");
-		System.out.println(select.size());
-		Element first = select.first();
-		String attr = first.attr("abs:src");
-		System.out.println("first:" + attr);
-		// 连接url
-		URL url;
-		url = new URL(attr);
-		URLConnection uri = url.openConnection();
-		// 获取数据流
-		InputStream is = uri.getInputStream();
-		// 写入数据流
-		OutputStream os = new FileOutputStream(new File(
-				"/home/xuzc", "temp.jpg"));
-
-		byte[] buf = new byte[3072];
-		int i = 0;
-		while ((i = is.read()) != -1) {
-			os.write(i);
+	public void downLoadPict(String songId) {
+		String downUrl = "http://music.163.com/song?id=418603077";
+		downUrl = songUrl.replace("SONG_ID", songId);
+		Elements select = null;
+		try {
+			select = Jsoup.connect(downUrl)
+					.header("Referer", "http://music.163.com/")
+					.header("Host", "music.163.com").get().select("img[src]");
+			Element first = select.first();
+			String attr = first.attr("abs:src");
+			int i = HttpRequestUtil.doDownload(attr, "/home/xuzc/temp.jpg");
+			logger.info("图片下载成功" + i);
+		} catch (IOException e) {
+			logger.error("图片下载失败", e);
 		}
-		os.close();
+//		// 连接url
+//		URL url;
+//		url = new URL(attr);
+//		URLConnection uri = url.openConnection();
+//		// 获取数据流
+//		InputStream is = uri.getInputStream();
+//		// 写入数据流
+//		OutputStream os = new FileOutputStream(new File(
+//				"/home/xuzc", "temp.jpg"));
+//
+//		byte[] buf = new byte[3072];
+//		int i = 0;
+//		while ((i = is.read()) != -1) {
+//			os.write(i);
+//		}
+//		os.close();
 	}
 
 	public static void main(String[] args) throws Exception {

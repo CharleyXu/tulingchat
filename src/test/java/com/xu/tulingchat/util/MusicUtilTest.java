@@ -40,6 +40,7 @@ public class MusicUtilTest {
    * 下载
    * @throws IOException
    */
+  @Test
   public void download() throws IOException {
     Elements select = Jsoup.connect("http://music.163.com/song?id=418603077")
             .header("Referer", "http://music.163.com/")
