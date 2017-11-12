@@ -54,8 +54,10 @@ public class ScheduleTask {
 
   /**
    * 把歌手名称和Url一一对应，存入Mysql
+   * 每月1号更新
    */
-  @Scheduled(fixedRate = 1000 * 60 * 60 * 24 * 2)
+//  @Scheduled(fixedRate = 1000 * 60 * 60 * 24 * 2)
+  @Scheduled(cron = "0 00 00 1 * ?")
   public void crawlerArtist() {
     System.out.println("------------1w243r-----------------");
     //初始化MusicUtil的InitialsList
@@ -87,7 +89,7 @@ public class ScheduleTask {
           while (iterator.hasNext()) {
             Element element = iterator.next();
             String text = element.text();//歌手名称
-            String href = element.attr("href");//歌手Url
+            String href = element.attr("href").trim();//歌手Url
 //					System.out.println(text + "---" + href);
             String encrypt = Md5Util.encrypt(text);
             boolean set = redisUtil.set(encrypt, href, 60 * 60 * 24 * 2L);

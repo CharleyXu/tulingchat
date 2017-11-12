@@ -45,10 +45,15 @@ public class MusicUtil {
 		try {
 			String urlId = "/artist?id=6452";
 			urlId = redisUtil.get(Md5Util.encrypt(artistName));
-
+			System.out.println("urlId:" + urlId);
+			System.out.println("ConnectUrl:" + netease + urlId);
 			elements = Jsoup.connect(netease + urlId)
 					.header("Referer", "http://music.163.com/")
-					.header("Host", "music.163.com").get().select("ul[class=f-hide] a");
+					.header("User-Agent",
+							"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/60.0.3112.113 Safari/537.36")
+					.header("Host", "music.163.com")
+					.get().select("ul[class=f-hide] a");
+			//
 			Element first = elements.first();
 			String text = first.text();
 			String href = first.attr("href");
@@ -71,6 +76,7 @@ public class MusicUtil {
 	 * @return media_id
 	 */
 	public String uploadThumb(String songId) {
+		System.out.println("-----songId：" + songId);
 		downLoadPict(songId);
 		String access_token = tokenUtil.getToken();
 		System.out.println("--当前的access_token是:" + access_token);
@@ -95,8 +101,10 @@ public class MusicUtil {
 	 * 下载图片到临时路径
 	 */
 	public void downLoadPict(String songId) {
-		String downUrl = "http://music.163.com/song?id=418603077";
-		downUrl = songUrl.replace("SONG_ID", songId);
+		String downUrl = "http://music.163.com/song/418603077";
+		if (songId != null) {
+			downUrl = songId;
+		}
 		Elements select = null;
 		try {
 			select = Jsoup.connect(downUrl)
