@@ -1,17 +1,14 @@
 package com.xu.tulingchat.util;
 
 import com.google.common.base.Strings;
-
-import org.jsoup.Jsoup;
-import org.jsoup.nodes.Document;
-
 import java.io.IOException;
 import java.net.HttpURLConnection;
 import java.net.InetSocketAddress;
 import java.net.Proxy;
 import java.net.URL;
-
 import javax.servlet.http.HttpServletRequest;
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
 
 /**
  * Ip工具类
@@ -71,24 +68,28 @@ public class IpUtil {
 	}
 
 	public static void main(String[] args) {
-		boolean b = checkValidIP("139.59.125.12", 8080);
-		System.out.println(b);
-		Proxy proxy = new Proxy(Proxy.Type.HTTP, new InetSocketAddress("60.219.16.41", 3128));
-		Document document = null;
+    boolean b = checkValidIP("219.136.172.180", 9797);
+    System.out.println(b);
+    if (b == false) {
+      return;
+    }
+    Proxy proxy = new Proxy(Proxy.Type.HTTP, new InetSocketAddress("219.136.172.180", 9797));
+    Document document = null;
 		try {
 			document = Jsoup.connect("http://music.163.com/discover/artist/cat?id=1001&initial=65").proxy(proxy)
-					.header("Referer", "http://music.163.com/")
-					.header("User-Agent",
+          .header("Referer", "http://music.163.com/discover/artist")
+          .header("User-Agent",
 							"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/60.0.3112.113 Safari/537.36")
-					.header("Host", "music.163.com").ignoreHttpErrors(true).get();
-		} catch (IOException e) {
+          .header("Host", "music.163.com")
+          .header("Origin", "http://music.163.com").get();
+    } catch (IOException e) {
 			e.printStackTrace();
 		}
 		if (document == null || Strings.isNullOrEmpty(document.head().data())) {
 			System.out.println("-----");
 		} else {
-			System.out.println(document.body().text());
-			document.select("a.f-thide").stream().map(w -> w.text() + "-->" + w.attr("href")).forEach(System.out::println);
+//			System.out.println(document.body().text());
+      document.select("a.f-thide").stream().map(w -> w.text() + "-->" + w.attr("href")).forEach(System.out::println);
 		}
 
 
