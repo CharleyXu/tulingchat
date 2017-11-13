@@ -1,12 +1,7 @@
 package com.xu.tulingchat.util;
 
 import com.alibaba.fastjson.JSONObject;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Random;
+
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -17,6 +12,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Random;
+
 /**
  * Netease Cloud Music  工具类
  */
@@ -25,6 +27,7 @@ public class MusicUtil {
 	private final Logger logger = LoggerFactory.getLogger(this.getClass());
 	public static final String[] ARTISTS = new String[]{"1001", "1002", "1003", "2001", "2002", "2003", "6001", "6002", "6003", "7001", "7002", "7003", "4001", "4002", "4003"};
 	public static List<Integer> InitialsList = new ArrayList<>();
+	public static Random random = new Random();
 	@Value("${wechat.material.temporary}")
 	private String temporaryUrl;
 	@Value("${netease.cloud.music.song}")
@@ -45,7 +48,8 @@ public class MusicUtil {
 		Elements elements = null;
 		try {
 			String urlId = "/artist?id=6452";
-			urlId = redisUtil.get(Md5Util.encrypt(artistName));
+//			String encrypt = Md5Util.encrypt(artistName);
+			urlId = redisUtil.get(artistName);
 			System.out.println("urlId:" + urlId);
 			System.out.println("ConnectUrl:" + netease + urlId);
 			elements = Jsoup.connect(netease + urlId)
@@ -56,7 +60,6 @@ public class MusicUtil {
 					.get().select("ul[class=f-hide] a");
 			//
 			int size = elements.size();
-			Random random = new Random();
 			Element element = elements.get(random.nextInt(size));
 //			Element first = elements.first();
 			String text = element.text();

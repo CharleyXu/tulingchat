@@ -10,15 +10,17 @@ import com.xu.tulingchat.util.MailUtil;
 import com.xu.tulingchat.util.MessageUtil;
 import com.xu.tulingchat.util.MusicUtil;
 import com.xu.tulingchat.util.TulingRobotUtil;
-import java.util.Arrays;
-import java.util.Date;
-import java.util.List;
-import java.util.Map;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
+
+import java.util.Arrays;
+import java.util.Date;
+import java.util.List;
+import java.util.Map;
 
 /**
  * 消息业务处理分发器
@@ -74,6 +76,7 @@ public class MsgDispatcher {
 					String songName = songs[0];
 					String songUrl = songs[1];
 					songUrl = songUrl + "?userid=72648534";
+//					songUrl = "http://www.xiami.com/song/1769167647?_uxid=EE99EE6E8D0469067801E882B638D70E";
 					music.setTitle(songName);
 					music.setDescription(artist);
 					music.setMusicUrl(songUrl);

@@ -7,11 +7,11 @@ import javax.xml.bind.annotation.XmlRootElement;
  * 返回类型为xml 测试bean类
  */
 @XmlRootElement
-public class XmlTestBean {
-	public XmlTestBean() {
+public class XmlTest {
+	public XmlTest() {
 	}
 
-	public XmlTestBean(String id, String name, int age) {
+	public XmlTest(String id, String name, int age) {
 		this.id = id;
 		this.name = name;
 		this.age = age;

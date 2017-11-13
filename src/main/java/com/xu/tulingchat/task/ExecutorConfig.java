@@ -27,15 +27,36 @@ public class ExecutorConfig {
 	@Value("${sms.executor.queueCapacity}")
 	private int queueCapacity;
 
+	@Value("${song.executor.corePoolSize}")
+	private int songCorePoolSize;
+
+	@Value("${song.executor.maxPoolSize}")
+	private int songMaxPoolSize;
+
+	@Value("${song.executor.queueCapacity}")
+	private int songQueueCapacity;
 
 	@Bean(name = "mailAsync")
 	public Executor mailAsync() {
+		return asyncConfig(corePoolSize, maxPoolSize, queueCapacity, "-MailExecutor-");
+	}
+
+
+	@Bean(name = "songAsync")
+	public Executor songAsync() {
+		return asyncConfig(songCorePoolSize, songMaxPoolSize, songQueueCapacity, "-SongExecutor-");
+	}
+
+	/**
+	 * @param threadNamePrefix -MailExecutor-
+	 */
+	public Executor asyncConfig(int corePoolSize, int maxPoolSize, int queueCapacity, String threadNamePrefix) {
 		ThreadPoolTaskExecutor executor = new ThreadPoolTaskExecutor();
 		executor.setCorePoolSize(corePoolSize);
 		executor.setMaxPoolSize(maxPoolSize);
 		executor.setQueueCapacity(queueCapacity);
 		executor.setRejectedExecutionHandler(new ThreadPoolExecutor.CallerRunsPolicy());
-		executor.setThreadNamePrefix("MailExecutor-");
+		executor.setThreadNamePrefix(threadNamePrefix);
 		executor.initialize();
 		return executor;
 	}

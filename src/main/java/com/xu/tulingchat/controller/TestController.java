@@ -4,7 +4,7 @@ import com.google.common.base.Strings;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
-import com.xu.tulingchat.entity.UserBean;
+import com.xu.tulingchat.entity.User;
 
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,7 +18,7 @@ import java.util.Map;
 
 @RestController
 public class TestController {
-	static Map<Integer, UserBean> users = Collections.synchronizedMap(new HashMap<Integer, UserBean>());
+	static Map<Integer, User> users = Collections.synchronizedMap(new HashMap<Integer, User>());
 
 
     @RequestMapping("/test01")
@@ -31,7 +31,7 @@ public class TestController {
     }
 
     @RequestMapping(value = "/test02",method = RequestMethod.GET)
-    public String test02(@ModelAttribute UserBean user){
+	public String test02(@ModelAttribute User user) {
 		users.put(user.getId(), user);
 		JSONObject jsonObject = JSONObject.parseObject(JSON.toJSONString(users));
         return jsonObject.toString();

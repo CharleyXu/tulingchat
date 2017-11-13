@@ -5,14 +5,14 @@ import com.alibaba.fastjson.JSON;
 /**
  * springboot 仅测试
  */
-public class UserBean {
+public class User {
 	private Integer id;
 	private String name;
 
-	public UserBean() {
+	public User() {
 	}
 
-	public UserBean(Integer id, String name) {
+	public User(Integer id, String name) {
 		this.id = id;
 		this.name = name;
 	}

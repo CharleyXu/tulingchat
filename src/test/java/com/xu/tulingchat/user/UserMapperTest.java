@@ -1,8 +1,9 @@
 package com.xu.tulingchat.user;
 
 import com.xu.tulingchat.TulingchatApplication;
-import com.xu.tulingchat.entity.UserBean;
-import com.xu.tulingchat.mapper.UserBeanMapper;
+import com.xu.tulingchat.entity.User;
+import com.xu.tulingchat.mapper.UserMapper;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,11 +16,11 @@ import org.springframework.test.context.web.WebAppConfiguration;
 @WebAppConfiguration
 public class UserMapperTest {
 	@Autowired
-	private UserBeanMapper userBeanMapper;
+	private UserMapper userMapper;
 
 	@Test
 	public void testInsert() {
-		userBeanMapper.insert(new UserBean(20, "rony"));
+		userMapper.insert(new User(20, "rony"));
 		//	Assert.assertEquals(2, userBeanMapper.findAll().size());
 	}
 
