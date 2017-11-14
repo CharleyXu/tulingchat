@@ -100,7 +100,7 @@ public class HttpClientUtil {
 		} catch (IOException e) {
 			e.printStackTrace();
 		} finally {
-			closeSource(closeableHttpClient, closeableHttpResponse);
+//			closeSource(closeableHttpClient, closeableHttpResponse);
 		}
 		return null;
 	}
@@ -111,7 +111,6 @@ public class HttpClientUtil {
 	public static String sendPost(String url, Map<String, String> headers, Map<String, String> params) {
 		// 创建默认的HttpClient实例.
 		CloseableHttpClient closeableHttpClient = HttpClients.createDefault();
-
 		CloseableHttpResponse closeableHttpResponse = null;
 		try {
 			// 定义一个post请求方法

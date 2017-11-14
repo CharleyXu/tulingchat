@@ -42,7 +42,7 @@ public class TokenUtilTest {
 			Map<String, String> stringBody = new HashMap<>();
 			stringBody.put("access_token", access_token);
 			stringBody.put("image", "thumb");
-			String result = HttpRequestUtil.doUpload(replaceUrl, fileBody, stringBody);
+			String result = HttpClientUtil.doUpload(replaceUrl, fileBody, stringBody);
 			System.out.println("result:" + result);
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -58,7 +58,7 @@ public class TokenUtilTest {
 		String access_token = tokenUtil.getToken();
 		System.out.println("--当前的access_token是:" + access_token);
 		String replace = materialUrl.replace("ACCESS_TOKEN", access_token);
-		HttpRequestUtil.postRequest(replace, null);
+		HttpClientUtil.sendPost(replace, null, null);
 	}
 
 }
