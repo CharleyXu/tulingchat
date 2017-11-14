@@ -97,7 +97,7 @@ public class MusicUtil {
 			Map<String, String> stringBody = new HashMap<>();
 			stringBody.put("access_token", access_token);
 			stringBody.put("image", "thumb");
-			String result = HttpRequestUtil.doUpload(replaceUrl, fileBody, stringBody);
+			String result = HttpClientUtil.doUpload(replaceUrl, fileBody, stringBody);
 			logger.info("result:" + result);
 			logger.info("上传Thumb成功");
 			return JSONObject.parseObject(result).getString("thumb_media_id");
@@ -122,7 +122,7 @@ public class MusicUtil {
 					.header("Host", "music.163.com").get().select("img[src]");
 			Element first = select.first();
 			String attr = first.attr("abs:src");
-			int i = HttpRequestUtil.doDownload(attr, "/home/xuzc/temp.jpg");
+			int i = HttpClientUtil.doDownload(attr, "/home/xuzc/temp.jpg");
 			logger.info("图片下载成功" + i);
 		} catch (IOException e) {
 			logger.error("图片下载失败", e);

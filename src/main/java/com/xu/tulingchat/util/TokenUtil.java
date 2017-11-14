@@ -39,7 +39,7 @@ public class TokenUtil {
 //      System.out.println(tokenUrl);
         String replaceURL = null;
         replaceURL = tokenUrl.replace("APPID", appId).replace("APPSECRET", appSecret);
-        String request = HttpRequestUtil.getRequest(replaceURL);
+        String request = HttpClientUtil.sendGet(replaceURL, null, null);
         JSONObject object = JSON.parseObject(request);
         if (object.containsKey("access_token")) {
             return object.getString("access_token");

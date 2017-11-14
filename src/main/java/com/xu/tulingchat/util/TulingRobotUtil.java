@@ -39,7 +39,7 @@ public class TulingRobotUtil {
 		map.put("key",key);
 		map.put("info",info);
 		map.put("userid",userid);
-		return HttpRequestUtil.postRequest(url, map);
+		return HttpClientUtil.sendPost(url, null, map);
 	}
 
 	/**

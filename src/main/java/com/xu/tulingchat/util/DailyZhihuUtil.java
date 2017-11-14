@@ -31,7 +31,7 @@ public class DailyZhihuUtil {
 	 * get请求
 	 */
 	public List<Article> sendRequest(String name) {
-		String request = HttpRequestUtil.getRequest(latestUrl);
+		String request = HttpClientUtil.sendGet(latestUrl, null, null);
 		JSONObject jsonObject = JSONObject.parseObject(request);
 		JSONArray top_stories = jsonObject.getJSONArray("top_stories");
 		List<Article> list = new ArrayList<>();
@@ -40,7 +40,7 @@ public class DailyZhihuUtil {
 			String id = object.getString("id");//消息内容Id
 //			System.out.println("--id--"+id);
 			String replaceUrl = newsUrl.replace("id", id);
-			String s = HttpRequestUtil.getRequest(replaceUrl);
+			String s = HttpClientUtil.sendGet(replaceUrl, null, null);
 //			System.out.println("content:"+s);
 			JSONObject jo = JSONObject.parseObject(s);
 			Article article = new Article();
