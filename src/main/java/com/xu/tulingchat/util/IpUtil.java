@@ -37,7 +37,7 @@ public class IpUtil {
 	}
 
 	/**
-	 * 校验代理IP的有效性，测试地址为：http://www.ip138.com
+	 * 校验代理IP的有效性，测试地址为：http://www.baidu.com
 	 *
 	 * @param ip   代理IP地址
 	 * @param port 代理IP端口
@@ -47,7 +47,7 @@ public class IpUtil {
 		URL url = null;
 		HttpURLConnection connection = null;
 		try {
-			url = new URL("http://www.ip138.com");
+			url = new URL("http://www.baidu.com");
 			//代理服务器
 			InetSocketAddress proxyAddr = new InetSocketAddress(ip, port);
 			Proxy proxy = new Proxy(Proxy.Type.HTTP, proxyAddr);
