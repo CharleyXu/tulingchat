@@ -1,7 +1,6 @@
 package com.xu.tulingchat.user;
 
 import com.xu.tulingchat.TulingchatApplication;
-import com.xu.tulingchat.entity.User;
 import com.xu.tulingchat.mapper.UserMapper;
 
 import org.junit.Test;
@@ -20,7 +19,7 @@ public class UserMapperTest {
 
 	@Test
 	public void testInsert() {
-		userMapper.insert(new User(20, "rony"));
+//		userMapper.insert(new User(20, "rony"));
 		//	Assert.assertEquals(2, userBeanMapper.findAll().size());
 	}
 

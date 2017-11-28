@@ -1,44 +1,26 @@
 package com.xu.tulingchat.task;
 
-import com.xu.tulingchat.entity.Song;
-import com.xu.tulingchat.mapper.SongMapper;
-import com.xu.tulingchat.util.RedisUtil;
-import com.xu.tulingchat.util.TokenUtil;
-
-import org.jsoup.Jsoup;
-import org.jsoup.nodes.Element;
-import org.jsoup.select.Elements;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.scheduling.annotation.Async;
-import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
-
-import java.io.IOException;
-import java.util.Iterator;
-import java.util.Set;
 
 /**
  * 定时任务 @Scheduled的使用
  */
 @Component
 public class ScheduleTask {
-  private final Logger logger = LoggerFactory.getLogger(this.getClass());
-  @Value("${netease.cloud.music}")
-  private String neteaseMusic;
-  @Value("${netease.cloud.music.artist.cat}")
-  private String neteaseArtistCatUrl;
-  @Value("${netease.cloud.music.song}")
-  private String songUrl;
-  //歌手列表  https://music.163.com/#/discover/artist/cat?id=1001&initial=65
-  @Autowired
-  private TokenUtil tokenUtil;
-  @Autowired
-  private RedisUtil redisUtil;
-  @Autowired
-  private SongMapper songMapper;
+//  private final Logger logger = LoggerFactory.getLogger(this.getClass());
+//  @Value("${netease.cloud.music}")
+//  private String neteaseMusic;
+//  @Value("${netease.cloud.music.artist.cat}")
+//  private String neteaseArtistCatUrl;
+//  @Value("${netease.cloud.music.song}")
+//  private String songUrl;
+//  //歌手列表  https://music.163.com/#/discover/artist/cat?id=1001&initial=65
+//  @Autowired
+//  private TokenUtil tokenUtil;
+//  @Autowired
+//  private RedisUtil redisUtil;
+//  @Autowired
+//  private SongMapper songMapper;
 
 /*    @Scheduled(cron = "0 48 14 * * ?")
   public void task(){
@@ -66,7 +48,7 @@ public class ScheduleTask {
    */
 //@Scheduled(fixedRate = 1000 * 60 * 60 * 24 * 2)
 //  @Scheduled(cron = "0 00 00 1 * ?")
-  public void crawlerArtist() {
+//  public void crawlerArtist() {
 //    //初始化MusicUtil的InitialsList
 //    for (int i = 65; i <= 90; i++) {
 //      MusicUtil.InitialsList.add(i);
@@ -106,49 +88,48 @@ public class ScheduleTask {
 //    } catch (Exception e) {
 //      logger.error("crawlerArtist Error", e);
 //    }
-  }
+//  }
 
-  @Async("songAsync")
-  public void insertSong(Song song) {
-    songMapper.insert(song);
-  }
+//  @Async("songAsync")
+//  public void insertSong(Song song) {
+//    songMapper.insert(song);
+//  }
 
   /**
    * 从Redis取Singer的链接，获取热门歌曲  存入Mysql 每月1号更新
    */
 //  @Scheduled(fixedRate = 1000 * 60 * 60 * 24 * 20L)
-  @Scheduled(cron = "0 00 01 1 * ?")
-  public void crawlerSongs() {
-    Set<String> keys = redisUtil.getKeys("*");
-    Iterator<String> iterator = keys.iterator();
-    while (iterator.hasNext()) {
-      String key = iterator.next();//歌手名
-      String url = redisUtil.get(key);//Url
-      Elements elements = null;
-      try {
-        elements = Jsoup.connect(neteaseMusic + url)
-                .header("Referer", "http://music.163.com/")
-                .header("User-Agent",
-                        "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/60.0.3112.113 Safari/537.36")
-                .header("Host", "music.163.com")
-                .get().select("ul[class=f-hide] a");
-        int size = elements.size();
-        Iterator<Element> it = elements.iterator();
-        while (it.hasNext()) {
-          Element element = it.next();
-          String text = element.text();//歌名
-          String href = element.attr("href");
-          href = songUrl.replace("SONG_ID", href.substring(href.lastIndexOf('=') + 1));//歌曲Url  http://music.163.com/song/SONG_ID
-          Song song = new Song(text, key, href, "NeteaseMusic");//name, String singer, String url, String source
-          insertSong(song);
-        }
-      } catch (IOException e) {
-        logger.info("crawlerSongs Error", e);
-        continue;
-      }
-    }
-
-  }
+//  @Scheduled(cron = "0 00 01 1 * ?")
+//  public void crawlerSongs() {
+//    Set<String> keys = redisUtil.getKeys("*");
+//    Iterator<String> iterator = keys.iterator();
+//    while (iterator.hasNext()) {
+//      String key = iterator.next();//歌手名
+//      String url = redisUtil.get(key);//Url
+//      Elements elements = null;
+//      try {
+//        elements = Jsoup.connect(neteaseMusic + url)
+//                .header("Referer", "http://music.163.com/")
+//                .header("User-Agent",
+//                        "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/60.0.3112.113 Safari/537.36")
+//                .header("Host", "music.163.com")
+//                .get().select("ul[class=f-hide] a");
+//        int size = elements.size();
+//        Iterator<Element> it = elements.iterator();
+//        while (it.hasNext()) {
+//          Element element = it.next();
+//          String text = element.text();//歌名
+//          String href = element.attr("href");
+//          href = songUrl.replace("SONG_ID", href.substring(href.lastIndexOf('=') + 1));//歌曲Url  http://music.163.com/song/SONG_ID
+//          Song song = new Song(text, key, href, "NeteaseMusic");//name, String singer, String url, String source
+//          insertSong(song);
+//        }
+//      } catch (IOException e) {
+//        logger.info("crawlerSongs Error", e);
+//        continue;
+//      }
+//    }
+//  }
 
   /**
    *

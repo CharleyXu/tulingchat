@@ -1,6 +1,5 @@
 package com.xu.tulingchat.util;
 
-import com.xu.tulingchat.entity.ProxyIp;
 import com.xu.tulingchat.mapper.ProxyIpMapper;
 
 import org.junit.Test;
@@ -17,7 +16,7 @@ public class ProxyIpTest {
 
 	@Test
 	public void findOne() {
-		ProxyIp newestOne = proxyIpMapper.findNewestOne();
-		System.out.println("---" + newestOne.getIp());
+//		ProxyIp newestOne = proxyIpMapper.findNewestOne();
+//		System.out.println("---" + newestOne.getIp());
 	}
 }
