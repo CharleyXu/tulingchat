@@ -4,7 +4,6 @@ import com.google.common.base.Strings;
 
 import com.xu.tulingchat.entity.ProxyIp;
 import com.xu.tulingchat.mapper.ProxyIpMapper;
-import com.xu.tulingchat.mapper.SongMapper;
 import com.xu.tulingchat.util.IpUtil;
 
 import org.jsoup.Jsoup;
@@ -33,8 +32,6 @@ public class NeteaseTask {
 	//歌手列表  https://music.163.com/#/discover/artist/cat?id=1001&initial=65
 	@Autowired
 	private ProxyIpMapper proxyIpMapper;
-	@Autowired
-	private SongMapper songMapper;
 
 	@Scheduled(fixedRate = 1000 * 60 * 60 * 12L)
 	public void crawlerTask() {

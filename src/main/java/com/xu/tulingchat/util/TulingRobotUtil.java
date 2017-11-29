@@ -1,12 +1,16 @@
 package com.xu.tulingchat.util;
 
+import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
+import com.xu.tulingchat.bean.message.send.Article;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.stereotype.Component;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @Component
@@ -55,6 +59,19 @@ public class TulingRobotUtil {
 			return jsonObject.getString("text");
 		}else if(LINK_CODE.equals(code)){
 			return jsonObject.getString("text")+"\n"+jsonObject.getString("url");
+		} else if (NEWS_CODE.equals(code)) {
+			JSONArray array = jsonObject.getJSONArray("list");
+			int size = 5;
+			if (array.size() < 5) {
+				size = array.size();
+			}
+			List<Article> list = new ArrayList<>();
+			for (int i = 0; i < size; i++) {
+				JSONObject object = array.getJSONObject(i);
+				Article article = new Article(object.getString("article"), object.getString("source"), object.getString("icon"), object.getString("detailurl"));
+				list.add(article);
+			}
+			return list.toString();
 		}else{
 			return "对不起，没听清楚，再说一遍吧。";
 		}

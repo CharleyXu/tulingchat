@@ -1,14 +1,15 @@
 package com.xu.tulingchat.service;
 
+import com.alibaba.fastjson.JSON;
 import com.xu.tulingchat.bean.message.send.Article;
 import com.xu.tulingchat.bean.message.send.Music;
 import com.xu.tulingchat.bean.message.send.MusicMessage;
 import com.xu.tulingchat.bean.message.send.NewsMessage;
 import com.xu.tulingchat.bean.message.send.TextMessage;
 import com.xu.tulingchat.util.DailyZhihuUtil;
+import com.xu.tulingchat.util.DateUtil;
 import com.xu.tulingchat.util.MailUtil;
 import com.xu.tulingchat.util.MessageUtil;
-import com.xu.tulingchat.util.MusicUtil;
 import com.xu.tulingchat.util.TulingRobotUtil;
 
 import org.slf4j.Logger;
@@ -17,7 +18,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
-import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
@@ -30,6 +30,8 @@ public class MsgDispatcher {
 	private final Logger logger = LoggerFactory.getLogger(this.getClass());
 	@Value("${netease.cloud.music.song}")
 	private String song;
+	@Value("${wechat.permanent.material.mediaid}")
+	private String mediaid;
 	@Autowired
 	private TulingRobotUtil tulingRobotUtil;
 	@Autowired
@@ -37,59 +39,79 @@ public class MsgDispatcher {
 	@Autowired
 	private DailyZhihuUtil dailyZhihuUtil;
 	@Autowired
-	private MusicUtil musicUtil;
+	private NetEaseMusicService netEaseMusicService;
 
 	public String progressMsg(Map<String, String> map) {
 		String toUserName = map.get("ToUserName");//开发者微信号 公众号
 		String fromUserName = map.get("FromUserName");//发送方帐号（一个 OpenID）粉丝号
 		String msgType = map.get("MsgType");
 		if (MessageUtil.REQ_MESSAGE_TYPE_TEXT.equals(msgType)) { // 文本消息
-			System.out.println("==============这是文本消息！");
-			String content = map.get("Content");
+			String content = map.get("Content").trim();
+			System.out.println("==============\n" + content);
 
-			if ("知乎日报".equals(content) || "新闻".equals(content)) {
-				NewsMessage newsMessage = new NewsMessage();
-				List<Article> articles = dailyZhihuUtil.sendRequest(null);
-				newsMessage.setToUserName(fromUserName);// 粉丝号
-				newsMessage.setFromUserName(toUserName);//公众号
-				newsMessage.setCreateTime(new Date().getTime());
-				newsMessage.setMsgType(MessageUtil.RESP_MESSAGE_TYPE_NEWS);
-				newsMessage.setArticleCount(articles.size());
-				newsMessage.setArticles(articles);
+			if ("咨询".startsWith(content)) {
+				NewsMessage newsMessage = null;
+				if (content.equals("咨询")) {//咨询
+					List<Article> articles = dailyZhihuUtil.getStories(null);
+					newsMessage = handleNews(fromUserName, toUserName, articles);
+				} else if (content.split(" ").length == 2) {//咨询 20171129
+					String date = content.substring(3);
+					if (DateUtil.isValidDate(date, DateUtil.yyyyMMdd)) {
+						List<Article> articles = dailyZhihuUtil.getStories(date);
+						newsMessage = handleNews(fromUserName, toUserName, articles);
+					} else {
+						List<Article> articles = dailyZhihuUtil.getStories(null);
+						newsMessage = handleNews(fromUserName, toUserName, articles);
+					}
+				}
 				return MessageUtil.newsMessageToXml(newsMessage);
 			}
 
-			if (content.startsWith("音乐") && content.indexOf(" ") == 2) {
-				String artist = "周杰伦";
-				artist = content.substring(content.indexOf(" ") + 1);
-				System.out.println("content:" + content + "artist：" + artist);
-				String[] songs = musicUtil.getSongs(artist);
-				if (songs == null) {
-					return "";
+			if (content.startsWith("音乐")) {
+				MusicMessage musicMessage = null;
+				if (content.equals("音乐")) {
+					String artist = "李玖哲";
+					com.xu.tulingchat.entity.Music music = netEaseMusicService.getMusic(artist);
+					if (null != null) {
+						int id = music.getId();
+						String name = music.getName();
+						String songId = song.replace("SONG_ID", id + "");
+						musicMessage = handleMusic(fromUserName, toUserName, name, artist, songId);
+						return MessageUtil.musicMessageToXml(musicMessage);
+					}
+				} else if (content.indexOf(" ") == 2) {
+					String[] split = content.split(" ");
+					if (split.length == 2) {
+						String artistOrSong = split[1];
+						com.xu.tulingchat.entity.Music music = netEaseMusicService.getMusic(artistOrSong);//artist
+						if (null != music) {
+							String name = music.getName();
+							int id = music.getId();
+							String songId = song.replace("SONG_ID", id + "");
+							musicMessage = handleMusic(fromUserName, toUserName, name, artistOrSong, songId);
+							return MessageUtil.musicMessageToXml(musicMessage);
+						} else {
+							String[] strings = netEaseMusicService.getMusicIdBySongName(artistOrSong);//songName
+							if (strings != null) {
+								String musicId = strings[0];
+								String songId = song.replace("SONG_ID", musicId);
+								String artist = strings[1];
+								musicMessage = handleMusic(fromUserName, toUserName, artistOrSong, artist, songId);
+								return MessageUtil.musicMessageToXml(musicMessage);
+							}
+						}
+					} else if (split.length == 3) {
+						String artist = content.split(" ")[1];
+						String name = content.split(" ")[2];
+						com.xu.tulingchat.entity.Music music = netEaseMusicService.getMusicByCondition(artist, name);
+						if (null != music) {
+							int id = music.getId();
+							String songId = song.replace("SONG_ID", id + "");
+							musicMessage = handleMusic(fromUserName, toUserName, name, artist, songId);
+							return MessageUtil.musicMessageToXml(musicMessage);
+						}
+					}
 				}
-				String songId = songs[1];
-				String thumbMediaId = musicUtil.uploadThumb(songId);//thumbMediaId
-//			String thumbMediaId = "WHCiZd854wV-4k2KmjZbyINGDsvhLsoOa_GM-UOrrOXwwYC4WI_fk_sSK-eIIdfd";
-				System.out.println("thumbMediaId:" + thumbMediaId + "\n songs:" + Arrays.toString(songs));
-				Music music = new Music();
-				if (thumbMediaId != null && songs != null) {
-					String songName = songs[0];
-					String songUrl = songs[1];
-					songUrl = songUrl + "?userid=72648534";
-//					songUrl = "http://www.xiami.com/song/1769167647?_uxid=EE99EE6E8D0469067801E882B638D70E";
-					music.setTitle(songName);
-					music.setDescription(artist);
-					music.setMusicUrl(songUrl);
-					music.setHQMusicUrl(songUrl);
-					music.setThumbMediaId(thumbMediaId);
-				}
-				MusicMessage musicMessage = new MusicMessage();
-				musicMessage.setToUserName(fromUserName);// 粉丝号
-				musicMessage.setFromUserName(toUserName);//公众号
-				musicMessage.setCreateTime(new Date().getTime());
-				musicMessage.setMsgType(MessageUtil.RESP_MESSAGE_TYPE_MUSIC);
-				musicMessage.setMusic(music);
-				return MessageUtil.musicMessageToXml(musicMessage);
 			}
 
 			TextMessage textMessage = new TextMessage();
@@ -100,13 +122,19 @@ public class MsgDispatcher {
 
 			if (content.length() > 3 && content.substring(0, 3).startsWith("邮件")) {
 				handleEmail(content, textMessage);
+				return MessageUtil.textMessageToXml(textMessage);
 			} else {
 				//向tuling接口发送请求   自动聊天
 				String request = tulingRobotUtil.sendRequest(content, fromUserName);
 				String result = tulingRobotUtil.processTypeResult(request);
-				textMessage.setContent(result);
+				if (checkjson(result)) {
+					NewsMessage newsMessage = handleNews(fromUserName, toUserName, JSON.parseArray(result, Article.class));
+					return MessageUtil.newsMessageToXml(newsMessage);
+				} else {
+					textMessage.setContent(result);
+					return MessageUtil.textMessageToXml(textMessage);
+				}
 			}
-			return MessageUtil.textMessageToXml(textMessage);
 		}
 
 
@@ -134,6 +162,39 @@ public class MsgDispatcher {
 	}
 
 	/**
+	 * 回复音乐消息
+	 */
+	public MusicMessage handleMusic(String fromUserName, String toUserName, String songName, String artist, String songUrl) {
+		Music music = new Music();
+		music.setTitle(songName);
+		music.setDescription(artist);
+		music.setMusicUrl(songUrl);
+		music.setHQMusicUrl(songUrl);
+		music.setThumbMediaId(mediaid);
+		MusicMessage musicMessage = new MusicMessage();
+		musicMessage.setToUserName(fromUserName);// 粉丝号
+		musicMessage.setFromUserName(toUserName);//公众号
+		musicMessage.setCreateTime(new Date().getTime());
+		musicMessage.setMsgType(MessageUtil.RESP_MESSAGE_TYPE_MUSIC);
+		musicMessage.setMusic(music);
+		return musicMessage;
+	}
+
+	/**
+	 * 新闻消息回复
+	 */
+	public NewsMessage handleNews(String fromUserName, String toUserName, List<Article> articles) {
+		NewsMessage newsMessage = new NewsMessage();
+		newsMessage.setToUserName(fromUserName);// 粉丝号
+		newsMessage.setFromUserName(toUserName);//公众号
+		newsMessage.setCreateTime(new Date().getTime());
+		newsMessage.setMsgType(MessageUtil.RESP_MESSAGE_TYPE_NEWS);
+		newsMessage.setArticleCount(articles.size());
+		newsMessage.setArticles(articles);
+		return newsMessage;
+	}
+
+	/**
 	 * 处理邮件
 	 */
 	public void handleEmail(String content, TextMessage textMessage) {
@@ -152,6 +213,16 @@ public class MsgDispatcher {
 			String subject = "你好，这是一封重要的邮件";
 			mailUtil.sendSimpleMail(receiver, subject, emailContent);
 			textMessage.setContent("邮件发送成功");
+		}
+	}
+
+
+	public boolean checkjson(String jsonstr) {
+		try {
+			JSON.parseArray(jsonstr);
+			return true;
+		} catch (Exception e) {
+			return false;
 		}
 	}
 }

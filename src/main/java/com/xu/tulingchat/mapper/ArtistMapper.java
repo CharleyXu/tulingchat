@@ -2,34 +2,32 @@ package com.xu.tulingchat.mapper;
 
 import com.xu.tulingchat.entity.Artist;
 
-import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
+import org.apache.ibatis.annotations.InsertProvider;
 import org.apache.ibatis.annotations.Param;
-import org.apache.ibatis.annotations.Result;
-import org.apache.ibatis.annotations.Results;
 import org.apache.ibatis.annotations.Select;
-import org.apache.ibatis.annotations.Update;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
 
 @Component
 public interface ArtistMapper {
-
-  @Select("select name,url from artists")
-  @Results({@Result(property = "name", column = "name"),
-			@Result(property = "url", column = "url")})
-	List<Artist> findAll();
-
-	@Select("SELECT url from artists where name=#{name}")
-	String findone(@Param("name") String name);
-
-	@Insert("INSERT INTO artists(name,url) VALUES(#{name},#{url})")
+	/**
+	 * 单个插入
+	 */
+	@Insert("INSERT IGNORE INTO artist(artistId,name,alia) value (#{id},#{name},#{alia})")
 	void insert(Artist artist);
 
-	@Update("UPDATE artists SET url=#{url} where name=#{name}")
-	void update(Artist artist);
+	/**
+	 * 批量插入
+	 * @param list
+	 */
+	@InsertProvider(type = ArtistSqlProvider.class, method = "batchInsert")
+	void batchInsert(@Param("list") List<Artist> list);
 
-	@Delete("DELETE FROM users WHERE id =#{id}")
-	void delete(Long id);
+	@Select("select * from artist")
+	List<Artist> findAll();
+
+	@Select("select count(1) from artist")
+	int countAllSize();
 }

@@ -1,5 +1,7 @@
 package com.xu.tulingchat.util;
 
+import com.google.common.base.Strings;
+
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.xu.tulingchat.bean.message.send.Article;
@@ -30,18 +32,49 @@ public class DailyZhihuUtil {
 	/**
 	 * get请求
 	 */
-	public List<Article> sendRequest(String name) {
+	public List<Article> getStories(String date) {
+		if (Strings.isNullOrEmpty(date)) {
+			return getLatestNews();
+		} else {
+			return getBeforeNews(date);
+		}
+	}
+
+	/**
+	 * 最新
+	 */
+	public List<Article> getLatestNews() {
 		String request = HttpClientUtil.sendGet(latestUrl, null, null);
 		JSONObject jsonObject = JSONObject.parseObject(request);
 		JSONArray top_stories = jsonObject.getJSONArray("top_stories");
+		return getNewsListFromJsonArray(top_stories);
+	}
+
+	/**
+	 * 过往消息
+	 */
+	public List<Article> getBeforeNews(String date) {
+		beforenewsUrl = beforenewsUrl.replace("date", date);
+		String request = HttpClientUtil.sendGet(beforenewsUrl, null, null);
+		JSONObject jsonObject = JSONObject.parseObject(request);
+		JSONArray stories = jsonObject.getJSONArray("stories");
+		return getNewsListFromJsonArray(stories);
+	}
+
+	public List<Article> getNewsListFromJsonArray(JSONArray jsonArray) {
 		List<Article> list = new ArrayList<>();
-		for (int i = 0, size = top_stories.size(); i < size; i++) {
-			JSONObject object = top_stories.getJSONObject(i);
+		int size = jsonArray.size();
+		int lastindex = 0;
+		if (size >= 5) {
+			lastindex = 5;
+		} else {
+			lastindex = size;
+		}
+		for (int i = 0; i < lastindex; i++) {
+			JSONObject object = jsonArray.getJSONObject(i);
 			String id = object.getString("id");//消息内容Id
-//			System.out.println("--id--"+id);
 			String replaceUrl = newsUrl.replace("id", id);
 			String s = HttpClientUtil.sendGet(replaceUrl, null, null);
-//			System.out.println("content:"+s);
 			JSONObject jo = JSONObject.parseObject(s);
 			Article article = new Article();
 			article.setTitle(jo.getString("title"));
@@ -52,4 +85,5 @@ public class DailyZhihuUtil {
 		}
 		return list;
 	}
+
 }

@@ -29,7 +29,9 @@ public class MusicUtil {
 	public static List<Integer> InitialsList = new ArrayList<>();
 	public static Random random = new Random();
 	@Value("${wechat.material.temporary}")
-	private String temporaryUrl;
+	private String temporary;//临时素材
+	@Value("${wechat.material.permanent}")
+	private String permanent;//永久素材
 	@Value("${netease.cloud.music.song}")
 	private String songUrl;
 	@Value("${netease.cloud.music}")
@@ -38,6 +40,8 @@ public class MusicUtil {
 	private TokenUtil tokenUtil;
 	@Autowired
 	private RedisUtil redisUtil;
+
+	private static final String FILE_PATH = "D:/temp.jpg";        //	D:/temp.jpg		/home/xuzc/temp.jpg
 	/**
 	 * 获取歌名+Url
 	 *
@@ -84,16 +88,19 @@ public class MusicUtil {
 	 */
 	public String uploadThumb(String songId) {
 		System.out.println("-----songId：" + songId);
-		downLoadPict(songId);
-		String access_token = redisUtil.get("access_token");
+//		downLoadPict(songId);
+		String access_token = null;
+//		access_token = redisUtil.get("access_token");
 		if (access_token == null) {
 			access_token = tokenUtil.getToken();
 		}
 		System.out.println("--当前的access_token是:" + access_token);
-		String replaceUrl = temporaryUrl.replace("ACCESS_TOKEN", access_token).replace("TYPE", "thumb");
+		//	temporary	临时	permanent	永久
+		String replaceUrl = permanent.replace("ACCESS_TOKEN", access_token).replace("TYPE", "thumb");
+
 		try {
 			Map<String, String> fileBody = new HashMap<>();
-			fileBody.put("media", "/home/xuzc/temp.jpg");
+			fileBody.put("media", FILE_PATH);
 			Map<String, String> stringBody = new HashMap<>();
 			stringBody.put("access_token", access_token);
 			stringBody.put("image", "thumb");
@@ -111,7 +118,7 @@ public class MusicUtil {
 	 * 下载图片到临时路径
 	 */
 	public void downLoadPict(String songId) {
-		String downUrl = "http://music.163.com/song/418603077";
+		String downUrl = "http://music.163.com/song/29802464";
 		if (songId != null) {
 			downUrl = songId;
 		}
@@ -122,27 +129,11 @@ public class MusicUtil {
 					.header("Host", "music.163.com").get().select("img[src]");
 			Element first = select.first();
 			String attr = first.attr("abs:src");
-			int i = HttpClientUtil.doDownload(attr, "/home/xuzc/temp.jpg");
+			int i = HttpClientUtil.doDownload(attr, FILE_PATH);
 			logger.info("图片下载成功" + i);
 		} catch (IOException e) {
 			logger.error("图片下载失败", e);
 		}
-//		// 连接url
-//		URL url;
-//		url = new URL(attr);
-//		URLConnection uri = url.openConnection();
-//		// 获取数据流
-//		InputStream is = uri.getInputStream();
-//		// 写入数据流
-//		OutputStream os = new FileOutputStream(new File(
-//				"/home/xuzc", "temp.jpg"));
-//
-//		byte[] buf = new byte[3072];
-//		int i = 0;
-//		while ((i = is.read()) != -1) {
-//			os.write(i);
-//		}
-//		os.close();
 	}
 
 	public static void main(String[] args) throws Exception {

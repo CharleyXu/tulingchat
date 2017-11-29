@@ -1,5 +1,7 @@
 package com.xu.tulingchat.bean.message.send;
 
+import com.alibaba.fastjson.JSON;
+
 /**
  * 图文消息体
  */
@@ -12,6 +14,16 @@ public class Article {
 	private String PicUrl;
 	// 点击图文消息跳转链接
 	private String Url;
+
+	public Article() {
+	}
+
+	public Article(String title, String description, String picUrl, String url) {
+		Title = title;
+		Description = description;
+		PicUrl = picUrl;
+		Url = url;
+	}
 
 	public String getTitle() {
 		return Title;
@@ -43,5 +55,10 @@ public class Article {
 
 	public void setUrl(String url) {
 		Url = url;
+	}
+
+	@Override
+	public String toString() {
+		return JSON.toJSONString(this);
 	}
 }

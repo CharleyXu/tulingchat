@@ -45,16 +45,12 @@ public class TokenUtilTest {
 //		}
 	}
 
-	public static void main(String[] args) {
-
-	}
-
 	@Test
 	public void getMaterials() {
-//		String access_token = tokenUtil.getToken();
-//		System.out.println("--当前的access_token是:" + access_token);
-//		String replace = materialUrl.replace("ACCESS_TOKEN", access_token);
-//		HttpClientUtil.sendPost(replace, null, null);
+		String access_token = tokenUtil.getToken();
+		System.out.println("--当前的access_token是:" + access_token);
+		String replace = materialUrl.replace("ACCESS_TOKEN", access_token);
+		HttpClientUtil.sendPost(replace, null, null);
 	}
 
 }

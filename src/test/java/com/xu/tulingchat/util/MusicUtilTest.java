@@ -1,70 +1,70 @@
 package com.xu.tulingchat.util;
 
+import com.xu.tulingchat.entity.Music;
+import com.xu.tulingchat.entity.Page;
+import com.xu.tulingchat.entity.PageRequest;
+import com.xu.tulingchat.mapper.MusicMapper;
+
+import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
+
+import java.util.List;
+import java.util.Random;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
 public class MusicUtilTest {
 
-  //		Jsoup.connect("http://music.163.com/playlist?id=317113395")
-//				.header("Referer", "http://music.163.com/")
-//				.header("Host", "music.163.com").get().select("ul[class=f-hide] a")
-//				.stream().map(w-> w.text() + "-->" + w.attr("href"))
-//				.forEach(System.out::println);
-  //http://music.163.com/discover/artist/         .select("ul[class=f-hide] a")
-//  @Test
-//  public void getAllArtists() throws IOException {
-//    Document document = Jsoup.connect("http://music.163.com/discover/artist/cat?id=1001&initial=65")
-//        .header("Referer", "http://music.163.com/")
-//        .header("Host", "music.163.com").get();
-//    document.select("a.f-thide").stream().map(w -> w.text() + "-->" + w.attr("href"))
-//        .forEach(System.out::println);
-//  }
-//
-//  /**
-//   * 下载
-//   * @throws IOException
-//   */
-//  @Test
-//  public void download() throws IOException {
-//    Elements select = Jsoup.connect("http://music.163.com/song?id=418603077")
-//            .header("Referer", "http://music.163.com/")
-//            .header("Host", "music.163.com").get().select("img[src]");
-//    System.out.println(select.size());
-//    Element first = select.first();
-//    String attr = first.attr("abs:src");
-//    System.out.println("first:" + attr);
-//    // 连接url
-//    URL url;
-//    url = new URL(attr);
-//    URLConnection uri = url.openConnection();
-//    // 获取数据流
-//    InputStream is = uri.getInputStream();
-//    // 写入数据流
-//    OutputStream os = new FileOutputStream(new File(
-//            "D:/", "temp.jpg"));
-//
-//    byte[] buf = new byte[3072];
-//    int i = 0;
-//    while ((i = is.read()) != -1) {
-//      os.write(i);
-//    }
-//    os.close();
-//  }
-//
-//  /**
-//   * getAllPictures 提取图片
-//   */
-//  public static void main(String[] args) throws Exception {
-//    Elements elements = Jsoup.connect("http://music.163.com/artist?id=1876")
-//            .header("Referer", "http://music.163.com/")
-//            .header("Host", "music.163.com").get().select("ul[class=f-hide] a");
-//    Element first = elements.first();
-//    String text = first.text();
-//    String href = first.attr("href");
-//    System.out.println(text + "---" + href.substring(href.lastIndexOf('=') + 1));
-//
-//  }
+
+	@Autowired
+	private MusicMapper musicMapper;
+	@Autowired
+	private MusicUtil musicUtil;
+
+	//分页测试
+	@Test
+	public void findByPage() {
+		PageRequest request = new PageRequest();
+		int pageSize = 20;//
+		request.setStart(0);
+		request.setSize(pageSize);
+		request.setSorts(new PageRequest.Sort[]{new PageRequest.Sort("musicId", "asc")});
+		List<Music> list = musicMapper.findByPage(request);
+		Page page = new Page();
+		page.setRows(list);
+		int sum = musicMapper.countSize();//总记录数
+		int pageNumbers = sum / pageSize + 1;//总页数
+		page.setTotalPages(pageNumbers);
+		page.setTotalRows(sum);
+		System.out.println("page:\n" + page);
+	}
+
+	@Test
+	public void findMusicByCondition() {
+		String artist = "Eason";
+		String name = "预感";
+		//按照歌手名称+歌曲名称
+		Music musicByCondition = musicMapper.findMusicByCondition(artist, name);
+		System.out.println("findMusicByCondition \n" + musicByCondition);
+		//按照歌曲名称
+		List<String> musicBySongName = musicMapper.findMusicBySongName(name);
+		Random random = new Random();
+		String musicId = musicBySongName.get(random.nextInt(musicBySongName.size()));
+		System.out.println("musicId:" + musicId);
+		String musicBySongId = musicMapper.findMusicBySongId(musicId);
+		System.out.println("musicBySongId:" + musicBySongId);
+		//按照歌手名称
+		List<Music> listByArtist = musicMapper.findListByArtist(artist);
+		System.out.println("listByArtist:" + listByArtist);
+	}
+
+	@Test
+	public void musicutilTest() {
+		String songId = "http://music.163.com/song?id=29802464";
+		musicUtil.uploadThumb(songId);
+	}
+
 }
