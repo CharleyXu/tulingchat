@@ -36,3 +36,14 @@ SpringBoot+ Mybatis + Mysql + MongoDB + Redis + Jsoup
 前两个问题暂时无法解决，需要使用微信SDK
 第三个问题解决要事先爬取网易云音乐的歌曲，因为网易云的反爬虫机制，需要配置代理。
 暂定springboot+webmagic实现,后续会考虑加入RabbitMQ
+
+#####2017-11-29 更新
+
+spider4j 项目      https://github.com/CharleyXu/spider4j
+
+springboot + webmagic + mybatis 实现 ，未配置代理，爬取了4个多小时的数据，没有被封IP
+
+1.成功抓取网易云音乐 歌手信息 6w+ 和 音乐信息 80w+,
+  存入mysql，可以按照歌曲名称或者歌手名称、歌手别名等进行查询
+    
+2.成功获取评论数据，用户歌单，歌单详情，已实现查询接口,查询成功后存入mongodb
