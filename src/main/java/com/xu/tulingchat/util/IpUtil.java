@@ -60,12 +60,12 @@ public class IpUtil {
 			connection.setConnectTimeout(4000);
 			connection.setRequestMethod("GET");
 			if (connection.getResponseCode() == 200) {
-				connection.disconnect();
 				return true;
 			}
 		} catch (Exception e) {
-			connection.disconnect();
 			return false;
+		} finally {
+			connection.disconnect();
 		}
 		return false;
 	}
