@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="88208429-dab9-48e3-8cad-d85e55e5dd49" name="Default" comment="调整代码结构">
+    <list default="true" id="88208429-dab9-48e3-8cad-d85e55e5dd49" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/xu/tulingchat/config/WebMvcConfig.java" afterPath="$PROJECT_DIR$/src/main/java/com/xu/tulingchat/config/WebMvcConfig.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -556,7 +555,7 @@
       <workItem from="1512714519297" duration="24000" />
       <workItem from="1512794586306" duration="35000" />
       <workItem from="1512814158288" duration="1632000" />
-      <workItem from="1514130834651" duration="273000" />
+      <workItem from="1514130834651" duration="357000" />
     </task>
     <task id="LOCAL-00001" summary="add springboot scheduled task and listener">
       <created>1507707080109</created>
@@ -761,7 +760,14 @@
       <option name="project" value="LOCAL" />
       <updated>1511954028542</updated>
     </task>
-    <option name="localTasksCounter" value="30" />
+    <task id="LOCAL-00030" summary="静态资源访问+监控">
+      <created>1514131131164</created>
+      <option name="number" value="00030" />
+      <option name="presentableId" value="LOCAL-00030" />
+      <option name="project" value="LOCAL" />
+      <updated>1514131131164</updated>
+    </task>
+    <option name="localTasksCounter" value="31" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -797,7 +803,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="294587000" />
+    <option name="totallyTimeSpent" value="294671000" />
   </component>
   <component name="TodoView" selected-index="1">
     <todo-panel id="selected-file">
@@ -908,7 +914,6 @@
     <ignored-roots>
       <path value="$PROJECT_DIR$" />
     </ignored-roots>
-    <MESSAGE value="update messages" />
     <MESSAGE value="add sendMessage classes" />
     <MESSAGE value="add  send NewsMessage class" />
     <MESSAGE value="对象到 xml 的处理" />
@@ -933,7 +938,8 @@
     <MESSAGE value="调整结构" />
     <MESSAGE value="调整代码结构" />
     <MESSAGE value="update readme" />
-    <option name="LAST_COMMIT_MESSAGE" value="update readme" />
+    <MESSAGE value="静态资源访问+监控" />
+    <option name="LAST_COMMIT_MESSAGE" value="静态资源访问+监控" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
   <component name="XDebuggerManager">
