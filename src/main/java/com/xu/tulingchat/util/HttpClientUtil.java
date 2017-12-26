@@ -1,5 +1,15 @@
 package com.xu.tulingchat.util;
 
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.nio.charset.Charset;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpHost;
 import org.apache.http.client.ClientProtocolException;
@@ -19,17 +29,6 @@ import org.apache.http.impl.client.HttpClients;
 import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.util.EntityUtils;
 import org.apache.tomcat.util.http.fileupload.IOUtils;
-
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.nio.charset.Charset;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Map;
 
 /**
  * HttpClient工具类
@@ -67,6 +66,11 @@ public class HttpClientUtil {
 
 	/**
 	 * 发送请求体
+	 * @param closeableHttpClient
+	 * @param url
+	 * @param headers
+	 * @param params
+	 * @return
 	 */
 	public static String sendRequest(CloseableHttpClient closeableHttpClient, String url, Map<String, String> headers, Map<String, String> params) {
 		StringBuilder reqUrl = new StringBuilder(url);
@@ -100,13 +104,17 @@ public class HttpClientUtil {
 		} catch (IOException e) {
 			e.printStackTrace();
 		} finally {
-//			closeSource(closeableHttpClient, closeableHttpResponse);
+			closeSource(closeableHttpClient, closeableHttpResponse);
 		}
 		return null;
 	}
 
 	/**
 	 * Http Post请求
+	 * @param url
+	 * @param headers
+	 * @param params
+	 * @return
 	 */
 	public static String sendPost(String url, Map<String, String> headers, Map<String, String> params) {
 		// 创建默认的HttpClient实例.
@@ -154,7 +162,9 @@ public class HttpClientUtil {
 		return null;
 	}
 
-	//关闭资源
+	/**
+	 * 关闭资源
+	 */
 	public static void closeSource(CloseableHttpClient closeableHttpClient, CloseableHttpResponse closeableHttpResponse){
 		try {
 			if (closeableHttpResponse != null) {
@@ -214,9 +224,6 @@ public class HttpClientUtil {
 				"Mozilla/4.0 (compatible; MSIE 8.0; Windows NT 6.0) ");
 		post.setEntity(entity);
 		CloseableHttpResponse response = httpClient.execute(post);
-//		int code = response.getStatusLine().getStatusCode();
-//		System.out.println("code："+code);
-		//将响应实体转为字符串
 		String s = EntityUtils.toString(response.getEntity(), "utf-8");
 		httpClient.close();
 		return s;

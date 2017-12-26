@@ -12,16 +12,14 @@ import com.xu.tulingchat.util.DateUtil;
 import com.xu.tulingchat.util.MailUtil;
 import com.xu.tulingchat.util.MessageUtil;
 import com.xu.tulingchat.util.TulingRobotUtil;
-
+import java.util.Date;
+import java.util.List;
+import java.util.Map;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
-
-import java.util.Date;
-import java.util.List;
-import java.util.Map;
 
 /**
  * 消息业务处理分发器
@@ -49,7 +47,7 @@ public class MsgDispatcher {
 		String msgType = map.get("MsgType");
 		if (MessageUtil.REQ_MESSAGE_TYPE_TEXT.equals(msgType)) { // 文本消息
 			String content = map.get("Content").trim();
-			System.out.println("==============\n" + content);
+//			System.out.println("==============\n" + content);
 
 			if ("咨询".startsWith(content)) {
 				NewsMessage newsMessage = null;
@@ -69,7 +67,6 @@ public class MsgDispatcher {
 				if (Strings.isNullOrEmpty(MessageUtil.newsMessageToXml(newsMessage))) {
 					reResult = MessageUtil.newsMessageToXml(newsMessage);
 				}
-				;
 				return reResult;
 			}
 

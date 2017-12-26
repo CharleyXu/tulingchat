@@ -1,5 +1,9 @@
 package com.xu.tulingchat.util;
 
+import java.io.File;
+import java.util.Date;
+import javax.mail.MessagingException;
+import javax.mail.internet.MimeMessage;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,17 +15,12 @@ import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 
-import java.io.File;
-import java.util.Date;
-
-import javax.mail.MessagingException;
-import javax.mail.internet.MimeMessage;
-
 /**
  * 发送邮件实现类
  */
 @Service
 public class MailUtil {
+
 	private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
 	@Autowired
@@ -100,7 +99,8 @@ public class MailUtil {
 	 * 发送正文中有静态资源（图片）的邮件
 	 */
 	@Async("mailAsync")
-	public void sendInlineResourceMail(String to, String subject, String content, String rscPath, String rscId) {
+	public void sendInlineResourceMail(String to, String subject, String content, String rscPath,
+			String rscId) {
 		MimeMessage message = mailSender.createMimeMessage();
 		try {
 			MimeMessageHelper helper = new MimeMessageHelper(message, true);

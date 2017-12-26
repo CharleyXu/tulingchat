@@ -7,17 +7,19 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 
 /**
- * 开启CORS支持
+ * @author Xu 开启CORS支持
  */
 @Configuration
 public class CORSConfig {
+
 	@Bean
 	public WebMvcConfigurer corsConfigurer() {
 		return new WebMvcConfigurerAdapter() {
 			@Override
 			public void addCorsMappings(CorsRegistry registry) {
 				// 配置CorsInterceptor的CORS参数
-				registry.addMapping("/**").allowedOrigins("*").allowCredentials(true).allowedHeaders("*").allowedMethods("*").maxAge(3600);
+				registry.addMapping("/**").allowedOrigins("*").allowCredentials(true).allowedHeaders("*")
+						.allowedMethods("*").maxAge(3600);
 			}
 		};
 	}
