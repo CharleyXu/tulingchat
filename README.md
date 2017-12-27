@@ -55,7 +55,11 @@ springboot + webmagic + mybatis 实现 ，未配置代理，爬取了4个多小�
 ![Image text](https://raw.githubusercontent.com/CharleyXu/tulingchat/master/src/main/resources/static/legend.png)
 
 ####2017-12-27 更新
+
 使用actuator组件和Metric库做项目监控 
+
 后续:
+
 项目使用SDK开发工具包 https://github.com/Wechat-Group/weixin-java-tools
+
 借鉴这个微信点餐系统接触下微信支付https://github.com/ldlood/SpringBoot_Wechat_Sell
