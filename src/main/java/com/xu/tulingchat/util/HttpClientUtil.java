@@ -136,11 +136,9 @@ public class HttpClientUtil {
 			}
 			//设置头部
 			if (headers != null && headers.size() > 0) {
-				if (headers != null && headers.size() > 0) {
 					for (Map.Entry<String, String> header : headers.entrySet()) {
 						httpPost.addHeader(header.getKey(), header.getValue());
 					}
-				}
 			}
 			// 执行post请求，返回response服务器响应对象, 其中包含了状态信息和服务器返回的数据
 			closeableHttpResponse = closeableHttpClient.execute(httpPost);

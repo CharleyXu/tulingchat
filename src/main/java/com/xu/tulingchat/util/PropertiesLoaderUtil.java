@@ -1,13 +1,12 @@
 package com.xu.tulingchat.util;
 
-import org.springframework.beans.BeansException;
-import org.springframework.core.io.support.PropertiesLoaderUtils;
-
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Properties;
+import org.springframework.beans.BeansException;
+import org.springframework.core.io.support.PropertiesLoaderUtils;
 
 /**
  * 配置文件工具类  初始化加载配置
@@ -15,7 +14,7 @@ import java.util.Properties;
  */
 public class PropertiesLoaderUtil {
 
-    public static Map<String, String> propertiesMap = new HashMap<>();
+	private static Map<String, String> propertiesMap = new HashMap<>();
 
     private static void processProperties(Properties props) throws BeansException {
         propertiesMap = new HashMap<String, String>();

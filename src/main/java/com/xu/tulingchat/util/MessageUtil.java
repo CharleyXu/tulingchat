@@ -12,18 +12,15 @@ import com.xu.tulingchat.bean.message.send.NewsMessage;
 import com.xu.tulingchat.bean.message.send.TextMessage;
 import com.xu.tulingchat.bean.message.send.VideoMessage;
 import com.xu.tulingchat.bean.message.send.VoiceMessage;
-
-import org.dom4j.Document;
-import org.dom4j.Element;
-import org.dom4j.io.SAXReader;
-
 import java.io.InputStream;
 import java.io.Writer;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
 import javax.servlet.http.HttpServletRequest;
+import org.dom4j.Document;
+import org.dom4j.Element;
+import org.dom4j.io.SAXReader;
 
 /**
  * 消息工具类
@@ -150,8 +147,8 @@ public class MessageUtil {
    */
   public static String newsMessageToXml(NewsMessage newsMessage) {
     xstream.alias("xml", newsMessage.getClass());
-	  xstream.alias("item", new Article().getClass());
-	  return xstream.toXML(newsMessage);
+		xstream.alias("item", Article.class);
+		return xstream.toXML(newsMessage);
   }
 
   /**

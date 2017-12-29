@@ -1,22 +1,23 @@
 package com.xu.tulingchat.util;
 
 import com.google.common.base.Strings;
-
-import org.jsoup.Jsoup;
-import org.jsoup.nodes.Document;
-
 import java.io.IOException;
 import java.net.HttpURLConnection;
 import java.net.InetSocketAddress;
 import java.net.Proxy;
 import java.net.URL;
-
 import javax.servlet.http.HttpServletRequest;
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * Ip工具类
  */
 public class IpUtil {
+
+	private static final Logger LOGGER = LoggerFactory.getLogger(IpUtil.class);
 	/**
 	 * 获取访问Ip
 	 */
@@ -63,9 +64,12 @@ public class IpUtil {
 				return true;
 			}
 		} catch (Exception e) {
+			LOGGER.info("checkValidIP Error", e.toString());
 			return false;
 		} finally {
-			connection.disconnect();
+			if (null != connection) {
+				connection.disconnect();
+			}
 		}
 		return false;
 	}
@@ -90,7 +94,7 @@ public class IpUtil {
 //		String s = HttpClientUtil.sendGet("https://www.baidu.com/", null, null);
 //		System.out.println(s);
 
-		Proxy proxy = new Proxy(Proxy.Type.HTTP, new InetSocketAddress("219.136.172.180", 9797));
+//		Proxy proxy = new Proxy(Proxy.Type.HTTP, new InetSocketAddress("219.136.172.180", 9797));
 		Document document = null;
 		try {
 			document = Jsoup.connect("http://music.163.com/discover/artist/cat?id=1001&initial=65")

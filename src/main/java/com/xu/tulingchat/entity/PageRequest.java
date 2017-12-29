@@ -27,11 +27,11 @@ public class PageRequest {
 	}
 
 	public Sort[] getSorts() {
-		return sorts;
+		return sorts.clone();
 	}
 
 	public void setSorts(Sort[] sorts) {
-		this.sorts = sorts;
+		this.sorts = sorts.clone();
 	}
 
 	public int getStart() {

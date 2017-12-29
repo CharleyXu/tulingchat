@@ -1,6 +1,7 @@
 package com.xu.tulingchat.util;
 
 import com.alibaba.fastjson.JSONObject;
+import com.google.common.base.Charsets;
 import com.google.common.base.Strings;
 import java.io.BufferedReader;
 import java.io.DataInputStream;
@@ -121,7 +122,7 @@ public class MaterialUtil {
 		BufferedReader reader = null;
 		try {
 			// 定义BufferedReader输入流来读取URL的响应
-			reader = new BufferedReader(new InputStreamReader(con.getInputStream()));
+			reader = new BufferedReader(new InputStreamReader(con.getInputStream(), Charsets.UTF_8));
 			String line = null;
 			while ((line = reader.readLine()) != null) {
 				buffer.append(line);

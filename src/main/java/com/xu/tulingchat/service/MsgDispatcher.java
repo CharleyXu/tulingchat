@@ -1,7 +1,6 @@
 package com.xu.tulingchat.service;
 
 import com.alibaba.fastjson.JSON;
-import com.google.common.base.Strings;
 import com.xu.tulingchat.bean.message.send.Article;
 import com.xu.tulingchat.bean.message.send.Music;
 import com.xu.tulingchat.bean.message.send.MusicMessage;
@@ -41,7 +40,6 @@ public class MsgDispatcher {
 	private NetEaseMusicService netEaseMusicService;
 
 	public String progressMsg(Map<String, String> map) {
-		String reResult = "";
 		String toUserName = map.get("ToUserName");//开发者微信号 公众号
 		String fromUserName = map.get("FromUserName");//发送方帐号（一个 OpenID）粉丝号
 		String msgType = map.get("MsgType");
@@ -64,18 +62,17 @@ public class MsgDispatcher {
 						newsMessage = handleNews(fromUserName, toUserName, articles);
 					}
 				}
-				if (Strings.isNullOrEmpty(MessageUtil.newsMessageToXml(newsMessage))) {
-					reResult = MessageUtil.newsMessageToXml(newsMessage);
+				if (null != newsMessage) {
+					return MessageUtil.newsMessageToXml(newsMessage);
 				}
-				return reResult;
 			}
 
 			if (content.startsWith("音乐")) {
 				MusicMessage musicMessage = null;
 				if (content.equals("音乐")) {
-					String artist = "李玖哲";
+					String artist = "陈奕迅";
 					com.xu.tulingchat.entity.Music music = netEaseMusicService.getMusic(artist);
-					if (null != null) {
+					if (null != music) {
 						int id = music.getId();
 						String name = music.getName();
 						String songId = song.replace("SONG_ID", id + "");

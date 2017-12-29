@@ -1,11 +1,12 @@
 package com.xu.tulingchat.task;
 
 import com.google.common.base.Strings;
-
 import com.xu.tulingchat.entity.ProxyIp;
 import com.xu.tulingchat.mapper.ProxyIpMapper;
 import com.xu.tulingchat.util.IpUtil;
-
+import java.io.IOException;
+import java.net.InetSocketAddress;
+import java.net.Proxy;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.slf4j.Logger;
@@ -14,10 +15,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
-
-import java.io.IOException;
-import java.net.InetSocketAddress;
-import java.net.Proxy;
 
 @Component
 public class NeteaseTask {
@@ -92,7 +89,6 @@ public class NeteaseTask {
 			ip = newestOne.getIp();
 			port = newestOne.getPort();
 		}
-		System.out.printf("%s:%d \n", ip, port);
 		Proxy proxy = new Proxy(Proxy.Type.HTTP, new InetSocketAddress(ip, port));
 		try {
 			document = Jsoup.connect(url).proxy(proxy)

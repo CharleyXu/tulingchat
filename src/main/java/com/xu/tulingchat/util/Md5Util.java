@@ -10,8 +10,8 @@ public class Md5Util {
   public static String encrypt(String plainText) throws Exception {
     StringBuffer buf = new StringBuffer("");
     MessageDigest md = MessageDigest.getInstance("MD5");
-    md.update(plainText.getBytes());
-    byte b[] = md.digest();
+		md.update(plainText.getBytes("utf-8"));
+		byte b[] = md.digest();
     int i;
     for (int offset = 0; offset < b.length; offset++) {
       i = b[offset];
