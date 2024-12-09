@@ -9,8 +9,5 @@
         <module name="tulingchat" />
       </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel>
-      <module name="tulingchat" target="1.8" />
-    </bytecodeTargetLevel>
   </component>
 </project>
