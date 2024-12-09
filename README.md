@@ -15,7 +15,7 @@ SpringBoot + Mybatis + Mysql + MongoDB + Redis + Jsoup
 1. 整合Mybatis+Mongodb+Redis,定期存储存储access_token，加入图灵接口，实现消息回复功能
 2. 选取Schedule 和 quartz做任务调度
 
-## 2007-11-10 更新
+## 2017-11-10 更新
 
 1. 完成邮件，知乎日报功能等
 2. 公众号输入：'新闻'或者'知乎日报',即可获取图文消息
